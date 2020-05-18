@@ -1,7 +1,7 @@
 # Pizzeria JEDI
 
 ```shell
-npm start
+npm install
 ```
 ```
 npm i -s firebase
