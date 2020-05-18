@@ -1,2 +1,8 @@
 # Pizzeria JEDI
-+1
+
+```shell
+npm install
+```
+```
+npm i -s firebase
+```
