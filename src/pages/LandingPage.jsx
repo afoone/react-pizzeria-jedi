@@ -15,6 +15,7 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
+import vader from './vader.png'
 
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
@@ -33,15 +34,14 @@ const HomepageHeading = ({ mobile }) => (
   <Container text>
     <Header
       as='h1'
-      content='Pizza Jedi'
       inverted
       style={{
         fontSize: mobile ? '2em' : '4em',
         fontWeight: 'normal',
         marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
+        marginTop: mobile ? '1em' : '1em',
       }}
-    />
+    ><p><Image src={vader} width={200} centered/></p><p>Pizza Jedi</p></Header>
     <Header
       as='h2'
       content='Jabba el Hut said Yummy!! then died '
@@ -217,7 +217,7 @@ const HomepageLayout = () => (
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Container text>
         <Header as='h3' style={{ fontSize: '2em' }}>
-          Breaking The Grid, Grabs Your Attention
+          ¡Impactante novedad!
         </Header>
         <p style={{ fontSize: '1.33em' }}>
           Tenemos un nuevo programa de beta testers de nuestras pizzas. Apuntate para ser el primero en probarlas, 
