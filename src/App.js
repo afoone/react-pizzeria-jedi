@@ -1,10 +1,11 @@
 import React from 'react';
+import AddPizzaPage from './pages/AddPizzaPage'
 
 
 function App() {
   return (
-    <div className="App">
-      Pizza store
+    <div className="app">
+      <AddPizzaPage/>
     </div>
   );
 }
