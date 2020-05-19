@@ -1,5 +1,7 @@
 import React from 'react';
 import PizzaList from './components/PizzaList'
+import PizzaCardPage from './pages/PizzaCardPage'
+
 
 function App() {
   return (
