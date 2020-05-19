@@ -9,7 +9,17 @@ const commentHandle = (comment) => {
     console.log('añadir comentario', comment);
 }
 
+
 const PizzaCardPage = () => {
+
+    const precioPizza=()=>{
+        const coste=sampleIngredients.map(
+            item=>parseFloat(item.price)
+        ).reduce((a,price)=>a+parseFloat(price));
+        console.log('coste pizza', coste);
+        return coste+10
+    }
+
     return (
         <Container style={{ minWidth: '500px' }}>
 
@@ -18,13 +28,12 @@ const PizzaCardPage = () => {
                     <Grid.Column width={6}>
                         <Header as='h2'>Pizza Pepperoni</Header>
                         <Image src={image} style={{ maxWidth: '200px' }} />
-                        <Header as='h3'>{`Precio: ${10}`}</Header>
+                        <Header as='h3'>{`Precio: ${precioPizza()}`}</Header>
                     </Grid.Column>
                     <Grid.Column width={8}>
                         <Header as='h1'>Ingredientes</Header>
                         <Table unstackable>
                             <Table.Body>
-
                                 {
                                     sampleIngredients.map(
                                         (res, index) =>
