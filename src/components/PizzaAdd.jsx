@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import '../css/PizzaAdd.css'
-import { Dropdown, Image } from 'semantic-ui-react'
+import { Dropdown, Image, Checkbox } from 'semantic-ui-react'
 import { InputFile } from 'semantic-ui-react-input-file'
-import { db } from '../config/firebase'
+
 
 const options = [
     { key: 'Tomate', text: 'Tomate', value: 'Tomate' },
@@ -15,6 +15,8 @@ const options = [
 const DropdownExampleMultipleSelection = () => (
     <Dropdown placeholder='Ingredientes...' fluid multiple selection options={options} />
 )
+
+const CheckboxExampleToggle = () => <Checkbox toggle />
 
 const ImageExampleLink = () => (
     <Image
@@ -35,43 +37,68 @@ export class PizzaAdd extends Component {
             name: "",
             image: "",
             price: '',
-            novely: '',
+            novelty: false,
+            ingrediente:'',
             redirect: false
         }
     }
 
-    componentDidMount() {
-        db.collection("pizzas").get().then(
-            res => {
-               /*  this.setState({
-                    name: res.data().name,
-                    image: res.data().image,
-                    price: res.data().price,
-                    novely: res.data().novely
-                }) */
-                console.log(res)
+    onNameChange = e => {
+        this.setState(
+            {
+                name: e.target.value
+                
+            }
+        )
+    }
+    onPriceChange = e => {
+        this.setState(
+            {
+                price: e.target.value
+                
+            }
+        )
+    }
+    onNoveltyChange = e => {
+        this.setState(
+            {
+               novelty: !this.state.novelty
+                
             }
         )
     }
 
-
     render() {
-        console.log(this.state)
+        console.log('state',this.state)
         return (
             <div className='pizza-add'>
                 <form className="ui form">
                     <div className="field">
                         <label>Nombre de Pizza</label>
-                        <input placeholder="Nombre de pizza..." />
+                        <input placeholder="Nombre de pizza..."
+                        onChange={this.onNameChange}
+                        value={this.state.name}
+                        />
+                       
                     </div>
+                    <div className="field">
+                    <label>Precio</label>
+                    <input placeholder="Precio..."
+                    onChange={this.onPriceChange}
+                    value={this.state.price}
+                    />
+                    </div>
+                    
+                   <CheckboxExampleToggle ></CheckboxExampleToggle>
+                
                     <div className='select-ingrediente'>
-                        <DropdownExampleMultipleSelection></DropdownExampleMultipleSelection>
+                        <DropdownExampleMultipleSelection />
                     </div>
 
                     <InputFile
                         button={''}
-                        input={''
-                        }
+                        input={''}
+                       
                     />
                     <div>
                         <ImageExampleLink></ImageExampleLink>
