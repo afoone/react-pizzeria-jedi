@@ -1,10 +1,10 @@
 import React from 'react';
-
+import PizzaList from './components/PizzaList'
 
 function App() {
   return (
     <div className="App">
-      Pizza store
+      <PizzaList></PizzaList>
     </div>
   );
 }
