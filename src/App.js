@@ -1,11 +1,11 @@
 import React from 'react';
-import PizzaCardPage from './pages/PizzaCardPage'
+import LandingPage from './pages/LandingPage'
 
 
 function App() {
   return (
     <div className="App">
-      Pizza store
+        <LandingPage/>
     </div>
   );
 }
