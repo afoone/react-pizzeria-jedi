@@ -1,12 +1,14 @@
 import React from 'react';
-import PizzaAdd from './components/PizzaAdd'
+import LandingPage from './pages/LandingPage'
+import PizzaList from './components/PizzaList'
 import PizzaCardPage from './pages/PizzaCardPage'
 
 
 function App() {
   return (
     <div className="App">
-      <PizzaAdd></PizzaAdd>
+        <LandingPage/>
+      <PizzaList></PizzaList>
     </div>
   );
 }
