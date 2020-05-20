@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { auth } from '../config/firebase'
 import { withRouter } from "react-router-dom";
 import { Menu, Icon, Input, Segment, Dropdown } from "semantic-ui-react";
