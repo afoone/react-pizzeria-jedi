@@ -4,5 +4,28 @@
 }
 
 .select-ingrediente{
-    width: 50%;
+    width: -webkit-fill-available;
+}
+
+.novedad-ingrediente{
+ display: grid;
+ grid-template-columns: 10% 10% auto 50%;
+ justify-items: end;
+}
+
+.novedad-ingrediente .go4079732705{
+    width: -webkit-fill-available;
+   }
+
+.novedad-ingrediente .ingrediente-select{
+   margin: auto;
+   margin-left: 56%;
+}
+
+.ui.fitted.toggle.checkbox {
+  margin: auto;
+}
+
+h4{
+    margin: auto;
 }
