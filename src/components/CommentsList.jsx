@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Header, Form, Container, Message, Grid, GridColumn } from 'semantic-ui-react'
+import { Segment, Header, Grid, GridColumn } from 'semantic-ui-react'
 
 const CommentsList = (props) => {
     //console.log('props', props)

@@ -97,7 +97,7 @@ class DesktopContainer extends Component {
               secondary={!fixed}
               size='large'
             >
-              <Container>
+              {/* <Container>
                 <Menu.Item as='a' active>
                   Home
                 </Menu.Item>
@@ -112,7 +112,7 @@ class DesktopContainer extends Component {
                     Sign Up
                   </Button>
                 </Menu.Item>
-              </Container>
+              </Container> */}
             </Menu>
             <HomepageHeading />
           </Segment>
@@ -233,7 +233,7 @@ const HomepageLayout = () => (
           horizontal
           style={{ margin: '3em 0em', textTransform: 'uppercase' }}
         >
-          <a href='#'>Historias de éxito</a>
+          <p >Historias de éxito</p>
         </Divider>
 
         <Header as='h3' style={{ fontSize: '2em' }}>

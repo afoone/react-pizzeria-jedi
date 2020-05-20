@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { auth } from '../config/firebase'
 import { withRouter } from "react-router-dom";
 import { Menu, Icon, Input, Segment, Dropdown } from "semantic-ui-react";
@@ -13,12 +13,12 @@ const Navbar = (props) => {
 
 
 
-const cerrarSesion = () => {
-  auth.signOut()
+  const cerrarSesion = () => {
+    auth.signOut()
       .then(() => {
-          props.history.push('/login')
+        props.history.push('/login')
       })
-}
+  }
 
 
 
@@ -28,47 +28,46 @@ const cerrarSesion = () => {
     <div>
       <Segment inverted>
         <Menu fluid inverted pointing secondary size="huge" stackable>
-          <Menu.Item>
-            <img src="https://react.semantic-ui.com/logo.png" />
+          <Menu.Item>  
+          <img src="http://localhost:3000/1840529_1.png" width='' alt='' />
           </Menu.Item>
-          <Menu.Item header>PiZZa JeDi</Menu.Item>
+       
+          <Menu.Item header>Pizza JeDi</Menu.Item>
           <Menu.Item
+          as={Link}
+          to='/'
             name="home"
             active={activeItem === "home"}
             onClick={handleItemClick}
-          >
-            <NavLink to="/">Home</NavLink>
-          </Menu.Item>
+          />
           <Menu.Item
+            as={Link}
+            to="/promos"
             name="Promociones"
             active={activeItem === "Promociones"}
             onClick={handleItemClick}
-          >
-            <NavLink to="/promos">Promociones</NavLink>
-          </Menu.Item>
-          { 
+          />
+          {
             props.firebaseUser !== null ? (
-            <>
-              <Menu.Item
-                to="/pizzas"
-                name="Nuestras Pizzas"
-                active={activeItem === "Nuestras Pizzas"}
-                onClick={handleItemClick}
-              >
-                <NavLink to="/pizzas">Pizzas Listado</NavLink>
-              </Menu.Item>
-
-              <Menu.Item
-                name="Crea tu Pizza"
-                active={activeItem === "Crea tu Pizza"}
-                onClick={handleItemClick}
-              >
-                <NavLink to="/pizzaAdd">Crea Tu Pizza</NavLink>
-              </Menu.Item>
-            </>
-          ) : (null)
-        }
-        {" "}
+              <React.Fragment>
+                <Menu.Item
+                as={Link}
+                  to="/pizzas"
+                  name="Nuestras Pizzas"
+                  active={activeItem === "Nuestras Pizzas"}
+                  onClick={handleItemClick}
+                />
+                <Menu.Item
+                as={Link}
+                to="/pizzaAdd"
+                  name="Crea tu Pizza"
+                  active={activeItem === "Crea tu Pizza"}
+                  onClick={handleItemClick}
+                />
+              </React.Fragment>
+            ) : (null)
+          }
+          {" "}
           <Menu.Menu position="right">
             <Dropdown item icon="search plus" text="Buscar ">
               <Dropdown.Menu>
@@ -81,36 +80,35 @@ const cerrarSesion = () => {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            { 
+            {
               props.firebaseUser !== null ? (
-              <>
-                <Menu.Item
-                  name="Log out"
-                  active={activeItem === "Log out"}
-                  onClick={() => cerrarSesion()}
-                >
-                  <Icon name="sign-out alternate" />
-                </Menu.Item>
-                <Menu.Item
-                  name="carrito"
-                  active={activeItem === "carrito"}
-                  onClick={handleItemClick}
-                >
-                  <NavLink to="/carrito">
-                    <Icon name="shopping cart" />
-                  </NavLink>
-                </Menu.Item>
-              </>
-            ) : (
-              <Menu.Item
-                name="login"
-                active={activeItem === "login"}
-                onClick={handleItemClick}
-              >
-                <Icon name="user circle" />
-                <NavLink to="/login">Login</NavLink>
-              </Menu.Item>
-            )}
+                <React.Fragment>
+                  <Menu.Item
+                    name="Log out"
+                    active={activeItem === "Log out"}
+                    onClick={() => cerrarSesion()}
+                  >
+                    <Icon name="sign-out alternate" />
+                  </Menu.Item>
+                  <Menu.Item
+                  as={Link}
+                  to="/carrito"
+                    name="carrito"
+                    active={activeItem === "carrito"}
+                    onClick={handleItemClick}
+                    icon="shopping cart"
+                  />
+                </React.Fragment>
+              ) : (
+                  <Menu.Item
+                    name="login"
+                    active={activeItem === "login"}
+                    onClick={handleItemClick}
+                  >
+                    <Icon name="user circle" />
+                    <Link to="/login">Login</Link>
+                  </Menu.Item>
+                )}
           </Menu.Menu>
         </Menu>
       </Segment>
