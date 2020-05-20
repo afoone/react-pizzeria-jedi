@@ -21,9 +21,6 @@ const Navbar = (props) => {
   }
 
 
-
-
-
   return (
     <div>
       <Segment inverted>

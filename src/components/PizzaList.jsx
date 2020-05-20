@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const PizzaList = props => {
 
     const { dispatch } = props;
-    console.log("propiedades en PizzaList", props)
+    //console.log("propiedades en PizzaList", props)
     useEffect(
         () => {
             console.log("did mount");
@@ -40,14 +40,7 @@ const PizzaList = props => {
                                 <td>{e.price}</td>
                                 <td><img src={e.image} alt="" border="3" height="100" width="100"></img></td>
                                 <td>
-                                    <Link to={{
-                                        pathname: `/pizzaId/view`,
-                                        
-                                            pizza: e
-                                        
-                                    }}>
-                                        Ver
-                                    </Link>
+                                    <Link to= {`/pizzaId/${e.id}`}>Ver</Link>
                                 </td>
                             </tr>
                         )
