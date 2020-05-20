@@ -63,7 +63,7 @@ const cerrarSesion = () => {
                 active={activeItem === "Crea tu Pizza"}
                 onClick={handleItemClick}
               >
-                <NavLink to="/pizzaId">Crea Tu Pizza</NavLink>
+                <NavLink to="/pizzaAdd">Crea Tu Pizza</NavLink>
               </Menu.Item>
             </>
           ) : (null)
