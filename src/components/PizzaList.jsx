@@ -36,13 +36,18 @@ const PizzaList = props => {
                             e => <tr key={e.id}>
                                 <td>{e.id}</td>
                                 <td>{e.name}</td>
-                                <td>{e.novelty?"Sí":"No"}</td>
+                                <td>{e.novelty ? "Sí" : "No"}</td>
                                 <td>{e.price}</td>
-                                <td><img src="http://soloqueso.com/wp-content/uploads/2018/11/Pizza-Margarita-1300x680.jpg" alt="" border="3" height="100" width="100"></img></td>
+                                <td><img src={e.image} alt="" border="3" height="100" width="100"></img></td>
                                 <td>
-                                    <a href={`https://www.w3schools.com`}>
-                                        <div>Ver</div>
-                                            </a>
+                                    <Link to={{
+                                        pathname: `/pizzaId/view`,
+                                        
+                                            pizza: e
+                                        
+                                    }}>
+                                        Ver
+                                    </Link>
                                 </td>
                             </tr>
                         )
