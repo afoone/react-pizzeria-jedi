@@ -6,7 +6,7 @@ import PizzaList from "./components/PizzaList";
 import Login from "./components/Login";
 import { auth } from "./config/firebase";
 import PizzaCardPage from "./pages/PizzaCardPage";
-import PizzaAdd from "./components/PizzaAdd";
+import AddPizzaPage from "./pages/AddPizzaPage";
 
 const App = () => {
   const [firebaseUser, setFirebaseUser] = React.useState(false);
@@ -31,7 +31,7 @@ const App = () => {
       <Switch>
         <Route path="/home" exact></Route>
         <Route path="/pizzaAdd" exact>
-          <PizzaAdd/>
+          <AddPizzaPage/>
         </Route>
         <Route path="/pizzas" exact>
           <PizzaList></PizzaList>
