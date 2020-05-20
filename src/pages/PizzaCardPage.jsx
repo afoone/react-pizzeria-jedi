@@ -10,7 +10,9 @@ const commentHandle = (comment) => {
 }
 
 
-const PizzaCardPage = () => {
+const PizzaCardPage = (props) => {
+    
+    console.log("pizzacardpage", props.location.pizza)
 
     const precioPizza=()=>{
         const coste=sampleIngredients.map(
@@ -21,8 +23,8 @@ const PizzaCardPage = () => {
     }
 
     return (
+        
         <Container style={{ minWidth: '500px' }}>
-
             <Grid divided relaxed>
                 <Grid.Row columns={2}>
                     <Grid.Column width={6}>
