@@ -26,10 +26,10 @@ const Navbar = (props) => {
       <Segment inverted>
         <Menu fluid inverted pointing secondary size="huge" stackable>
           <Menu.Item>  
-          <img src="http://localhost:3000/1840529_1.png" width='' alt='' />
+          <img src="http://localhost:3000/1840529_1.png"  alt='logo' />
           </Menu.Item>
        
-          <Menu.Item header>Pizza JeDi</Menu.Item>
+          <Menu.Item header style={{width: 126}}></Menu.Item>
           <Menu.Item
           as={Link}
           to='/'
