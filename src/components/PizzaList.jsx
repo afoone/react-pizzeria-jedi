@@ -40,9 +40,11 @@ const PizzaList = props => {
                                 <td>{e.price}</td>
                                 <td><img src="http://soloqueso.com/wp-content/uploads/2018/11/Pizza-Margarita-1300x680.jpg" alt="" border="3" height="100" width="100"></img></td>
                                 <td>
-                                    <a href={`https://www.w3schools.com`}>
+                                    <Link to={
+                                        {pathname:'/pizzaId', pizza:e}
+                                    }>
                                         <div>Ver</div>
-                                            </a>
+                                            </Link>
                                 </td>
                             </tr>
                         )

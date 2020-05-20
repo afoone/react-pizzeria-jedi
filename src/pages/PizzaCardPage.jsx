@@ -6,11 +6,14 @@ import CommentForm from '../components/CommentForm'
 import CommentsList from '../components/CommentsList'
 
 const commentHandle = (comment) => {
-    console.log('añadir comentario', comment);
+    //console.log('añadir comentario', comment);
 }
 
 
-const PizzaCardPage = () => {
+const PizzaCardPage = (props) => {
+
+    console.log('props pizza',props.location.pizza)
+    const pizza=props.location.pizza;
 
     const precioPizza=()=>{
         const coste=sampleIngredients.map(
@@ -26,8 +29,8 @@ const PizzaCardPage = () => {
             <Grid divided relaxed>
                 <Grid.Row columns={2}>
                     <Grid.Column width={6}>
-                        <Header as='h2'>Pizza Pepperoni</Header>
-                        <Image src={image} style={{ maxWidth: '200px' }} />
+                        <Header as='h2'>{pizza.name}</Header>
+                        <Image src={pizza.image} style={{ maxWidth: '200px' }} />
                         <Header as='h3'>{`Precio: ${precioPizza()}`}</Header>
                     </Grid.Column>
                     <Grid.Column width={8}>
