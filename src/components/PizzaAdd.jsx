@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../css/PizzaAdd.css'
 import { Dropdown, Image, Checkbox } from 'semantic-ui-react'
-import { InputFile } from 'semantic-ui-react-input-file'
+import { db } from '../config/firebase'
 
 
 const options = [
@@ -12,9 +12,9 @@ const options = [
 
 ]
 
-const DropdownExampleMultipleSelection = () => (
-    <Dropdown placeholder='Ingredientes...' fluid multiple selection options={options} />
-)
+
+
+
 
 const CheckboxExampleToggle = () => <Checkbox toggle />
 
@@ -42,6 +42,7 @@ export class PizzaAdd extends Component {
             redirect: false
         }
     }
+  
 
     onNameChange = e => {
         this.setState(
@@ -59,6 +60,14 @@ export class PizzaAdd extends Component {
             }
         )
     }
+    onImageChange = e => {
+        this.setState(
+            {
+                image: e.target.value
+                
+            }
+        )
+    }
     onNoveltyChange = e => {
         this.setState(
             {
@@ -67,6 +76,33 @@ export class PizzaAdd extends Component {
             }
         )
     }
+
+    oningredienteChange = (e, value) => {
+        
+               console.log('options',e, value)
+                
+            
+        
+    }
+
+    onSubmitClick = e => {
+        e.preventDefault();
+      
+        const pizzas = {
+            name: this.state.name,
+            image: this.state.image,
+            price: this.state.price,
+            novelty: this.state.novelty,
+
+        }
+       
+            db.collection("pizzas").add(pizzas).then(
+                res =>{
+                 
+                }
+                  
+            )
+        }
 
     render() {
         console.log('state',this.state)
@@ -89,22 +125,30 @@ export class PizzaAdd extends Component {
                     />
                     </div>
                     
-                   <CheckboxExampleToggle ></CheckboxExampleToggle>
+                   <CheckboxExampleToggle  ></CheckboxExampleToggle>
                 
-                    <div className='select-ingrediente'>
-                        <DropdownExampleMultipleSelection />
+                    <div className='select-ingrediente'  >
+
+                    <Dropdown
+                      placeholder='Ingredientes...' 
+                      fluid multiple selection options={options}
+                      
+                      onClick={(e, {value})=>this.oningredienteChange(options)}
+                      />
                     </div>
 
-                    <InputFile
-                        button={''}
-                        input={''}
-                       
-                    />
+                    <div className="field">
+                        <label>URL de la Imagen</label>
+                        <input placeholder="URL de la Imagen..."
+                        onChange={this.onImageChange}
+                        value={this.state.image}
+                        />
+                        </div>
                     <div>
                         <ImageExampleLink></ImageExampleLink>
                     </div>
                 </form>
-                <button type="submit" className="ui button">Guardar</button>
+                <button onClick={this.onSubmitClick} type="submit" className="ui button">Guardar</button>
             </div>
         )
     }

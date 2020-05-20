@@ -10,7 +10,7 @@ const pizzas = (state = global, action) => {
             ...state,
             pizzas: action.payload.pizzas
         }
-
+      
     
     default:
         break;
