@@ -41,7 +41,7 @@ const PizzaList = props => {
                                 <td><img src={e.image} alt="" border="3" height="100" width="100"></img></td>
                                 <td>
                                     <Link to={{
-                                        pathname: `/pizzaId`,
+                                        pathname: `/pizzaId/view`,
                                         
                                             pizza: e
                                         
