@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Grid, Image, Table, Header, Container } from 'semantic-ui-react'
-import image from './pizza-de-peperoni.jpg'
 import { sampleIngredients, sampleComments } from '../config/sampleData'
 import CommentForm from '../components/CommentForm'
 import CommentsList from '../components/CommentsList'
+import { connect } from 'react-redux'
+import { fetchPizzas } from '../actions'
+import { useParams } from 'react-router-dom'
+
 
 const commentHandle = (comment) => {
     //console.log('añadir comentario', comment);
@@ -12,19 +15,35 @@ const commentHandle = (comment) => {
 
 const PizzaCardPage = (props) => {
 
-    console.log('props pizza',props.location)
-    const pizza= props.location;
+    const { dispatch } = props;
+    const idPizza = useParams().id;
+    const pizzas = props.pizzas.filter(element => element.id === idPizza)
 
-    const precioPizza=()=>{
-        const coste=sampleIngredients.map(
-            item=>parseFloat(item.price)
-        ).reduce((a,price)=>a+parseFloat(price));
-        console.log('coste pizza', coste);
-        return coste+10
+
+
+    const [pizza, setPizza] = useState({ name: '', image: '' })
+
+    useEffect(
+        () => {
+            dispatch(fetchPizzas());
+            setPizza(pizzas[0])
+
+        }, [dispatch ])
+
+
+    console.log('pizza',props)
+
+
+    const precioPizza = () => {
+        const coste = sampleIngredients.map(
+            item => parseFloat(item.price)
+        ).reduce((a, price) => a + parseFloat(price));
+        //console.log('coste pizza', coste);
+        return coste + 10
     }
 
     return (
-        
+
         <Container style={{ minWidth: '500px' }}>
             <Grid divided relaxed>
                 <Grid.Row columns={2}>
@@ -65,4 +84,9 @@ const PizzaCardPage = (props) => {
     )
 }
 
-export default PizzaCardPage
+function mapStateToProps(state) {
+    return {
+        pizzas: state.pizzas
+    }
+}
+export default connect(mapStateToProps)(PizzaCardPage)

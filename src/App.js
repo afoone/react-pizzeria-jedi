@@ -36,11 +36,10 @@ const App = () => {
         <Route path="/pizzaAdd" exact>
           <AddPizzaPage/>
         </Route>
-        <Route path="/pizzas" exact>
-        <PizzaList/>
+        <Route path="/pizzas" exact component={PizzaList}>
         </Route>
         <Route path="/promos" exact></Route>
-        <Route path="/pizzaId/view" exact component={PizzaCardPage}></Route>
+        <Route path="/pizzaId/:id" component={PizzaCardPage}></Route>
         <Route path="/login" exact>
           <Login firebaseUser={firebaseUser}></Login>
         </Route>

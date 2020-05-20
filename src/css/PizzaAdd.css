@@ -37,3 +37,8 @@ h4{
     margin: auto;
     font-family: 'Star Jedi';
 }
+
+.ui.vertical.segment:last-child {
+   background-image: url(https://i.pinimg.com/originals/95/c8/76/95c8769fed9fa3788c5fd516263da6e5.gif);
+   background-size: 100%;
+}
