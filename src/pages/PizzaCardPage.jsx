@@ -31,7 +31,7 @@ const PizzaCardPage = (props) => {
         }, [dispatch ])
 
 
-    console.log('pizza',props)
+    console.log('pizza',pizza)
 
 
     const precioPizza = () => {
@@ -48,8 +48,8 @@ const PizzaCardPage = (props) => {
             <Grid divided relaxed>
                 <Grid.Row columns={2}>
                     <Grid.Column width={6}>
-                        <Header as='h2'>{pizza.name}</Header>
-                        <Image src={pizza.image} style={{ maxWidth: '200px' }} />
+                        <Header as='h2'>{pizza.name||''}</Header>
+                        <Image src={pizza.image||''} style={{ maxWidth: '200px' }} />
                         <Header as='h3'>{`Precio: ${precioPizza()}`}</Header>
                     </Grid.Column>
                     <Grid.Column width={8}>
