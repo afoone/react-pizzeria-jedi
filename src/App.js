@@ -7,7 +7,9 @@ import { auth } from "./config/firebase";
 import PizzaCardPage from "./pages/PizzaCardPage";
 import PizzaList from './components/PizzaList'
 import LandingPage from './pages/LandingPage'
+import About from './components/About'
 import AddPizzaPage from "./pages/AddPizzaPage";
+import IngredienteAdd from './components/IngredienteAdd'
 
 const App = () => {
   const [firebaseUser, setFirebaseUser] = React.useState(false);
@@ -30,12 +32,18 @@ const App = () => {
     <Router>
       <Navbar firebaseUser={firebaseUser} ></Navbar>
       <Switch>
+        <Route path="/ingrediente" exact>
+          <IngredienteAdd />
+        </Route>
         <Route path="/" exact>
-        <LandingPage/>
+          <LandingPage />
         </Route>
         <Route path="/pizzaAdd" exact>
-        <AddPizzaPage/>
+          <AddPizzaPage />
         </Route>
+        <Route path="/about" exact>
+        <About/>
+      </Route>
         <Route path="/pizzas" exact component={PizzaList}>
         </Route>
         <Route path="/promos" exact></Route>
@@ -46,6 +54,7 @@ const App = () => {
         <Route path="/reset">
           <Reset />
         </Route>
+        
         <Route path="/carrito" exact />
         <Route path="/" exact>
           Home
@@ -53,8 +62,8 @@ const App = () => {
       </Switch>
     </Router>
   ) : (
-    <div>Cargando...</div>
-  );
+      <div>Cargando...</div>
+    );
 };
 
 export default App;

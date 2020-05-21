@@ -261,6 +261,7 @@ const HomepageLayout = () => (
               <List link inverted>
                 <List.Item as='a'>Sitemap</List.Item>
                 <List.Item as='a'>Contact Us</List.Item>
+                <List.Item as={Link} to='/about'>Sobre nosotros</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
