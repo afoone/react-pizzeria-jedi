@@ -1,3 +1,10 @@
+@font-face{
+    font-family: 'Star Jedi';
+    src:url(./fonts/star-jedi_[allfont.es].ttf)
+}
+*{
+    font-family: 'Star Jedi';
+}
 .pizza-add{
     width: 70%;
     margin: auto;
@@ -28,4 +35,17 @@
 
 h4{
     margin: auto;
+    font-family: 'Star Jedi';
+}
+
+.ui.vertical.segment:last-child {
+   background-image: url(https://i.pinimg.com/originals/95/c8/76/95c8769fed9fa3788c5fd516263da6e5.gif);
+   background-size: 100%;
+}
+
+.ui.secondary.menu .item>img:not(.ui) {
+    width: 154px;
+    margin-left: -42px;
+    margin-top: -11px;
+    position: absolute;
 }

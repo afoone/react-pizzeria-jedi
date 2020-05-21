@@ -25,10 +25,11 @@ const Navbar = (props) => {
     <div>
       <Segment inverted>
         <Menu fluid inverted pointing secondary size="huge" stackable>
-          <Menu.Item>
-            <img src="https://react.semantic-ui.com/logo.png" alt='' />
+          <Menu.Item>  
+          <img src="http://localhost:3000/1840529_1.png"  alt='logo' />
           </Menu.Item>
-          <Menu.Item header>PiZZa JeDi</Menu.Item>
+       
+          <Menu.Item header style={{width: 126}}></Menu.Item>
           <Menu.Item
           as={Link}
           to='/'
@@ -55,7 +56,7 @@ const Navbar = (props) => {
                 />
                 <Menu.Item
                 as={Link}
-                to="/pizzaId"
+                to="/pizzaAdd"
                   name="Crea tu Pizza"
                   active={activeItem === "Crea tu Pizza"}
                   onClick={handleItemClick}

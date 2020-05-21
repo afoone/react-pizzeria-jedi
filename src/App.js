@@ -5,7 +5,9 @@ import Reset from "./components/Reset";
 import Login from "./components/Login";
 import { auth } from "./config/firebase";
 import PizzaCardPage from "./pages/PizzaCardPage";
+import AddPizzaPage from "./pages/AddPizzaPage";
 import PizzaList from './components/PizzaList'
+import LandingPage from './pages/LandingPage'
 
 const App = () => {
   const [firebaseUser, setFirebaseUser] = React.useState(false);
@@ -28,8 +30,11 @@ const App = () => {
     <Router>
       <Navbar firebaseUser={firebaseUser} ></Navbar>
       <Switch>
-        <Route path="/home" exact></Route>
+        <Route path="/" exact>
+        <LandingPage/>
+        </Route>
         <Route path="/pizzaAdd" exact>
+          <AddPizzaPage/>
         </Route>
         <Route path="/pizzas" exact component={PizzaList}>
         </Route>

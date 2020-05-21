@@ -40,7 +40,7 @@ const PizzaList = props => {
                                 <td>{e.price}</td>
                                 <td><img src={e.image} alt="" border="3" height="100" width="100"></img></td>
                                 <td>
-                                    <Link to= {`/pizzaId/${e.id}`}>Ver</Link>
+                                    <Link to= {`/pizzaId/${e.id}`}>vER</Link>
                                 </td>
                             </tr>
                         )

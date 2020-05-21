@@ -4,6 +4,7 @@ import { Image, Checkbox } from 'semantic-ui-react'
 import { db } from '../config/firebase'
 import MultiSelect from "react-multi-select-component";
 
+
 export class PizzaAdd extends Component {
     constructor(props) {
         super(props);
@@ -16,6 +17,8 @@ export class PizzaAdd extends Component {
             redirect: false
         }
     }
+    
+   
 
     ImageExampleLink = () => (
         <Image
@@ -32,8 +35,7 @@ export class PizzaAdd extends Component {
     onNameChange = e => {
         this.setState(
             {
-                name: e.target.value
-
+                name: e.target.value 
             }
         )
     }
@@ -41,7 +43,6 @@ export class PizzaAdd extends Component {
         this.setState(
             {
                 price: e.target.value
-
             }
         )
     }
@@ -49,7 +50,6 @@ export class PizzaAdd extends Component {
         this.setState(
             {
                 image: e.target.value
-
             }
         )
     }
@@ -88,6 +88,7 @@ export class PizzaAdd extends Component {
 
         )
     }
+  
 
     render() {
 
@@ -126,8 +127,8 @@ export class PizzaAdd extends Component {
                         </div>
                     </div>
                     <div className="field">
-                        <label>URL de la Imagen</label>
-                        <input placeholder="URL de la Imagen..."
+                        <label>uRL de La imagen</label>
+                        <input plceholder="URL de la Imagen..."
                             onChange={this.onImageChange}
                             value={this.state.image}
                         />
@@ -136,7 +137,8 @@ export class PizzaAdd extends Component {
                         <this.ImageExampleLink></this.ImageExampleLink>
                     </div>
                 </form>
-                <button onClick={this.onSubmitClick} type="submit" className="ui button">Guardar</button>
+                <button onClick={this.onSubmitClick}  
+                  type="submit" className="ui button">Guardar</button>
             </div>
         )
     }
