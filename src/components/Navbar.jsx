@@ -98,13 +98,13 @@ const Navbar = (props) => {
                 </React.Fragment>
               ) : (
                   <Menu.Item
+                  as={Link}
+                  to="/login"
                     name="login"
+                    icon="user circle"
                     active={activeItem === "login"}
                     onClick={handleItemClick}
-                  >
-                    <Icon name="user circle" />
-                    <Link to="/login">Login</Link>
-                  </Menu.Item>
+                 />
                 )}
           </Menu.Menu>
         </Menu>
