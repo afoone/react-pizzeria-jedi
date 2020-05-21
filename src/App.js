@@ -8,6 +8,7 @@ import PizzaCardPage from "./pages/PizzaCardPage";
 import AddPizzaPage from "./pages/AddPizzaPage";
 import PizzaList from './components/PizzaList'
 import LandingPage from './pages/LandingPage'
+import About from './components/About'
 
 const App = () => {
   const [firebaseUser, setFirebaseUser] = React.useState(false);
@@ -36,6 +37,9 @@ const App = () => {
         <Route path="/pizzaAdd" exact>
           <AddPizzaPage/>
         </Route>
+        <Route path="/about" exact>
+        <About/>
+      </Route>
         <Route path="/pizzas" exact component={PizzaList}>
         </Route>
         <Route path="/promos" exact></Route>
@@ -46,6 +50,7 @@ const App = () => {
         <Route path="/reset">
           <Reset />
         </Route>
+        
         <Route path="/carrito" exact />
         <Route path="/" exact>
           Home

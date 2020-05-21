@@ -16,6 +16,8 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 import vader from './vader.png'
+import { Link } from 'react-router-dom'
+
 
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
@@ -258,6 +260,7 @@ const HomepageLayout = () => (
               <List link inverted>
                 <List.Item as='a'>Sitemap</List.Item>
                 <List.Item as='a'>Contact Us</List.Item>
+                <List.Item as={Link} to='/about'>Sobre nosotros</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
