@@ -18,7 +18,6 @@ import {
 import vader from './vader.png'
 import { Link } from 'react-router-dom'
 
-
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
 // For more advanced usage please check Responsive docs under the "Usage" section.
@@ -54,7 +53,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button primary size='huge' href='/home'>
+    <Button as={Link} to='/login' primary size='huge' >
       Entrar
       <Icon name='right arrow' />
     </Button>
@@ -155,7 +154,7 @@ class MobileContainer extends Component {
           vertical
           visible={sidebarOpened}
         >
-          <Menu.Item as='a' active>
+          <Menu.Item as={Link} to='/'>
             Home
           </Menu.Item>
           <Menu.Item as='a'>Work</Menu.Item>

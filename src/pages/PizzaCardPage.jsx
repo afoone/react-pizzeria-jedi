@@ -18,27 +18,26 @@ const PizzaCardPage = (props) => {
     const { dispatch } = props;
     const idPizza = useParams().id;
     const pizzas = props.pizzas.filter(element => element.id === idPizza)
-
-
-
-    const [pizza, setPizza] = useState({ name: '', image: '' })
+    const [pizza, setPizza] = useState({})
 
     useEffect(
         () => {
             dispatch(fetchPizzas());
-            setPizza(pizzas[0])
+        }, [dispatch])
 
-        }, [dispatch ])
+    useEffect(
+        () => {
+            setPizza(pizzas[0] ? pizzas[0]: {})          
+        }, [props.pizzas]
+    )
 
-
-    console.log('pizza',props)
+    console.log('pizza', pizza)
 
 
     const precioPizza = () => {
         const coste = sampleIngredients.map(
             item => parseFloat(item.price)
         ).reduce((a, price) => a + parseFloat(price));
-        //console.log('coste pizza', coste);
         return coste + 10
     }
 
@@ -48,8 +47,8 @@ const PizzaCardPage = (props) => {
             <Grid divided relaxed>
                 <Grid.Row columns={2}>
                     <Grid.Column width={6}>
-                        <Header as='h2'>{pizza.name}</Header>
-                        <Image src={pizza.image} style={{ maxWidth: '200px' }} />
+                        <Header as='h2'>{pizza.name || ''}</Header>
+                        <Image src={pizza.image || ''} style={{ maxWidth: '200px' }} />
                         <Header as='h3'>{`Precio: ${precioPizza()}`}</Header>
                     </Grid.Column>
                     <Grid.Column width={8}>
