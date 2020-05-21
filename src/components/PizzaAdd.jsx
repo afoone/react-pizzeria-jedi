@@ -3,7 +3,7 @@ import '../css/PizzaAdd.css'
 import { Image, Checkbox } from 'semantic-ui-react'
 import { db } from '../config/firebase'
 import MultiSelect from "react-multi-select-component";
-
+import { Link} from "react-router-dom";
 
 export class PizzaAdd extends Component {
     constructor(props) {
@@ -115,8 +115,10 @@ export class PizzaAdd extends Component {
 
                         <h4>Novedad</h4>
                         <this.CheckboxExampleToggle />
-
-                        <h4 className='ingrediente-select'>Ingredientes</h4>
+                        <Link to="/ingrediente">Añade nuevo ingrediente</Link>
+                        <br></br>
+                        <h4 className='ingrediente-select'>ingredientes</h4>
+                        <br></br>
                         <div className='select-ingrediente'  >
                             <MultiSelect
                                 options={this.props.ingredientesList}
