@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Grid, Image, Table, Header, Container } from 'semantic-ui-react'
-import {  sampleComments } from '../config/sampleData'
+
 import CommentForm from '../components/CommentForm'
 import CommentsList from '../components/CommentsList'
 import { connect } from 'react-redux'
 import { fetchPizzas } from '../actions'
 import { useParams } from 'react-router-dom'
+import { db } from '../config/firebase'
 
 
-const commentHandle = (comment) => {
-    //console.log('añadir comentario', comment);
-}
+
 
 
 const PizzaCardPage = (props) => {
@@ -21,6 +20,7 @@ const PizzaCardPage = (props) => {
     const [pizza, setPizza] = useState({})
     const [precio, setPrecio] = useState()
 
+
     useEffect(
         () => {
             dispatch(fetchPizzas());
@@ -30,7 +30,7 @@ const PizzaCardPage = (props) => {
         () => {
             setPizza(pizzas[0] ? pizzas[0] : {})
 
-        }, [props.pizzas]
+        }, [props.pizzas,pizzas]
     )
 
     useEffect(
@@ -46,6 +46,15 @@ const PizzaCardPage = (props) => {
         }, [pizza]
     )
 
+
+    const commentHandle = (comment) => {
+        //console.log('añadir comentario', comment);
+        db.collection('pizzas').doc(idPizza).collection('comments').add(comment).then(
+            console.log('Comentario guardado correctamente', comment)
+        )
+        
+    }
+
     return (
 
         <Container style={{ minWidth: '500px' }}>
@@ -60,7 +69,7 @@ const PizzaCardPage = (props) => {
                         <Header as='h1'>Ingredientes</Header>
                         <Table unstackable>
                             <Table.Body>
-                                {pizza.ingredientes ? pizza.ingredientes.map(
+                                {pizza.ingredientes? pizza.ingredientes.map(
                                     (res, index) =>
                                         <Table.Row key={index}>
                                             <Table.Cell>{res.label}</Table.Cell>
@@ -79,7 +88,7 @@ const PizzaCardPage = (props) => {
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column>
-                        <CommentsList comments={sampleComments} />
+                        <CommentsList idPizza={idPizza} />
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
