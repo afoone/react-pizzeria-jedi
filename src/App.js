@@ -12,9 +12,12 @@ import AddPizzaPage from "./pages/AddPizzaPage";
 import IngredienteAdd from './components/IngredienteAdd'
 import Carrito from "./pages/Carrito";
 import PizzaEdit from './components/PizzaEdit'
+import { UsuarioContext } from "./context/UsuarioProvider";
+import Admin from './Admin'
 
 const App = () => {
   const [firebaseUser, setFirebaseUser] = React.useState(false);
+  const { usuario } = React.useContext(UsuarioContext);
 
   React.useEffect(() => {
     const fetchUser = () => {
@@ -58,6 +61,12 @@ const App = () => {
           <Reset />
         </Route>
         <Route path="/carrito" exact component={Carrito} />
+        {usuario.role === 'admin' ? 
+    
+        (<Route component={Admin} path="/admin" exact/> ): null
+
+        }
+        
         <Route path="/" exact>
           Home
         </Route>

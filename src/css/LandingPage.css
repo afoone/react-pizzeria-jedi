@@ -1,0 +1,87 @@
+.nave-footer{
+    margin-left: 449%;
+    margin-top: -76%;
+}
+
+.cajas-footer{
+    margin-left: 449%;
+    margin-top: -73%;
+}
+
+.nave-footer {
+  
+    color: white;
+    position: absolute;
+    border-radius: 2rem 2rem 0 0;
+    animation-name: animar;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+  @keyframes animar{
+   
+    25%{
+        transform: rotate(10deg);
+    }
+ 
+    75% {
+        transform: rotate(-10deg);
+    }
+  
+  }
+
+  .cajas-footer {
+  
+    color: white;
+    position: absolute;
+    border-radius: 2rem 2rem 0 0;
+    animation-name: cajas;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+  }
+  @keyframes cajas{
+   
+    25%{
+        transform: translateY(5px),;
+        transform: rotate(2deg);
+    }
+ 
+    75% {
+        transform: translateY(0px);
+        transform: rotate(-2deg);
+    }
+  
+  }
+
+  .disparo-izq{
+    width: 147px;
+    margin-left: 497%;
+    margin-top: -76%;
+    animation-name: disparo;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+
+  }
+  .dispar-der{
+    width: 147px;
+    margin-left: 593%;
+    margin-top: -109%;
+    animation-name: disparo;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes disparo{
+   
+    0%{
+        transform: translateY(-160px),;
+        
+    }
+ 
+    100% {
+        transform: translateY(160px);
+        
+    }
+  
+  }
+  
+
