@@ -29,9 +29,9 @@ const UsuarioProvider = (props) => {
             setUsuario({
               uid: user.uid,
               email: user.email,
-              displayName: res.data().displayName,
-              photoURL: res.data().photoURL,
-              estado: true,
+              displayName: (res.data().exists ? res.data().displayName : user.displayName),
+              photoURL: (res.data().exists ? res.data().photoURL : user.photoURL),
+              estado: true
             });
           });
       } else {
@@ -40,7 +40,7 @@ const UsuarioProvider = (props) => {
           email: null,
           displayName: null,
           photoURL: null,
-          estado: false,
+          estado: false
         });
       }
     });
@@ -122,8 +122,6 @@ const UsuarioProvider = (props) => {
       console.log(error);
     }
   
-    {
-    }
   };
 
   const agregarProductos = async (usuarioId, pizzaInput) => {
@@ -145,11 +143,11 @@ const UsuarioProvider = (props) => {
         
      setProductos([
                 ...productos,
-                {...nuevoProducto, id: usuarioId.id}
+                {...nuevoProducto, id: usuarioId}
               ])
  
       }
-      console.log("productos en context", productos);
+     
     } catch (error) {
       console.log(error);
     }
