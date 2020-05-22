@@ -10,6 +10,8 @@ import LandingPage from './pages/LandingPage'
 import About from './components/About'
 import AddPizzaPage from "./pages/AddPizzaPage";
 import IngredienteAdd from './components/IngredienteAdd'
+import Carrito from "./pages/Carrito";
+
 
 const App = () => {
   const [firebaseUser, setFirebaseUser] = React.useState(false);
@@ -54,8 +56,7 @@ const App = () => {
         <Route path="/reset">
           <Reset />
         </Route>
-        
-        <Route path="/carrito" exact />
+        <Route path="/carrito" exact component={Carrito} />
         <Route path="/" exact>
           Home
         </Route>

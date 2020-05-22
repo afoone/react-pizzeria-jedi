@@ -28,12 +28,13 @@ class About extends Component {
     }
 
     const tl = new TimelineLite();
-    tl.to(this.intro.current, 4.5, { opacity: 1, delay: 1 })
-      .to(this.intro.current, 1.5, {
+    tl.to(this.intro.current, 3.5, { opacity: 1, delay: 1 , 
+       onComplete: () => {
+      this.audio.current.play();
+    }})
+      .to(this.intro.current, 0.5, {
         opacity: 0,
-        onComplete: () => {
-          this.audio.current.play();
-        }
+      
       })
       .set(this.logo.current, { opacity: 1, scale: 2.75, delay: 0.5 })
       .to(this.logo.current, 8, { scale: 0.05, ease: Power2.easeOut })
