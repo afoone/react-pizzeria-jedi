@@ -14,7 +14,7 @@ const CommentsList = (props) => {
 
     useEffect(
         () => {
-            db.collection('pizzas').doc(props.idPizza).collection('comments').get().then(
+            db.collection('pizzas').doc(props.idPizza).collection('comments').orderBy('date', 'desc').limit(3).get().then(
                 res => {
                     //console.log('comment docs', res.docs);
                     const elements = res.docs.map(
