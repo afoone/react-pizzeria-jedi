@@ -31,7 +31,7 @@ const PizzaCardPage = (props) => {
         }, [props.pizzas]
     )
 
-    console.log('pizza', pizza)
+    console.log('pizza', pizza.ingredientes)
 
 
     const precioPizza = () => {
@@ -55,14 +55,13 @@ const PizzaCardPage = (props) => {
                         <Header as='h1'>Ingredientes</Header>
                         <Table unstackable>
                             <Table.Body>
-                                {
-                                    sampleIngredients.map(
+                                {   pizza.ingredientes?pizza.ingredientes.map(
                                         (res, index) =>
                                             <Table.Row key={index}>
-                                                <Table.Cell>{res.name}</Table.Cell>
-                                                <Table.Cell>{res.price}</Table.Cell>
+                                                <Table.Cell>{res.label}</Table.Cell>
+                                                <Table.Cell>{res.value}</Table.Cell>
                                             </Table.Row>
-                                    )
+                                    ):"Cargando"
                                 }
                             </Table.Body>
                         </Table>
