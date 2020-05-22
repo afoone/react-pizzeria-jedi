@@ -11,6 +11,7 @@ import About from './components/About'
 import AddPizzaPage from "./pages/AddPizzaPage";
 import IngredienteAdd from './components/IngredienteAdd'
 import Carrito from "./pages/Carrito";
+import PizzaEdit from './components/PizzaEdit'
 import { UsuarioContext } from "./context/UsuarioProvider";
 import Admin from './Admin'
 
@@ -52,6 +53,7 @@ const App = () => {
         </Route>
         <Route path="/promos" exact></Route>
         <Route path="/pizzaId/:id" component={PizzaCardPage}></Route>
+        <Route path="/pizzaedit/:id" component={PizzaEdit}></Route>
         <Route path="/login" exact>
           <Login firebaseUser={firebaseUser}></Login>
         </Route>
