@@ -19,6 +19,7 @@ const PizzaCardPage = (props) => {
     const idPizza = useParams().id;
     const pizzas = props.pizzas.filter(element => element.id === idPizza)
     const [pizza, setPizza] = useState({})
+    const [precio, setPrecio] = useState()
 
     useEffect(
         () => {
@@ -27,19 +28,23 @@ const PizzaCardPage = (props) => {
 
     useEffect(
         () => {
-            setPizza(pizzas[0] ? pizzas[0]: {})          
+            setPizza(pizzas[0] ? pizzas[0] : {})
+
         }, [props.pizzas]
     )
 
-    console.log('pizza', pizza.ingredientes)
+    useEffect(
+        () => {
+            //console.log('pizza', pizza.ingredientes)
+            if (pizza.ingredientes) {
 
+                setPrecio(pizza.ingredientes.map(
+                    item => parseFloat(item.value)
+                ).reduce((a, value) => a + parseFloat(value)) + 10)
+            }
 
-    const precioPizza = () => {
-        const coste = sampleIngredients.map(
-            item => parseFloat(item.price)
-        ).reduce((a, price) => a + parseFloat(price));
-        return coste + 10
-    }
+        }, [pizza]
+    )
 
     return (
 
@@ -49,19 +54,19 @@ const PizzaCardPage = (props) => {
                     <Grid.Column width={6}>
                         <Header as='h2'>{pizza.name || ''}</Header>
                         <Image src={pizza.image || ''} style={{ maxWidth: '200px' }} />
-                        <Header as='h3'>{`Precio: ${precioPizza()}`}</Header>
+                        <Header as='h3'>{`Precio: ${precio}`}</Header>
                     </Grid.Column>
                     <Grid.Column width={8}>
                         <Header as='h1'>Ingredientes</Header>
                         <Table unstackable>
                             <Table.Body>
-                                {   pizza.ingredientes?pizza.ingredientes.map(
-                                        (res, index) =>
-                                            <Table.Row key={index}>
-                                                <Table.Cell>{res.label}</Table.Cell>
-                                                <Table.Cell>{res.value}</Table.Cell>
-                                            </Table.Row>
-                                    ):"Cargando"
+                                {pizza.ingredientes ? pizza.ingredientes.map(
+                                    (res, index) =>
+                                        <Table.Row key={index}>
+                                            <Table.Cell>{res.label}</Table.Cell>
+                                            <Table.Cell>{res.value}</Table.Cell>
+                                        </Table.Row>
+                                ) : <Table.Row><Table.Cell>"Cargando"</Table.Cell></Table.Row>
                                 }
                             </Table.Body>
                         </Table>
