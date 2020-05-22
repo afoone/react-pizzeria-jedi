@@ -35,9 +35,9 @@ const PizzaCardPage = (props) => {
 
 
     const precioPizza = () => {
-        const coste = sampleIngredients.map(
-            item => parseFloat(item.price)
-        ).reduce((a, price) => a + parseFloat(price));
+        const coste =pizza.ingrediente? pizza.ingredientes.map(
+            item => parseFloat(item.value)
+        ).reduce((a, value) => a + parseFloat(value)):0
         return coste + 10
     }
 
@@ -61,7 +61,7 @@ const PizzaCardPage = (props) => {
                                                 <Table.Cell>{res.label}</Table.Cell>
                                                 <Table.Cell>{res.value}</Table.Cell>
                                             </Table.Row>
-                                    ):"Cargando"
+                                    ):<Table.Row><Table.Cell>"Cargando"</Table.Cell></Table.Row>
                                 }
                             </Table.Body>
                         </Table>
