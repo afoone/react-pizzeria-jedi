@@ -13,6 +13,8 @@ import IngredienteAdd from './components/IngredienteAdd'
 import Carrito from "./pages/Carrito";
 
 
+
+
 const App = () => {
   const [firebaseUser, setFirebaseUser] = React.useState(false);
 
@@ -29,6 +31,8 @@ const App = () => {
     };
     fetchUser();
   }, []);
+
+ 
 
   return firebaseUser !== false ? (
     <Router>
