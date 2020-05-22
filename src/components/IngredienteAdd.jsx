@@ -16,8 +16,15 @@ export class IngredienteAdd extends Component {
         const nombre = e.target.value
         this.setState(
             {
-                label: nombre,
-                value: nombre 
+                label: nombre
+            }
+        )
+    }
+    onPrecioChange = e => {
+        const nombre = e.target.value
+        this.setState(
+            {
+                value: nombre
             }
         )
     }
@@ -49,6 +56,11 @@ export class IngredienteAdd extends Component {
                     <input placeholder="Nombre ingrediente"
                         onChange={this.onNameChange}
                         value={this.state.label}
+                    />
+                    <label>Precio del ingrediente</label>
+                    <input type='number' placeholder="Precio ingrediente"
+                        onChange={this.onPrecioChange}
+                        value={this.state.value}
                     />
 
                 </div>
