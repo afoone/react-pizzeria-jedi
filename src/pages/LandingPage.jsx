@@ -17,6 +17,7 @@ import {
 } from 'semantic-ui-react'
 import vader from './vader.png'
 import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
 import '../css/LandingPage.css'
 
 // Heads up!
@@ -155,14 +156,15 @@ class MobileContainer extends Component {
           vertical
           visible={sidebarOpened}
         >
-          <Menu.Item as={Link} to='/'>
+        <Navbar/>
+         {/* <Menu.Item as={Link} to='/'>
             Home
           </Menu.Item>
           <Menu.Item as='a'>Work</Menu.Item>
           <Menu.Item as='a'>Company</Menu.Item>
           <Menu.Item as='a'>Careers</Menu.Item>
           <Menu.Item as='a'>Log in</Menu.Item>
-          <Menu.Item as='a'>Sign Up</Menu.Item>
+    <Menu.Item as='a'>Sign Up</Menu.Item>*/}
         </Sidebar>
 
         <Sidebar.Pusher dimmed={sidebarOpened}>
@@ -223,7 +225,7 @@ const HomepageLayout = () => (
         </Header>
         <p style={{ fontSize: '1.33em' }}>
           Tenemos un nuevo programa de beta testers de nuestras pizzas. Apuntate para ser el primero en probarlas, 
-            presuem ante tus amigos y consigue grandes descuentos para tus próximas compras
+            presume ante tus amigos y consigue grandes descuentos para tus próximas compras
         </p>
         <Button as='a' size='large'>
           ¡Quiero apuntarme!

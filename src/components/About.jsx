@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { TimelineLite, Power2 } from "gsap";
+import { TimelineLite } from "gsap";
 import "../css/Styles.css";
 
 class About extends Component {
   constructor(props) {
     super(props);
     this.intro = React.createRef();
-    this.logo = React.createRef();
     this.content = React.createRef();
     this.audio = React.createRef();
 
@@ -28,17 +27,16 @@ class About extends Component {
     }
 
     const tl = new TimelineLite();
-    tl.to(this.intro.current, 3.5, { opacity: 1, delay: 1 , 
-       onComplete: () => {
-      this.audio.current.play();
-    }})
-      .to(this.intro.current, 0.5, {
-        opacity: 0,
-      
+    
+    
+    tl.to(this.intro.current, 3.5, { opacity: 1, delay: 1 , })
+      .to(this.intro.current, 0, {
+        opacity: 0,delay: 0,
+        onComplete: () => {
+          this.audio.current.play();
+      }
       })
-      .set(this.logo.current, { opacity: 1, scale: 2.75, delay: 0.5 })
-      .to(this.logo.current, 8, { scale: 0.05, ease: Power2.easeOut })
-      .to(this.logo.current, 1.5, { opacity: 0 }, "-=1.5")
+  
       .to(this.content.current, 200, { top: "-170%" });
   }
 
@@ -50,17 +48,10 @@ class About extends Component {
     return [randomX, randomY];
   }
 
-  onVolumeClick = () => {
-    if (this.state.muted) {
-      this.audio.current.muted = false;
-    } else {
-      this.audio.current.muted = true;
-    }
 
-    this.setState({ muted: !this.state.muted });
-  };
 
   render() {
+    
     return (
       <div className='fondo-estrellas'>
         <div className="container">

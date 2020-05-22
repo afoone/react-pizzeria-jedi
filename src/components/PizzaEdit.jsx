@@ -2,23 +2,56 @@ import React, { Component } from 'react'
 import '../css/PizzaAdd.css'
 import { Image, Checkbox } from 'semantic-ui-react'
 import { db } from '../config/firebase'
-import MultiSelect from "react-multi-select-component";
-import { Link} from "react-router-dom";
+import MultiSelect from "react-multi-select-component"
+import { Link } from "react-router-dom"
 
-export class PizzaAdd extends Component {
+export class PizzaEdit extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             name: "",
+            price: "",
             image: "",
-            price: '',
             novelty: false,
+            redirect: false,
             ingredientes: [],
-            redirect: false
+            ingredientesL: []
         }
     }
-    
-   
+
+
+    componentDidMount() {
+        db.collection("pizzas").doc(this.props.match.params.id).get().then(
+            res =>
+                this.setState({
+                    name: res.data().name,
+                    price: res.data().price,
+                    image: res.data().image,
+                    novelty: res.data().novelty,
+                    ingredientes: res.data().ingredientes
+                })
+        ).then(
+            db.collection("ingredientes").get().then(
+                res => {
+                    console.log("component did mount", res)
+                    const elementos = res.docs.map(
+                        item => {
+                            const data = item.data();
+                            return {
+                                id: item.id,
+                                label: data.label,
+                                value: data.value,
+                                price: data.price
+                            }
+                        }
+                    )
+                    this.setState({
+                        ingredientesL: elementos
+                    })
+                    console.log("ingredientes", this.state.ingredientesL)
+                }
+            ))
+    }
 
     ImageExampleLink = () => (
         <Image
@@ -30,12 +63,12 @@ export class PizzaAdd extends Component {
         />
     )
 
-    CheckboxExampleToggle = () => <Checkbox toggle onChange={this.onNoveltyChange} />
+    CheckboxExampleToggle = () => <Checkbox toggle checked={this.state.novelty} onChange={this.onNoveltyChange} />
 
     onNameChange = e => {
         this.setState(
             {
-                name: e.target.value 
+                name: e.target.value
             }
         )
     }
@@ -81,14 +114,17 @@ export class PizzaAdd extends Component {
 
         }
 
-        db.collection("pizzas").add(pizzas).then(
+        db.collection("pizzas").doc(this.props.match.params.id).set(pizzas).then(
             res => {
-                console.log('grabado correctamente')
+                console.log('pizza editada correctamente')
+                this.setState({
+                    redirect: true
+                })
             }
 
         )
     }
-  
+
 
     render() {
 
@@ -115,13 +151,13 @@ export class PizzaAdd extends Component {
 
                         <h4>Novedad</h4>
                         <this.CheckboxExampleToggle />
-                        <Link className='link-ingredientes' to="/ingrediente">Añade nuevo ingrediente</Link>
+                        <Link to="/ingrediente">Añade nuevo ingrediente</Link>
                         <br></br>
                         <h4 className='ingrediente-select'>ingredientes</h4>
                         <br></br>
                         <div className='select-ingrediente'  >
                             <MultiSelect
-                                options={this.props.ingredientesList}
+                                options={this.state.ingredientesL}
                                 value={this.state.ingredientes}
                                 onChange={this.oningredienteChange}
                                 labelledBy={"Select"}
@@ -139,11 +175,11 @@ export class PizzaAdd extends Component {
                         <this.ImageExampleLink></this.ImageExampleLink>
                     </div>
                 </form>
-                <button onClick={this.onSubmitClick}  
-                  type="submit" className="ui button">Guardar</button>
+                <button onClick={this.onSubmitClick}
+                    type="submit" className="ui button">Guardar</button>
             </div>
         )
     }
 }
 
-export default PizzaAdd
+export default PizzaEdit

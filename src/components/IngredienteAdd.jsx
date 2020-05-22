@@ -7,7 +7,8 @@ export class IngredienteAdd extends Component {
         super(props);
         this.state = {
             label: "",
-            value: ""
+            value: "",
+            price: 0
         }
     }
 
@@ -16,7 +17,8 @@ export class IngredienteAdd extends Component {
         const nombre = e.target.value
         this.setState(
             {
-                label: nombre
+                label: nombre,
+                value: nombre
             }
         )
     }
@@ -24,7 +26,7 @@ export class IngredienteAdd extends Component {
         const nombre = e.target.value
         this.setState(
             {
-                value: nombre
+                price: nombre
             }
         )
     }
@@ -35,7 +37,8 @@ export class IngredienteAdd extends Component {
 
         const ingrediente = {
             label: this.state.label,
-            value: this.state.value
+            value: this.state.value,
+            price: this.state.price
         }
 
         db.collection("ingredientes").add(ingrediente).then(
@@ -60,7 +63,7 @@ export class IngredienteAdd extends Component {
                     <label>Precio del ingrediente</label>
                     <input type='number' placeholder="Precio ingrediente"
                         onChange={this.onPrecioChange}
-                        value={this.state.value}
+                        value={this.state.price}
                     />
 
                 </div>

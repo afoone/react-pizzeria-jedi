@@ -6,8 +6,11 @@ export const UsuarioContext = React.createContext();
 const UsuarioProvider = (props) => {
 
 
-  const dataUsuario = { uid: null, email: null, estado: null, role: null  };
+  const dataUsuario = { uid: null, email: null, estado: null };
   const [usuario, setUsuario] = React.useState(dataUsuario);
+
+  // const dataProductos =[{ pizza: 'margarita', precio: 12}]
+  const [productos, setProductos] = React.useState([]);
 
   React.useEffect(() => {
     detectarUsuario();
@@ -17,7 +20,6 @@ const UsuarioProvider = (props) => {
 
   const detectarUsuario = () => {
     auth.onAuthStateChanged((user) => {
-      console.log('useruario',user)
       if (user) {
         db.collection("usuarios")
           .doc(user.email)
@@ -27,9 +29,9 @@ const UsuarioProvider = (props) => {
             setUsuario({
               uid: user.uid,
               email: user.email,
-              displayName: res.data().displayName,
-              photoURL: res.data().photoURL,
-              role: res.data().role,
+              displayName: (res.data().exists ? res.data().displayName : user.displayName),
+              photoURL: (res.data().exists ? res.data().photoURL : user.photoURL),
+              role: (res.data().role ),
               estado: true
             });
           });
@@ -39,8 +41,7 @@ const UsuarioProvider = (props) => {
           email: null,
           displayName: null,
           photoURL: null,
-          estado: false,
-          
+          estado: false
         });
       }
     });
@@ -48,7 +49,7 @@ const UsuarioProvider = (props) => {
 
   const ingresoGoogle = async () => {
     try {
-     await auth.signInWithPopup(provider);
+      await auth.signInWithPopup(provider);
     } catch (error) {
       console.log(error);
     }
@@ -100,6 +101,62 @@ const UsuarioProvider = (props) => {
     }
   };
 
+
+
+
+
+
+
+
+  const cargarProductos = async (uid) => {
+    console.log("usuario con uid", uid);
+
+    try {
+      const data = await db.collection(uid).orderBy("fecha", "desc").get();
+      const arrayData = data.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+      console.log("array de productos en context", arrayData);
+      
+      setProductos(arrayData);
+      console.log("productos en context", productos);
+    } catch (error) {
+      console.log(error);
+    }
+  
+  };
+
+  const agregarProductos = async (usuarioId, pizzaInput) => {
+    console.log("id usuario", usuarioId);
+    console.log("pizza usuario", pizzaInput);
+
+    const nuevoProducto = {
+      fecha: Date.now(),
+      pizza: {
+        pizza: pizzaInput.pizza,
+        precio: pizzaInput.precio,
+      },
+    };
+    console.log("nuevo producto", nuevoProducto);
+
+    try {
+      await db.collection(usuarioId).add(nuevoProducto);
+      {
+        
+     setProductos([
+                ...productos,
+                {...nuevoProducto, id: usuarioId}
+              ])
+ 
+      }
+     
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
+
   return (
     <UsuarioContext.Provider
       value={{
@@ -107,7 +164,10 @@ const UsuarioProvider = (props) => {
         ingresoGoogle,
         cerrarSesion,
         editarFoto,
-        actualizarUsuario
+        actualizarUsuario,
+        productos,
+        agregarProductos,
+        cargarProductos,
       }}
     >
       {props.children}
