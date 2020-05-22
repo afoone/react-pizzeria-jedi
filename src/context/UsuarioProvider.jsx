@@ -31,6 +31,7 @@ const UsuarioProvider = (props) => {
               email: user.email,
               displayName: (res.data().exists ? res.data().displayName : user.displayName),
               photoURL: (res.data().exists ? res.data().photoURL : user.photoURL),
+              role: (res.data().role ),
               estado: true
             });
           });
