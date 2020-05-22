@@ -8,6 +8,7 @@ import PizzaCardPage from "./pages/PizzaCardPage";
 import PizzaList from './components/PizzaList'
 import LandingPage from './pages/LandingPage'
 import AddPizzaPage from "./pages/AddPizzaPage";
+import Navbaralt from './components/Navbaralt'
 
 const App = () => {
   const [firebaseUser, setFirebaseUser] = React.useState(false);
@@ -28,33 +29,37 @@ const App = () => {
 
   return firebaseUser !== false ? (
     <Router>
-      <Navbar firebaseUser={firebaseUser} ></Navbar>
+      {/*<Navbar firebaseUser={firebaseUser} ></Navbar>*/}
       <Switch>
-        <Route path="/" exact>
-        <LandingPage/>
+        <Navbaralt firebaseUser={firebaseUser}>
+          <Route path="/" exact>
+            <LandingPage />
+          </Route>
+          <Route path="/pizzaAdd" exact>
+            <AddPizzaPage />
+          </Route>
+          <Route path="/pizzas" exact component={PizzaList}>
+          </Route>
+          <Route path="/promos" exact></Route>
+          <Route path="/pizzaId/:id" component={PizzaCardPage}></Route>
+          <Route path="/login" exact>
+            <Login firebaseUser={firebaseUser}></Login>
+          </Route>
+          <Route path="/reset">
+            <Reset />
+          </Route>
+          <Route path="/carrito" exact />
+          <Route path="/" exact>
+            Home
         </Route>
-        <Route path="/pizzaAdd" exact>
-        <AddPizzaPage/>
-        </Route>
-        <Route path="/pizzas" exact component={PizzaList}>
-        </Route>
-        <Route path="/promos" exact></Route>
-        <Route path="/pizzaId/:id" component={PizzaCardPage}></Route>
-        <Route path="/login" exact>
-          <Login firebaseUser={firebaseUser}></Login>
-        </Route>
-        <Route path="/reset">
-          <Reset />
-        </Route>
-        <Route path="/carrito" exact />
-        <Route path="/" exact>
-          Home
-        </Route>
+        </Navbaralt>
+
+
       </Switch>
     </Router>
   ) : (
-    <div>Cargando...</div>
-  );
+      <div>Cargando...</div>
+    );
 };
 
 export default App;

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {
   Button,
   Container,
@@ -32,6 +32,8 @@ const getWidth = () => {
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
  * such things.
  */
+
+
 const HomepageHeading = ({ mobile }) => (
   <Container text>
     <Header
@@ -41,9 +43,9 @@ const HomepageHeading = ({ mobile }) => (
         fontSize: mobile ? '2em' : '4em',
         fontWeight: 'normal',
         marginBottom: 0,
-        marginTop: mobile ? '1em' : '1em',
+        marginTop: mobile ? '0em' : '0em',
       }}
-    ><p><Image src={vader} width={200} centered/></p><p>Pizza Jedi</p></Header>
+    ><p><Image src={vader} width={200} centered /></p><p>Pizza Jedi</p></Header>
     <Header
       as='h2'
       content='Jabba el Hut said Yummy!! then died '
@@ -51,7 +53,7 @@ const HomepageHeading = ({ mobile }) => (
       style={{
         fontSize: mobile ? '1.5em' : '1.7em',
         fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '1.5em',
+        marginTop: mobile ? '0em' : '0em',
       }}
     />
     <Button as={Link} to='/login' primary size='huge' >
@@ -89,7 +91,7 @@ class DesktopContainer extends Component {
           <Segment
             inverted
             textAlign='center'
-            style={{ minHeight: 700, padding: '1em 0em' }}
+            style={{ minHeight: 700, padding: '0em 0em' }}
             vertical
           >
             <Menu
@@ -99,22 +101,6 @@ class DesktopContainer extends Component {
               secondary={!fixed}
               size='large'
             >
-              {/* <Container>
-                <Menu.Item as='a' active>
-                  Home
-                </Menu.Item>
-                <Menu.Item as='a'>Work</Menu.Item>
-                <Menu.Item as='a'>Company</Menu.Item>
-                <Menu.Item as='a'>Careers</Menu.Item>
-                <Menu.Item position='right'>
-                  <Button as='a' inverted={!fixed}>
-                    Log in
-                  </Button>
-                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
-                    Sign Up
-                  </Button>
-                </Menu.Item>
-              </Container> */}
             </Menu>
             <HomepageHeading />
           </Segment>
@@ -155,15 +141,7 @@ class MobileContainer extends Component {
           vertical
           visible={sidebarOpened}
         >
-        <Navbar/>
-         {/* <Menu.Item as={Link} to='/'>
-            Home
-          </Menu.Item>
-          <Menu.Item as='a'>Work</Menu.Item>
-          <Menu.Item as='a'>Company</Menu.Item>
-          <Menu.Item as='a'>Careers</Menu.Item>
-          <Menu.Item as='a'>Log in</Menu.Item>
-    <Menu.Item as='a'>Sign Up</Menu.Item>*/}
+          <Navbar />
         </Sidebar>
 
         <Sidebar.Pusher dimmed={sidebarOpened}>
@@ -213,22 +191,56 @@ ResponsiveContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const HomepageLayout = () => (
-  <ResponsiveContainer>
 
+
+
+const HomepageLayout = ({ mobile }) => (
+
+  <div className='home'>
+    <Container className='home-header'>
+      <Header
+        as='h1'
+        inverted
+
+        style={{
+          fontSize: mobile ? '2em' : '4em',
+          fontWeight: 'normal',
+          marginBottom: 0,
+          marginTop: mobile ? '0em' : '0em',
+        }}
+      ><p><Image src={vader} width={200} centered /></p><p>Pizza Jedi</p></Header>
+      <Header
+        as='h2'
+        content='Jabba el Hut said Yummy!! then died '
+        inverted
+        style={{
+          fontSize: mobile ? '1.5em' : '1.7em',
+          fontWeight: 'normal',
+          marginTop: mobile ? '0em' : '0em',
+        }}
+      />
+      <Button as={Link} to='/login' primary size='huge' >
+        Entrar
+  <Icon name='right arrow' />
+      </Button>
+    </Container>
+
+    {/******************************************************
+              CONTENIDO
+*********************************************************/}
 
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Container text>
         <Header as='h3' style={{ fontSize: '2em' }}>
           ¡Impactante novedad!
-        </Header>
+  </Header>
         <p style={{ fontSize: '1.33em' }}>
-          Tenemos un nuevo programa de beta testers de nuestras pizzas. Apuntate para ser el primero en probarlas, 
-            presume ante tus amigos y consigue grandes descuentos para tus próximas compras
-        </p>
+          Tenemos un nuevo programa de beta testers de nuestras pizzas. Apuntate para ser el primero en probarlas,
+          presume ante tus amigos y consigue grandes descuentos para tus próximas compras
+  </p>
         <Button as='a' size='large'>
           ¡Quiero apuntarme!
-        </Button>
+  </Button>
 
         <Divider
           as='h4'
@@ -241,17 +253,19 @@ const HomepageLayout = () => (
 
         <Header as='h3' style={{ fontSize: '2em' }}>
           ¿Puede el placer destruir un planeta?
-        </Header>
+  </Header>
         <p style={{ fontSize: '1.33em' }}>
           Nuestra aclamada Doble Bacon Star Destroyer ha demostrado ser capaz de provocar tal explosión de sabor que
-            podría llegar a destruir un planeta entero
-        </p>
+          podría llegar a destruir un planeta entero
+  </p>
         <Button as='a' size='large'>
           Cuentame más
-        </Button>
+  </Button>
       </Container>
     </Segment>
-
+    {/***********************************************************
+*                   FOOTER
+********************************************************** */ }
     <Segment inverted vertical style={{ padding: '5em 0em' }}>
       <Container>
         <Grid divided inverted stackable>
@@ -274,16 +288,19 @@ const HomepageLayout = () => (
             <Grid.Column width={7}>
               <Header as='h4' inverted>
                 Pizza Jedi
-              </Header>
+        </Header>
               <p>
                 Prueba nuestras pizzas y la fuerza estará siempre contigo.
-              </p>
+        </p>
             </Grid.Column>
           </Grid.Row>
         </Grid>
       </Container>
     </Segment>
-  </ResponsiveContainer>
-)
 
+  </div>
+)
+HomepageLayout.propTypes = {
+  mobile: PropTypes.bool,
+}
 export default HomepageLayout
