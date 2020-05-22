@@ -43,10 +43,11 @@ const Perfil = () => {
       imagenCliente.type === "image/jpeg" ||
       imagenCliente.type === "image/jpg"
     ) {
-      setLoading(true);
-      console.log("loading", loading);
+      usuario.estado = false;
       editarFoto(usuario, imagenCliente);
+      setLoading(true);
       setError(false);
+      //console.log("loading", loading);
     } else {
       setError(true);
     }
@@ -106,9 +107,9 @@ const Perfil = () => {
               </label>
             </div>
           </div>
-{/**
 
-{loading && (
+
+{!usuario.estado && (
             <div className="card-body">
               <div className="d-flex justify-content-center my-3">
                 <div className="spinner-border" role="status">
@@ -119,7 +120,7 @@ const Perfil = () => {
           )}
 
 
-*/}
+
           
 
           {activarFormulario && (

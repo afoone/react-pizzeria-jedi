@@ -93,6 +93,7 @@ const UsuarioProvider = (props) => {
       setUsuario({
         ...usuario,
         photoURL: imagenURL,
+        estado:true
       });
     } catch (error) {
       console.log(error);
