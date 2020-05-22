@@ -22,3 +22,7 @@ npm install gsap
 ```multy-select-react
 npm i react-multi-select-component
 ```
+
+```libreria moment
+npm install moment --save 
+```

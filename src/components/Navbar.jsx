@@ -3,14 +3,14 @@ import { Link} from "react-router-dom";
 import { auth } from '../config/firebase'
 import { withRouter } from "react-router-dom";
 import { Menu, Icon, Input, Segment, Dropdown } from "semantic-ui-react";
-
+import { UsuarioContext } from "../context/UsuarioProvider";
 
 
 const Navbar = (props) => {
   const [activeItem, setactiveItem] = React.useState("home");
   const handleItemClick = (e, { name }) => setactiveItem(name);
 
-
+  const { usuario } = React.useContext(UsuarioContext);
 
 
   const cerrarSesion = () => {
@@ -106,6 +106,19 @@ const Navbar = (props) => {
                     onClick={handleItemClick}
                  />
                 )}
+                {usuario.role === "admin" ? (
+                  <Menu.Item
+                  as={Link}
+                  to="/admin"
+                    name="admin"
+                    active={activeItem === "admin"}
+                    onClick={handleItemClick}
+                  >
+                   
+                      <i class="cogs icon"></i>
+                    
+                  </Menu.Item>
+                ) : null}
           </Menu.Menu>
         </Menu>
       </Segment>
