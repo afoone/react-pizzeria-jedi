@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Grid, Image, Table, Header, Container } from 'semantic-ui-react'
-
 import CommentForm from '../components/CommentForm'
 import CommentsList from '../components/CommentsList'
 import { connect } from 'react-redux'
