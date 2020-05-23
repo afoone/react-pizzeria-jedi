@@ -42,7 +42,6 @@ const PizzaList = props => {
             <table className="ui striped table unstackable">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Nombre</th>
                         <th>Novedad</th>
                         <th>Precio</th>
@@ -56,7 +55,6 @@ const PizzaList = props => {
                     {
                         props.pizzas.map(
                             e => <tr key={e.id}>
-                                <td>{e.id}</td>
                                 <td>{e.name}</td>
                                 <td>{e.novelty ? "Sí" : "No"}</td>
                                 <td>{e.price}</td>
