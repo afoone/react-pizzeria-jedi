@@ -4,7 +4,7 @@ import { fetchPizzas } from '../actions'
 import { Link } from 'react-router-dom'
 import { db } from '../config/firebase'
 import { UsuarioContext } from "../context/UsuarioProvider";
-
+import '../css/PizzaList.css'
 
 
 

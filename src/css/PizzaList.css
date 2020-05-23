@@ -1,0 +1,4 @@
+.pizza-list{
+    display: grid;
+    grid-template-columns: auto;
+}
