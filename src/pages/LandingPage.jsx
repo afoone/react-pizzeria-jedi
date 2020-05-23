@@ -267,10 +267,10 @@ const HomepageLayout = () => (
                 <List.Item as='a'>Contact Us</List.Item>
                 <List.Item as={Link} to='/about'>Sobre nosotros</List.Item>
               </List>
-              <img className='nave-footer' src="http://localhost:3000/pizza-delivery.png"  alt='nave-footer' />
-              <img className='cajas-footer' src="http://localhost:3000/pizzas.png"  alt='nave-footer' />
-              <img className='disparo-izq' src="http://localhost:3000/disparo-izq.png"  alt='nave-footer' />
-              <img className='dispar-der' src="http://localhost:3000/disparo-der.png"  alt='nave-footer' />
+              <img className='nave-footer' src="/pizza-delivery.png"  alt='nave-footer' />
+              <img className='cajas-footer' src="/pizzas.png"  alt='nave-footer' />
+              <img className='disparo-izq' src="/disparo-izq.png"  alt='nave-footer' />
+              <img className='dispar-der' src="/disparo-der.png"  alt='nave-footer' />
             </Grid.Column>
             <Grid.Column width={3}>
               <Header inverted as='h4' content='Services' />
