@@ -4,7 +4,7 @@ import { fetchPizzas } from '../actions'
 import { Link } from 'react-router-dom'
 import { db } from '../config/firebase'
 import { UsuarioContext } from "../context/UsuarioProvider";
-
+import '../css/PizzaList.css'
 
 
 
@@ -42,7 +42,6 @@ const PizzaList = props => {
             <table className="ui striped table unstackable">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Nombre</th>
                         <th>Novedad</th>
                         <th>Precio</th>
@@ -56,10 +55,9 @@ const PizzaList = props => {
                     {
                         props.pizzas.map(
                             e => <tr key={e.id}>
-                                <td>{e.id}</td>
                                 <td>{e.name}</td>
                                 <td>{e.novelty ? "Sí" : "No"}</td>
-                                <td>{e.price}</td>
+                                <td>{e.price} €</td>
                                 <td><img src={e.image} alt="" border="3" height="100" width="100"></img></td>
                                 <td>
                                     <Link to={`/pizzaId/${e.id}`}>vER</Link>{" "}
