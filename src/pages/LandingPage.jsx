@@ -15,7 +15,7 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
-import vader from './vader.png'
+import vader from '../css/images/vader.webp'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import '../css/LandingPage.css'

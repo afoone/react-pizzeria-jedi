@@ -57,7 +57,7 @@ const PizzaList = props => {
                             e => <tr key={e.id}>
                                 <td>{e.name}</td>
                                 <td>{e.novelty ? "Sí" : "No"}</td>
-                                <td>{e.price}</td>
+                                <td>{e.price} €</td>
                                 <td><img src={e.image} alt="" border="3" height="100" width="100"></img></td>
                                 <td>
                                     <Link to={`/pizzaId/${e.id}`}>vER</Link>{" "}

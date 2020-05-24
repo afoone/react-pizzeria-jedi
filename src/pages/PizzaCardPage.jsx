@@ -72,7 +72,7 @@ const PizzaCardPage = (props) => {
                                     (res, index) =>
                                         <Table.Row key={index}>
                                             <Table.Cell>{res.label}</Table.Cell>
-                                            <Table.Cell>{res.price}</Table.Cell>
+                                            <Table.Cell>{res.price} €</Table.Cell>
                                         </Table.Row>
                                 ) : <Table.Row><Table.Cell>"Cargando"</Table.Cell></Table.Row>
                                 }
