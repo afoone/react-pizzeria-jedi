@@ -53,7 +53,7 @@ const PizzaCardPage = (props) => {
     //obtención de los comentarios
     useEffect(
         () => {
-            db.collection('pizzas').doc(idPizza).collection('comments').get().then(
+            db.collection('pizzas').doc(idPizza).collection('comments').orderBy('fecha', 'desc').limit(5).get().then(
                 res => {
                     const e = res.docs.map(
                         i => i.data()
