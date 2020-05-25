@@ -29,6 +29,8 @@
   
   }
 
+ 
+
   .cajas-footer {
   
     color: white;
@@ -84,4 +86,7 @@
   
   }
   
+  p{
+    color: darkorange;
+  }
 

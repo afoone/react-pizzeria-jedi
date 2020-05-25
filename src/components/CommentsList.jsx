@@ -1,43 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Segment, Header, Grid, GridColumn, Label } from 'semantic-ui-react'
-import { db } from '../config/firebase'
 import '../css/CommentList.css'
 
 const CommentsList = (props) => {
-    //console.log('props', props)
-
-    const [comments, setComments] = useState([])
-    const [obtener, setObtener] = useState(true)
-
-
-    //console.log('resultado', comments)
-
-    useEffect(
-        () => {
-            db.collection('pizzas').doc(props.idPizza).collection('comments').orderBy('date', 'desc').limit(3).get().then(
-                res => {
-                    //console.log('comment docs', res.docs);
-                    const elements = res.docs.map(
-                        i => {
-                            //console.log('comments', i.data())
-                            return i.data()
-                        }
-                    );
-                    //console.log('comments', elements)
-                    setComments(elements)
-                    setObtener(false)
-                }
-            )
-
-        }, [obtener, props.idPizza]
-    )
 
     return (
         <React.Fragment>
             <Header as='h2'>Comentarios</Header>
             <Segment raised className='comentarios' >
 
-                {comments.map(
+                {props.comments.map(
                     (item, index) =>
                         <div key={index} className='lista-comentarios'>
                             <Grid >
