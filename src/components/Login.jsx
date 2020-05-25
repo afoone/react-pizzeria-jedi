@@ -81,7 +81,8 @@ const Login = (props) => {
             console.log(res.user)
             await db.collection('usuarios').doc(res.user.email).set({
                 email: res.user.email,
-                uid: res.user.uid
+                uid: res.user.uid,
+                role: 'user'
             })
            
             setEmail('')
@@ -114,6 +115,7 @@ const ingresoGoogle = React.useCallback(async() => {
           email: res.user.email,
           displayName: res.user.displayName,
           photoURL: res.user.photoURL,
+          role: 'user'
         };
        
         const usuarioDB = await db.collection("usuarios").doc(usuario.email).get();

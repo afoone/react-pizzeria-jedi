@@ -24,7 +24,7 @@ export class AddPizzaPage extends Component {
                                     id: item.id,
                                     label: item.data().label,
                                     value: item.data().value,
-                                   
+                                    price: item.data().price
                                 }
                             }
                         )
@@ -33,9 +33,7 @@ export class AddPizzaPage extends Component {
                 })
             }
     render() {
-        console.log('despues R',this.state.ingredientesList)
-        
-   
+    
         return (
 
             <PizzaAdd ingredientesList={this.state.ingredientesList}></PizzaAdd>

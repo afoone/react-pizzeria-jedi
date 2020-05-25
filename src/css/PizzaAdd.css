@@ -12,21 +12,24 @@
 
 .select-ingrediente{
     width: -webkit-fill-available;
+    grid-column: 5/7;
 }
 
 .novedad-ingrediente{
  display: grid;
- grid-template-columns: 10% 10% auto 50%;
+ grid-template-columns: 10% 10% auto auto auto 30%;
  justify-items: end;
 }
 
 .novedad-ingrediente .go4079732705{
     width: -webkit-fill-available;
+
    }
 
 .novedad-ingrediente .ingrediente-select{
    margin: auto;
-   margin-left: 56%;
+   grid-column: 5;
+   grid-row: 1;
 }
 
 .ui.fitted.toggle.checkbox {
@@ -36,6 +39,19 @@
 h4{
     margin: auto;
     font-family: 'Star Jedi';
+    color: darkorange;
+}
+.link-ingredientes{
+    border: 3px solid rgb(0, 0, 0);
+    background-color: black;
+    text-align: center;
+    border-radius: 15px;
+    width: 124px;
+    margin-left: -42px;
+    color: darkorange;
+    -webkit-box-shadow: 10px 9px 16px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 9px 16px 1px rgba(0,0,0,0.75);
+    box-shadow: 10px 9px 16px 1px rgba(0,0,0,0.75);
 }
 
 .ui.vertical.segment:last-child, .home-header {
@@ -49,6 +65,15 @@ h4{
     margin-top: -11px;
     position: absolute;
 }
+<<<<<<< HEAD
 .home{
     border:solid black 1px;
+=======
+
+.ui.secondary.menu .item>img:not(.ui) {
+    width: 127px;
+    margin-left: -19px;
+    margin-top: -7px;
+    position: absolute;
+>>>>>>> develop
 }

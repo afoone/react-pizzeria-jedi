@@ -25,7 +25,8 @@ export const fetchPizzas = () => {
                                 image: data.image,
                                 name: data.name,
                                 novelty: data.novelty,
-                                price: data.price
+                                price: data.price,
+                                ingredientes: data.ingredientes
                             }
                         }
                     )

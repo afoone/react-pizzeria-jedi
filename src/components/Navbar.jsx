@@ -3,14 +3,15 @@ import { Link} from "react-router-dom";
 import { auth } from '../config/firebase'
 import { withRouter } from "react-router-dom";
 import { Menu, Icon, Input, Segment, Dropdown } from "semantic-ui-react";
-
+import { UsuarioContext } from "../context/UsuarioProvider";
+import logoNave from '../css/images/logoNave.webp';
 
 
 const Navbar = (props) => {
   const [activeItem, setactiveItem] = React.useState("home");
   const handleItemClick = (e, { name }) => setactiveItem(name);
 
-
+  const { usuario } = React.useContext(UsuarioContext);
 
 
   const cerrarSesion = () => {
@@ -26,7 +27,7 @@ const Navbar = (props) => {
       <Segment inverted>
         <Menu fluid inverted pointing secondary size="huge" stackable>
           <Menu.Item>  
-          <img src="http://localhost:3000/1840529_1.png"  alt='logo' />
+          <img src={logoNave}  alt='logo' />
           </Menu.Item>
        
           <Menu.Item header style={{width: 126}}></Menu.Item>
@@ -54,13 +55,18 @@ const Navbar = (props) => {
                   active={activeItem === "Nuestras Pizzas"}
                   onClick={handleItemClick}
                 />
-                <Menu.Item
-                as={Link}
-                to="/pizzaAdd"
+                {usuario.role === "admin" ? (
+                  <Menu.Item
+                  as={Link}
+                  to="/pizzaAdd"
                   name="Crea tu Pizza"
-                  active={activeItem === "Crea tu Pizza"}
-                  onClick={handleItemClick}
-                />
+                    active={activeItem === "Crea tu Pizza"}
+                    onClick={handleItemClick}
+                  >
+                   
+                  </Menu.Item>
+                ) : null}
+               
               </React.Fragment>
             ) : (null)
           }
@@ -106,6 +112,19 @@ const Navbar = (props) => {
                     onClick={handleItemClick}
                  />
                 )}
+                {usuario.role === "admin" ? (
+                  <Menu.Item
+                  as={Link}
+                  to="/admin"
+                    name="admin"
+                    active={activeItem === "admin"}
+                    onClick={handleItemClick}
+                  >
+                   
+                      <i className="cogs icon"></i>
+                    
+                  </Menu.Item>
+                ) : null}
           </Menu.Menu>
         </Menu>
       </Segment>

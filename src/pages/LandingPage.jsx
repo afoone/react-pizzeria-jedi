@@ -15,9 +15,10 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
-import vader from './vader.png'
+import vader from '../css/images/vader.webp'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
+import '../css/LandingPage.css'
 
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
@@ -271,11 +272,19 @@ const HomepageLayout = ({ mobile }) => (
         <Grid divided inverted stackable>
           <Grid.Row>
             <Grid.Column width={3}>
+           
+           
+           
               <Header inverted as='h4' content='About' />
               <List link inverted>
                 <List.Item as='a'>Sitemap</List.Item>
                 <List.Item as='a'>Contact Us</List.Item>
+                <List.Item as={Link} to='/about'>Sobre nosotros</List.Item>
               </List>
+              <img className='nave-footer' src="/pizza-delivery.png"  alt='nave-footer' />
+              <img className='cajas-footer' src="/pizzas.png"  alt='nave-footer' />
+              <img className='disparo-izq' src="/disparo-izq.png"  alt='nave-footer' />
+              <img className='dispar-der' src="/disparo-der.png"  alt='nave-footer' />
             </Grid.Column>
             <Grid.Column width={3}>
               <Header inverted as='h4' content='Services' />

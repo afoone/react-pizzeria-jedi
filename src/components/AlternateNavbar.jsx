@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+<<<<<<< HEAD
 import { Sidebar, Segment, Menu, Responsive, Visibility, Container, Icon, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
@@ -111,10 +112,41 @@ class MobileContainer extends Component {
                     </Segment>
                 </Sidebar.Pusher>
             </Responsive>
+=======
+import { Sidebar, Segment, Menu } from 'semantic-ui-react'
+
+
+
+
+export class AlternateNavbar extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            visible:true
+        }
+    }
+
+    render() {
+        return (
+            <Sidebar.Pushable as={Segment} >
+                <Sidebar
+                    as={Menu}
+                    icon='labeled'
+                    inverted
+                    onHide={null}
+                    vertical
+                    visible={this.state.visible}
+                    width='thin'
+                >
+
+                </Sidebar>
+            </Sidebar.Pushable>
+>>>>>>> develop
         )
     }
 }
 
+<<<<<<< HEAD
 const AlternateNavbar = () => (
     <div>
       <DesktopContainer></DesktopContainer>
@@ -122,4 +154,6 @@ const AlternateNavbar = () => (
     </div>
   )
   
+=======
+>>>>>>> develop
 export default AlternateNavbar
