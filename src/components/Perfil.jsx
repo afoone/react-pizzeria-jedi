@@ -3,15 +3,20 @@ import { UsuarioContext } from "../context/UsuarioProvider";
 
 
 const Perfil = () => {
-  const { usuario, editarFoto, actualizarUsuario } = React.useContext(
+  const { usuario, editarFoto, actualizarUsuario, detectarUsuario } = React.useContext(
     UsuarioContext
   );
 
-  console.log("user detectado", usuario);
+React.useEffect(() => {
+ detectarUsuario()
+}, [])
+
+ 
+  //console.log("usario detectado", usuario);
 
   const [nombreUsuario, setNombreUsuario] = React.useState(usuario.displayName);
   const [activarFormulario, setActivarFormulario] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
+ // const [loading, setLoading] = React.useState(false);
 
   const editarUsuario = (e) => {
     e.preventDefault();
@@ -45,7 +50,7 @@ const Perfil = () => {
     ) {
       usuario.estado = false;
       editarFoto(usuario, imagenCliente);
-      setLoading(true);
+    //  setLoading(true);
       setError(false);
       //console.log("loading", loading);
     } else {
@@ -62,19 +67,15 @@ const Perfil = () => {
       <div className="mt-5 text-center">
         <div className="card m-5" style={{width: 300}} >
           <div className="card-body">
-          { 
-                (usuario.photoURL) ? (
+          {     
+                (usuario.photoURL) && (
                     <img
                     src={usuario.photoURL}
                     alt="foto"
                     width="100px"
                     className="img-fluid"
                             />
-                ) : (
-                    <div className="image red card">
-                       <img className="ui medium circular image" alt="logo" />
-                    </div>
-                )
+                ) 
 
           }
             
@@ -109,15 +110,15 @@ const Perfil = () => {
           </div>
 
 
-{!usuario.estado && (
-            <div className="card-body">
-              <div className="d-flex justify-content-center my-3">
-                <div className="spinner-border" role="status">
-                  <span className="sr-only">Loading...</span>
-                </div>
-              </div>
-            </div>
-          )}
+        {!usuario.estado && (
+                    <div className="card-body">
+                      <div className="d-flex justify-content-center my-3">
+                        <div className="spinner-border" role="status">
+                          <span className="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
 
 

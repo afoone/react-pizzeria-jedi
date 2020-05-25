@@ -11,7 +11,7 @@ const Navbar = (props) => {
   const [activeItem, setactiveItem] = React.useState("home");
   const handleItemClick = (e, { name }) => setactiveItem(name);
 
-  const { usuario } = React.useContext(UsuarioContext);
+  const { usuario, productsCart } = React.useContext(UsuarioContext);
 
 
   const cerrarSesion = () => {
@@ -19,6 +19,33 @@ const Navbar = (props) => {
       .then(() => {
         props.history.push('/login')
       })
+  }
+
+  const RenderProduct = () =>{
+    return (
+  productsCart.length > 0 ? (
+    <Menu.Item
+    as={Link}
+    to="/carrito"
+      name="tu carrito"
+      active={activeItem === "tu carrito"}
+      onClick={handleItemClick}
+      icon="cart arrow down"
+      color= {'red'}
+      
+    />
+  ) : (
+    <Menu.Item
+    as={Link}
+    to="/carrito"
+      name="carrito"
+      active={activeItem === "carrito"}
+      onClick={handleItemClick}
+      icon="shopping cart"
+     
+    />
+    )
+    )
   }
 
 
@@ -93,14 +120,8 @@ const Navbar = (props) => {
                   >
                     <Icon name="sign-out alternate" />
                   </Menu.Item>
-                  <Menu.Item
-                  as={Link}
-                  to="/carrito"
-                    name="carrito"
-                    active={activeItem === "carrito"}
-                    onClick={handleItemClick}
-                    icon="shopping cart"
-                  />
+                  
+                 <RenderProduct></RenderProduct>
                 </React.Fragment>
               ) : (
                   <Menu.Item

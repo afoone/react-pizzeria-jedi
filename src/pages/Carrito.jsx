@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 import { auth } from "../config/firebase";
 import MiCarrito from "../components/MiCarrito";
 
+import './carrito.css'
+
 const Carrito = (props) => {
   const [user, setUser] = React.useState(null);
 
@@ -20,10 +22,10 @@ const Carrito = (props) => {
   return (
     <div>
       {user && (
-        <>
-          <Perfil></Perfil>
+        <div className='carrito'>
+          <Perfil ></Perfil>
           <MiCarrito user={user}></MiCarrito>
-        </>
+        </div>
       )}
     </div>
   );
