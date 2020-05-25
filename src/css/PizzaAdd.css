@@ -65,15 +65,13 @@ h4{
     margin-top: -11px;
     position: absolute;
 }
-<<<<<<< HEAD
 .home{
     border:solid black 1px;
-=======
+}
 
 .ui.secondary.menu .item>img:not(.ui) {
     width: 127px;
     margin-left: -19px;
     margin-top: -7px;
     position: absolute;
->>>>>>> develop
 }
