@@ -151,7 +151,7 @@ export class PizzaEdit extends Component {
 
                         <h4>Novedad</h4>
                         <this.CheckboxExampleToggle />
-                        <Link to="/ingrediente">Añade nuevo ingrediente</Link>
+                        <Link className='link-ingredientes' to="/ingrediente">Añade nuevo ingrediente</Link>
                         <br></br>
                         <h4 className='ingrediente-select'>ingredientes</h4>
                         <br></br>
