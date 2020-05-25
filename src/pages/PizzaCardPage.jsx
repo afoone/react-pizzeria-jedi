@@ -66,21 +66,22 @@ const PizzaCardPage = (props) => {
         }, [obtener]
     )
     //guardamos el nuevo comentario en la base de datos
-    const newComments=comments;
     const commentHandle = (comment) => {
         console.log('añadir comentario', comment);
-        // db.collection('pizzas').doc(idPizza).collection('comments').add(comment).then(
-        //     () => {
-        //         //console.log('Comentario guardado correctamente', comment);
-        //         const newComments = comments;
-        //         newComments.push(comment);
-        //         //console.log(newComments)
-        //         setComments(newComments);
-        //     }
-        // )
-      
-        newComments.push(comment);
-        setComments(newComments)
+        db.collection('pizzas').doc(idPizza).collection('comments').add(comment).then(
+            () => {
+                //console.log('Comentario guardado correctamente', comment);
+                const newComments = comments;
+                newComments.push(comment);
+                //console.log(newComments)
+                setComments(newComments);
+            }
+        )
+        // const newComments=comments;
+        // newComments.push(comment)
+        // setComments(newComments)
+        //setComments([...comments.filter(e!=='elemento que se quiera cambiar), comment])
+        setComments([...comments, comment])
     }
 
 
@@ -102,12 +103,12 @@ const PizzaCardPage = (props) => {
                             <Table.Body>
                                 {
                                     pizza.ingredientes ? pizza.ingredientes.map(
-                                    (res, index) =>
-                                        <Table.Row key={index}>
-                                            <Table.Cell>{res.label}</Table.Cell>
-                                            <Table.Cell>{res.price} €</Table.Cell>
-                                        </Table.Row>
-                                ) : <Table.Row><Table.Cell>"Cargando"</Table.Cell></Table.Row>
+                                        (res, index) =>
+                                            <Table.Row key={index}>
+                                                <Table.Cell>{res.label}</Table.Cell>
+                                                <Table.Cell>{res.price} €</Table.Cell>
+                                            </Table.Row>
+                                    ) : <Table.Row><Table.Cell>"Cargando"</Table.Cell></Table.Row>
                                 }
                             </Table.Body>
                         </Table>
