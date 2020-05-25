@@ -62,7 +62,7 @@ const PizzaCardPage = (props) => {
                     <Grid.Column width={6}>
                         <Header as='h2'>{pizza.name || ''}</Header>
                         <Image src={pizza.image || ''} style={{ maxWidth: '200px' }} />
-                        <Header as='h3'>{`Precio: ${precio}`}</Header>
+                        <Header as='h3'>{`Precio: ${precio} €`}</Header>
                     </Grid.Column>
                     <Grid.Column width={8}>
                         <Header as='h1'>Ingredientes</Header>
