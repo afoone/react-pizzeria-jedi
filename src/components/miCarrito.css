@@ -1,0 +1,27 @@
+.miCarrito{
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card{
+    display: block;
+    float: left;
+}
+
+.cartHeader{
+    display: block;
+}
+
+.cartHeader h1{
+    width: 50%;
+    float: left;
+}
+
+.cartHeader Button{
+    float: left;
+}
+
+cart-content-products{
+    display: block;
+    clear: both;
+}

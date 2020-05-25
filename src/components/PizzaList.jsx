@@ -5,13 +5,15 @@ import { Link } from 'react-router-dom'
 import { db } from '../config/firebase'
 import { UsuarioContext } from "../context/UsuarioProvider";
 import '../css/PizzaList.css'
+import { Button, Icon } from 'semantic-ui-react'
+import { ToastContainer } from "react-toastify";
 
 
 
 const PizzaList = props => {
 
 
-    const { usuario} = React.useContext(
+    const { usuario, agregarProducto} = React.useContext(
         UsuarioContext
       );
     console.log("usu", usuario.role)
@@ -38,6 +40,7 @@ const PizzaList = props => {
     }
 
     return (
+        <>
         <div id="lista" className="pizza-list">
             <table className="ui striped table unstackable">
                 <thead>
@@ -64,6 +67,9 @@ const PizzaList = props => {
                                     {usuario.role==="admin"?
                                     <><Link to={`/pizzaedit/${e.id}`}>Editar</Link>{" "}
                                     <a href="#lista" onClick={() => onBorrarClicked(e.id)}>Borrar</a></>:""}
+                                    <Button color='red' onClick={() => agregarProducto(e.id, e.name)}>
+                                        <Icon name='add to cart'></Icon>
+                                    </Button>
                                 </td>
                             </tr>
                         )
@@ -72,6 +78,18 @@ const PizzaList = props => {
                 </tbody>
             </table>
         </div>
+        <ToastContainer
+        position="bottom-left"
+        autoClose={4000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnVisibilityChange={false}
+        draggable
+        pauseOnHover={false}
+      ></ToastContainer>
+      </>
     )
 }
 

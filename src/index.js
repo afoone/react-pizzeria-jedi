@@ -8,6 +8,8 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import reducer from "./reducers/index";
 import UsuarioProvider from "./context/UsuarioProvider";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const store = createStore(
   reducer,
