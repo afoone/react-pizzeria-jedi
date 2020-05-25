@@ -67,8 +67,12 @@ const PizzaList = props => {
                                     {usuario.role==="admin"?
                                     <><Link to={`/pizzaedit/${e.id}`}>Editar</Link>{" "}
                                     <a href="#lista" onClick={() => onBorrarClicked(e.id)}>Borrar</a></>:""}
-                                    <Button color='red' onClick={() => agregarProducto(e.id, e.name)}>
-                                        <Icon name='add to cart'></Icon>
+                                    
+                                    <Button animated='vertical' onClick={() => agregarProducto(e.id, e.name)}>
+                                         <Button.Content hidden>Shop</Button.Content>
+                                                <Button.Content visible>
+                                            <Icon name='shop' />
+                                        </Button.Content>
                                     </Button>
                                 </td>
                             </tr>

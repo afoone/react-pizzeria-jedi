@@ -240,10 +240,16 @@ const MiCarrito = ({ user }) => {
         </div>
       ) : (
         <>
-          <Icon name="quote left" />
-          <h1>No hay productos en tu carrito</h1>
-          <Icon name="quote right" />
-          <Icon name="frown outline" size="large"></Icon>
+          
+          <h1>
+          <Icon name="arrow alternate circle right" />
+          No hay productos en tu carrito
+          <Icon name="frown outline" size="large" />
+          <Icon name="clipboard list" />
+          <Icon name="exclamation triangle" />
+          </h1>
+          
+          
         </>
       )}
       <CartFooter

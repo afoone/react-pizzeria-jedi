@@ -27,3 +27,15 @@ cart-content-products{
     display: block;
     clear: both;
 }
+#root > div:nth-child(2) > div > div.miCarrito > i.quote.right.icon.right{
+    float: right;
+    display: block;
+}
+#root > div:nth-child(2) > div > div.miCarrito > i.quote.left.icon{
+    display: block;
+    float: left;
+}
+
+#root > div:nth-child(2) > div > div.miCarrito > h1{
+    font-size: 5rem;
+}
