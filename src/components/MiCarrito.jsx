@@ -6,7 +6,7 @@ import {
   removeItemArray,
   countDuplicatesItemArray,
 } from "../context/constants";
-import { Button, Icon, Card, Image } from "semantic-ui-react";
+import { Button, Icon, Card } from "semantic-ui-react";
 import "./miCarrito.css";
 
 const MiCarrito = ({ user }) => {
@@ -15,7 +15,7 @@ const MiCarrito = ({ user }) => {
     products,
     productsCart,
     cargarProductos,
-    carritodataBase
+    carritodataBase,
   } = React.useContext(UsuarioContext);
   // console.log('usuario que viene de context', usuario.uid)
   // console.log('usuario que viene de props', user.uid)
@@ -23,7 +23,6 @@ const MiCarrito = ({ user }) => {
   const [singleProductCart, setSingleProductCart] = React.useState([]);
   const [cartTotalPrice, setcartTotalPrice] = React.useState(0);
   const [productMiCart, setProductMiCart] = React.useState([{}]);
-
 
   React.useEffect(() => {
     const allProductsId = removeArrayDuplicates(productsCart);
@@ -47,19 +46,19 @@ const MiCarrito = ({ user }) => {
     // console.log('array total carrito', productData) !loading &&
     // console.log('productos a recdorrer', products, productData)
     if (products) {
-     const arrayMiCarrito = []
+      const arrayMiCarrito = [];
       products.forEach((product) => {
         productData.forEach((item) => {
           if (product.id === item.id) {
             const totalValue = product.price * item.quantity;
             totalPrice = totalPrice + totalValue;
-             arrayMiCarrito.push(product)
+            arrayMiCarrito.push(product);
           }
         });
       });
-      setProductMiCart(arrayMiCarrito)
+      setProductMiCart(arrayMiCarrito);
     }
-   
+
     setcartTotalPrice(totalPrice);
   }, [productsCart, products]);
 
@@ -92,29 +91,44 @@ const MiCarrito = ({ user }) => {
     return (
       <div className="cartHeader">
         <div>
-          <h1><strong>Mi Carrito</strong></h1>
+          <h1>
+            <strong>Mi Carrito</strong>
+          </h1>
 
-          <Button variant="link" onClick={emptyCart} >
-          Vaciar-
-          <Icon name="trash alternate outline"></Icon>
-        </Button>
+          <Button variant="link" onClick={emptyCart}>
+            Vaciar-
+            <Icon name="trash alternate outline"></Icon>
+          </Button>
         </div>
-        
       </div>
     );
   };
 
-  const CartFooter = ({ cartTotalPrice, productMiCart, user, productsCart, carritodataBase }) => {
-    
-    console.log('productos de mi carrito', productMiCart, user.uid, cartTotalPrice, productsCart)
+  const CartFooter = ({
+    cartTotalPrice,
+    productMiCart,
+    user,
+    productsCart,
+    carritodataBase,
+  }) => {
+  //  console.log("productos de mi carrito", productMiCart, user.uid, cartTotalPrice, productsCart );
+      
     return (
       <div className="cart-content-footer">
         <div>
           <h3>Total aproximado:</h3>
-          {/**{cartTotalPrice.toFixed(2)} */}
-          <h4><strong> {cartTotalPrice.toFixed(2)} € </strong></h4>
+         
+          <h4>
+            <strong> {cartTotalPrice.toFixed(2)} € </strong>
+          </h4>
         </div>
-        <Button onClick={() => carritodataBase(productMiCart, user, cartTotalPrice, productsCart)}>Tramitar pedido</Button>
+        <Button
+          onClick={() =>
+            carritodataBase(productMiCart, user, cartTotalPrice, productsCart)
+          }
+        >
+          Tramitar pedido
+        </Button>
       </div>
     );
   };
@@ -131,17 +145,11 @@ const MiCarrito = ({ user }) => {
 
     if (products) {
       return products.map((element, index) => {
-        console.log(
-          "pizza",
-          element.name,
-          element.price,
-          element.ingredientes,
-          element.image
-        );
-        console.log("repetidos", element.id, itemId);
+        
+       // console.log("repetidos", element.id, itemId);
         if (element.id === itemId) {
           const quantity = productsCart.filter((item) => item === element.id);
-          console.log("quantity", quantity);
+        //  console.log("quantity", quantity);
           return (
             <RenderProduct
               key={index}
@@ -160,48 +168,52 @@ const MiCarrito = ({ user }) => {
     quantity,
     element,
     incrementCount,
-    descentCount
+    descentCount,
   }) => {
-    const fecha = new Date().toLocaleDateString()
-    console.log("element", element.ingredientes);
+    const fecha = new Date().toLocaleDateString();
+  //  console.log("element", element.ingredientes);
     return (
       <>
         <Card>
           <Card.Content>
             <Card.Meta floated="right">{fecha}</Card.Meta>
-           
+
             <Card.Header>
               <strong>{element.name}</strong>
             </Card.Header>
             <Card.Meta>{element.price} €/ud</Card.Meta>
-            
+
             <Card.Description>
-            Ingredientes: {element.ingredientes.map(
-                ingrediente =>{
-                  return  ingrediente.label + ' , '     
-                }
-            )}
-           </Card.Description>
-            
-            
-            
+              Ingredientes:{" "}
+              {element.ingredientes.map((ingrediente) => {
+                return ingrediente.label + " , ";
+              })}
+            </Card.Description>
+
             <Card.Description>
-               En el carro: <strong>{quantity.length} ud</strong>
+              En el carro: <strong>{quantity.length} ud</strong>
             </Card.Description>
           </Card.Content>
           <Card image={element.image} header={element.name} />
           <Card.Content extra>
             <div className="ui two buttons">
-              <Button basic color="green" onClick={() => incrementCount(element.id)}>
+              <Button
+                basic
+                color="green"
+                onClick={() => incrementCount(element.id)}
+              >
                 +
               </Button>
-              <Button basic color="red"onClick={() => descentCount(element.id)} >
+              <Button
+                basic
+                color="red"
+                onClick={() => descentCount(element.id)}
+              >
                 -
               </Button>
             </div>
           </Card.Content>
         </Card>
-       
       </>
     );
   };
@@ -234,7 +246,13 @@ const MiCarrito = ({ user }) => {
           <Icon name="frown outline" size="large"></Icon>
         </>
       )}
-      <CartFooter cartTotalPrice={cartTotalPrice} carritodataBase={carritodataBase} productMiCart={productMiCart} user={user} productsCart={productsCart}></CartFooter>
+      <CartFooter
+        cartTotalPrice={cartTotalPrice}
+        carritodataBase={carritodataBase}
+        productMiCart={productMiCart}
+        user={user}
+        productsCart={productsCart}
+      ></CartFooter>
     </div>
   );
 };

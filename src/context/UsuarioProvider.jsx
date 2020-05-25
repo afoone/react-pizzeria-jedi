@@ -14,37 +14,44 @@ const UsuarioProvider = (props) => {
 
   React.useEffect(() => {
     detectarUsuario();
+    
     // para evitar el warning por no poner las dependencias en [] se puede añadir el comentario de abajo cuando la dependencia nos de un loop
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const detectarUsuario = () => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        db.collection("usuarios")
-          .doc(user.email)
-          .get()
-          .then((res) => {
-            // console.log('usuarios', res.data())
-            setUsuario({
-              uid: user.uid,
-              email: user.email,
-              displayName: (res.data().exists ? res.data().displayName : user.displayName),
-              photoURL: (res.data().exists ? res.data().photoURL : user.photoURL),
-              role: (res.data().role ),
-              estado: true
+  const detectarUsuario = async () => {
+    try {
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          db.collection("usuarios")
+            .doc(user.email)
+            .get()
+            .then((res) => {
+             // console.log('usuarios', res.data().photoURL, res.data())
+              
+              setUsuario({
+                uid: res.data().uid,
+                email: res.data().email,
+                displayName: res.data().displayName,
+                photoURL: res.data().photoURL,
+                role: res.data().role,
+                estado: true
+              });
             });
+        } else {
+          setUsuario({
+            uid: null,
+            email: null,
+            displayName: null,
+            photoURL: null,
+            estado: false
           });
-      } else {
-        setUsuario({
-          uid: null,
-          email: null,
-          displayName: null,
-          photoURL: null,
-          estado: false
-        });
-      }
-    });
+        }
+      });
+    } catch (error) {
+      console.log(error)
+    }
+   
   };
 
   const ingresoGoogle = async () => {
@@ -107,7 +114,7 @@ const UsuarioProvider = (props) => {
 
 // array de pizzas
  const [products, setProducts] = React.useState([]);
- const [error, setError] = React.useState(null);
+// const [error, setError] = React.useState(null);
 
 // array con los productos del carrito
 const [productsCart, setProductsCart] = React.useState([]);
@@ -133,10 +140,13 @@ React.useEffect(() => {
           )
         console.log('Listado de Pizzas', pizzas)
         setProducts(pizzas)
-        setError('succes')
+       // setError('succes')
         }        
     )
-    .catch(setError("error"));
+    .catch(
+      console.log('hay un error')
+     // setError("error")
+      );
   // console.log("listado de Pizzas", products)
 
 
@@ -180,9 +190,16 @@ React.useEffect(() => {
 
 
 
+
+
+  const emptyCart = () => {
+    localStorage.removeItem(STORAGE);
+    cargarProductos();
+  };
+
 const carritodataBase = async(productMiCart, usuario, totalPrice, productsCart) => {
- console.log("id usuario", usuario, productMiCart, totalPrice, productsCart);
- console.log("pizza usuario", usuario.uid);
+ // console.log("id usuario", usuario, productMiCart, totalPrice, productsCart);
+ // console.log("pizza usuario", usuario.uid);
 
  
    const nuevoCarrito = {
@@ -208,7 +225,7 @@ const carritodataBase = async(productMiCart, usuario, totalPrice, productsCart) 
 }
  
 
-
+emptyCart()
  
 };
 
@@ -226,13 +243,14 @@ const carritodataBase = async(productMiCart, usuario, totalPrice, productsCart) 
         cerrarSesion,
         editarFoto,
         actualizarUsuario,
-
+        detectarUsuario,
         // carrito
         products,
         productsCart,
         agregarProducto,
         cargarProductos,
-        carritodataBase
+        carritodataBase,
+       
       }}
     >
       {props.children}

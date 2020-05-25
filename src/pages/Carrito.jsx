@@ -23,7 +23,7 @@ const Carrito = (props) => {
     <div>
       {user && (
         <div className='carrito'>
-          <Perfil></Perfil>
+          <Perfil ></Perfil>
           <MiCarrito user={user}></MiCarrito>
         </div>
       )}
