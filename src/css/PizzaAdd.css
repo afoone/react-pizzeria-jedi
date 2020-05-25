@@ -3,7 +3,7 @@
     src:url(./fonts/star-jedi_[allfont.es].ttf)
 }
 *{
-    font-family: 'Star Jedi';
+    font-family: 'Star Jedi' ;
 }
 .pizza-add{
     width: 70%;
@@ -52,6 +52,8 @@ h4{
     -webkit-box-shadow: 10px 9px 16px 1px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 9px 16px 1px rgba(0,0,0,0.75);
     box-shadow: 10px 9px 16px 1px rgba(0,0,0,0.75);
+    grid-row: 2;
+    grid-column: 3/4;
 }
 
 .ui.vertical.segment:last-child {
