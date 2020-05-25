@@ -37,7 +37,7 @@ const PizzaCardPage = (props) => {
             //console.log('pizza', pizza.ingredientes)
             if (pizza.ingredientes) {
                
-                setPrecio(pizza.ingredientes.map(
+                setPrecio(parseFloat(pizza.price) + pizza.ingredientes.map(
                     item => parseFloat(item.price)
                 ).reduce((a, value) => a + parseFloat(value)) + 10)
             }
