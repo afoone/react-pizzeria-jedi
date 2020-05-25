@@ -19,6 +19,8 @@ import vader from '../css/images/vader.webp'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import '../css/LandingPage.css'
+import Galeria from '../components/Galeria'
+
 
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
@@ -44,7 +46,7 @@ const HomepageHeading = ({ mobile }) => (
         marginBottom: 0,
         marginTop: mobile ? '1em' : '1em',
       }}
-    ><p><Image src={vader} width={200} centered/></p><p>Pizza Jedi</p></Header>
+    ><p><Image src={vader} width={200} centered /></p><p style={{fontFamily: 'Star Jedi'}}>Pizza Jedi</p></Header>
     <Header
       as='h2'
       content='Jabba el Hut said Yummy!! then died '
@@ -52,10 +54,11 @@ const HomepageHeading = ({ mobile }) => (
       style={{
         fontSize: mobile ? '1.5em' : '1.7em',
         fontWeight: 'normal',
+        fontFamily: 'Star Jedi',
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button as={Link} to='/login' primary size='huge' >
+    <Button as={Link} to='/login' primary size='huge' style={{ fontSize: '2em' , fontFamily: 'Star Jedi'}} >
       Entrar
       <Icon name='right arrow' />
     </Button>
@@ -82,6 +85,7 @@ class DesktopContainer extends Component {
 
     return (
       <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
+      
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
@@ -174,7 +178,7 @@ class MobileContainer extends Component {
             style={{ minHeight: 350, padding: '1em 0em' }}
             vertical
           >
-            <Container>
+            {/* <Container>
               <Menu inverted pointing secondary size='large'>
                 <Menu.Item onClick={this.handleToggle}>
                   <Icon name='sidebar' />
@@ -188,7 +192,7 @@ class MobileContainer extends Component {
                   </Button>
                 </Menu.Item>
               </Menu>
-            </Container>
+            </Container> */}
             <HomepageHeading mobile />
           </Segment>
 
@@ -217,20 +221,24 @@ ResponsiveContainer.propTypes = {
 const HomepageLayout = () => (
   <ResponsiveContainer>
 
+ 
+    <Segment style={{ padding: '1em 0em' }} vertical>
 
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    <Galeria></Galeria>
       <Container text>
-        <Header as='h3' style={{ fontSize: '2em' }}>
+        <Header as='h3' style={{ fontSize: '2em' , fontFamily: 'Star Jedi' }}>
           ¡Impactante novedad!
         </Header>
-        <p style={{ fontSize: '1.33em' }}>
+       
+        <p style={{ fontSize: '1.33em', fontFamily: 'Star Jedi' }}>
           Tenemos un nuevo programa de beta testers de nuestras pizzas. Apuntate para ser el primero en probarlas, 
             presume ante tus amigos y consigue grandes descuentos para tus próximas compras
         </p>
-        <Button as='a' size='large'>
-          ¡Quiero apuntarme!
+        
+        <Button as='a' size='large' style={{  fontFamily: 'Star Jedi'}}>
+          ¡quiero apuntarme!
         </Button>
-
+        
         <Divider
           as='h4'
           className='header'
@@ -240,14 +248,14 @@ const HomepageLayout = () => (
           <p >Historias de éxito</p>
         </Divider>
 
-        <Header as='h3' style={{ fontSize: '2em' }}>
+        <Header as='h3' style={{ fontSize: '2em' , fontFamily: 'Star Jedi'}}>
           ¿Puede el placer destruir un planeta?
         </Header>
-        <p style={{ fontSize: '1.33em' }}>
+        <p style={{ fontSize: '1.33em', fontFamily: 'Star Jedi' }}>
           Nuestra aclamada Doble Bacon Star Destroyer ha demostrado ser capaz de provocar tal explosión de sabor que
             podría llegar a destruir un planeta entero
         </p>
-        <Button as='a' size='large'>
+        <Button as='a' size='large' style={{  fontFamily: 'Star Jedi'}}>
           Cuentame más
         </Button>
       </Container>
@@ -261,19 +269,21 @@ const HomepageLayout = () => (
            
            
            
-              <Header inverted as='h4' content='About' />
+              <Header inverted as='h4' content='About' style={{ fontFamily: 'Star Jedi'}}/>
               <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
+                <List.Item as='a'>Sitemap
+                </List.Item>
                 <List.Item as='a'>Contact Us</List.Item>
                 <List.Item as={Link} to='/about'>Sobre nosotros</List.Item>
               </List>
+             
               <img className='nave-footer' src="/pizza-delivery.png"  alt='nave-footer' />
               <img className='cajas-footer' src="/pizzas.png"  alt='nave-footer' />
               <img className='disparo-izq' src="/disparo-izq.png"  alt='nave-footer' />
               <img className='dispar-der' src="/disparo-der.png"  alt='nave-footer' />
             </Grid.Column>
             <Grid.Column width={3}>
-              <Header inverted as='h4' content='Services' />
+              <Header inverted as='h4' content='Services' style={{ fontFamily: 'Star Jedi'}} />
               <List link inverted>
                 <List.Item as='a'>La llevamos a tu casa</List.Item>
                 <List.Item as='a'>Programa de beta testers</List.Item>
@@ -281,7 +291,7 @@ const HomepageLayout = () => (
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
-              <Header as='h4' inverted>
+              <Header as='h4' inverted style={{ fontFamily: 'Star Jedi'}}>
                 Pizza Jedi
               </Header>
               <p>

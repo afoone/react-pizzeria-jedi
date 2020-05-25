@@ -26,3 +26,16 @@ npm i react-multi-select-component
 ```libreria moment
 npm install moment --save 
 ```
+
+```Galeria
+npm i -s react-images
+npm i -s react-photo-gallery
+```
+``Ìframe
+npm i react-iframe
+```
+```toastify
+ npm install --save react-toastify
+ npm i react-toastify
+
+```

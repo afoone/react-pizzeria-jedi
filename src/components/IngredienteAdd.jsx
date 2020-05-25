@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import '../css/PizzaAdd.css'
 import { db } from '../config/firebase'
-
+import { Button } from 'semantic-ui-react'
+import { Link} from "react-router-dom";
 export class IngredienteAdd extends Component {
     constructor(props) {
         super(props);
@@ -53,23 +54,28 @@ export class IngredienteAdd extends Component {
     render() {
         return (
             <div className='pizza-add'>
-            <form className="ui form">
-                <div className="field">
-                    <label>Nombre del ingrediente</label>
-                    <input placeholder="Nombre ingrediente"
-                        onChange={this.onNameChange}
-                        value={this.state.label}
-                    />
-                    <label>Precio del ingrediente</label>
-                    <input type='number' placeholder="Precio ingrediente"
-                        onChange={this.onPrecioChange}
-                        value={this.state.price}
-                    />
+                <form className="ui form">
+                    <div className="field">
+                        <label>Nombre del ingrediente</label>
+                        <input placeholder="Nombre ingrediente"
+                            onChange={this.onNameChange}
+                            value={this.state.label}
+                        />
+                        <label>Precio del ingrediente</label>
+                        <input type='number' placeholder="Precio ingrediente"
+                            onChange={this.onPrecioChange}
+                            value={this.state.price}
+                        />
 
-                </div>
+                    </div>
                 </form>
-                <button onClick={this.onSubmitClick}  
-                  type="submit" className="ui button">Guardar</button>
+                <button onClick={this.onSubmitClick}
+                    type="submit" className="ui button">Guardar</button>
+                <Link to="/pizzaAdd">
+                    <Button>
+                        <p>Volver</p>
+                    </Button>
+                </Link>
             </div>
         )
     }

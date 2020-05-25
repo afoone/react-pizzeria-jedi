@@ -22,7 +22,7 @@ audio {
 .fondo-estrellas {
   align-items: center;
   background: black;
-  color: rgb(229, 177, 58);
+  color: rgb(229, 177, 58) ;
   display: flex;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
@@ -31,6 +31,8 @@ audio {
   line-height: 1.25;
   overflow: hidden;
   background-image: url(http://localhost:3000/estrellas2.jpg);
+  flex-direction: column;
+  height: 0%;
 }
 
 .fondo-estrellas div[id="root"] {
@@ -40,10 +42,24 @@ audio {
 /** Crawl */
 
 .fondo-estrellas .container {
-  height: 100vh;
+  height: 56vh;
   position: relative;
   width: 100%;
 }
+
+.footer{
+  height: 235px;
+  display: block;
+  width: 355%;
+  margin-left: -91%;
+}
+.map-google{
+  height: 235px;
+  display: block;
+  width: 239%;
+  margin-left: -45%;
+}
+
 
 .fondo-estrellas .container:before {
   background: linear-gradient(
@@ -60,14 +76,6 @@ audio {
   top: 0;
   z-index: 100;
 }
-
-/* .star {
-  
-  width: 1px;
-  height: 1px;
-  background-color: #fff;
-  z-index: 200;
-} */
 
 .fondo-estrellas .intro,
 .logo {
@@ -132,17 +140,5 @@ audio {
   text-align: center;
 }
 
-.fondo-estrellas .volume {
-  background: transparent;
-  border: 0;
-  bottom: 10px;
-  cursor: pointer;
-  left: 10px;
-  position: absolute;
-  z-index: 1000;
-}
 
-.fondo-estrellas .volume svg {
-  height: 24px;
-  width: 24px;
-}
+
