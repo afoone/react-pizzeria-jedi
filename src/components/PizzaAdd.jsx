@@ -3,7 +3,8 @@ import '../css/PizzaAdd.css'
 import { Image, Checkbox } from 'semantic-ui-react'
 import { db } from '../config/firebase'
 import MultiSelect from "react-multi-select-component";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { storage } from 'firebase';
 
 export class PizzaAdd extends Component {
     constructor(props) {
@@ -17,8 +18,33 @@ export class PizzaAdd extends Component {
             redirect: false
         }
     }
-    
-   
+
+
+    componentDidMount(){
+        console.log("Component did mount")
+
+        if (!localStorage.getItem('pizza')) {
+            console.log("no")
+            this.setState({
+                name: "",
+                image: "",
+                price: '',
+                novelty: false,
+                ingredientes: [],
+                redirect: false
+            })
+        } else {
+            console.log("pizza", JSON.parse(localStorage.getItem("pizza")).novelty)
+            this.setState({                
+                name: JSON.parse(localStorage.getItem("pizza")).name,
+                image: JSON.parse(localStorage.getItem("pizza")).image,
+                price: JSON.parse(localStorage.getItem("pizza")).price,
+                novelty: JSON.parse(localStorage.getItem("pizza")).novelty,
+                ingredientes: JSON.parse(localStorage.getItem("pizza")).ingredientes,
+                redirect: JSON.parse(localStorage.getItem("pizza")).redirect
+            })
+        }
+    }
 
     ImageExampleLink = () => (
         <Image
@@ -30,12 +56,13 @@ export class PizzaAdd extends Component {
         />
     )
 
-    CheckboxExampleToggle = () => <Checkbox toggle onChange={this.onNoveltyChange} />
+    CheckboxExampleToggle = () => 
+    <Checkbox toggle onChange={this.onNoveltyChange} />
 
     onNameChange = e => {
         this.setState(
             {
-                name: e.target.value 
+                name: e.target.value
             }
         )
     }
@@ -54,6 +81,7 @@ export class PizzaAdd extends Component {
         )
     }
     onNoveltyChange = e => {
+        console.log("cambio a ", this.state.novelty)
         this.setState(
             {
                 novelty: !this.state.novelty
@@ -69,8 +97,10 @@ export class PizzaAdd extends Component {
 
     }
 
+
     onSubmitClick = e => {
         e.preventDefault();
+        if(localStorage.length!==0) localStorage.removeItem("pizza")
 
         const pizzas = {
             name: this.state.name,
@@ -88,7 +118,12 @@ export class PizzaAdd extends Component {
 
         )
     }
-  
+
+    saveStateToLocalStorage = () => {
+        console.log("LINK")
+        const local = this.state
+        localStorage.setItem('pizza', JSON.stringify(local))
+    }
 
     render() {
 
@@ -115,7 +150,9 @@ export class PizzaAdd extends Component {
 
                         <h4>Novedad</h4>
                         <this.CheckboxExampleToggle />
-                        <Link className='link-ingredientes' to="/ingrediente">Añade nuevo ingrediente</Link>
+                        <Link onClick={() => this.saveStateToLocalStorage()} className='link-ingredientes'
+                            to="/ingrediente">Añade nuevo ingrediente</Link>
+
                         <br></br>
                         <h4 className='ingrediente-select'>ingredientes</h4>
                         <br></br>
@@ -139,8 +176,8 @@ export class PizzaAdd extends Component {
                         <this.ImageExampleLink></this.ImageExampleLink>
                     </div>
                 </form>
-                <button onClick={this.onSubmitClick}  
-                  type="submit" className="ui button">Guardar</button>
+                <button onClick={this.onSubmitClick}
+                    type="submit" className="ui button">Guardar</button>
             </div>
         )
     }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PizzaAdd from '../components/PizzaAdd'
-import { db } from '../config/firebase';
-
+import { db } from '../config/firebase'
 
 export class AddPizzaPage extends Component {
     constructor(props) {
@@ -35,9 +34,7 @@ export class AddPizzaPage extends Component {
     render() {
     
         return (
-
             <PizzaAdd ingredientesList={this.state.ingredientesList}></PizzaAdd>
-
         )
     }
 }
