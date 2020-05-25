@@ -34,6 +34,8 @@ npm i -s react-photo-gallery
 ``Ìframe
 npm i react-iframe
 ```
-``toastify
+```toastify
  npm install --save react-toastify
+ npm i react-toastify
+
 ```
