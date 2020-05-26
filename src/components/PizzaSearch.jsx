@@ -1,22 +1,35 @@
 import React from "react";
 import ModalImage from './ModalImage';
 import { FiltroContext } from "../context/FiltroProvider";
-import { Card, Image } from "semantic-ui-react";
+import { Card, Image, Message, Icon } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import '../css/PizzaSearch.css'
 
 const PizzaSearch = () => {
-  const { pizzasFiltradas,  pizzas, buscarPizzas} = React.useContext(FiltroContext);
+  const {
+    pizzasFiltradas,
+    ingredientes_Pizzas,
+    buscarPizzas,
+    setBuscarPizzas
+  } = React.useContext(FiltroContext);
 
-  console.log("searcg", pizzasFiltradas, buscarPizzas);
-
-
+  console.log("ingredientes buscados", ingredientes_Pizzas);
+  console.log("search", pizzasFiltradas);
+  console.log("buscarPizzas", buscarPizzas);
  
 
   return (
    
     <div className='pizza-search' >
     { buscarPizzas ? null : <Redirect to='/'></Redirect> }
+    { ingredientes_Pizzas.length > 0 || pizzasFiltradas.length > 0 ? null :
+      (<Message negative>
+       <Message.Header>
+         Lo sentimos mucho no hay resultados de su busqueda<Icon name="frown outline" size="large" />
+       </Message.Header>
+       <p><strong>Pruebe con otra busqueda o mire nuestras Pizzas y Promociones</strong></p>
+     </Message>) 
+   }
     <>
       {pizzasFiltradas.map((item, index) => (
         <>
@@ -41,6 +54,33 @@ const PizzaSearch = () => {
           </Card>
           </div>
         </>
+      ))}
+      {ingredientes_Pizzas.map((item, index) => (
+        <Card key={index}>
+          <Image src={item.image} wrapped ui={false} />
+          <Card.Content>
+            <Card.Header>{item.name}</Card.Header>
+            <Card.Meta>{item.price} €</Card.Meta>
+            {item.novelty === true ? (
+              <Card.Description>Novedad!! </Card.Description>
+            ) : (
+              <Card.Description>
+                Prueba nuestras pizzas clasicas
+              </Card.Description>
+            )}
+          </Card.Content>
+          <Card.Content extra>
+            <a>
+              <ModalImage
+                image={item.image}
+                name={item.name}
+                price={item.price}
+                id={item.id}
+              ></ModalImage>
+              <Icon name="zoom-in" size="large" />
+            </a>
+          </Card.Content>
+        </Card>
       ))}
       </>
     </div>
