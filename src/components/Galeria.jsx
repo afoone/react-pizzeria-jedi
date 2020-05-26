@@ -41,8 +41,6 @@ function Galeria() {
 
 export default Galeria
 
-const BasicRows = () => <Gallery photos={photos} />;
-
 
 
 
