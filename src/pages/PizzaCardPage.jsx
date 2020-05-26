@@ -77,9 +77,6 @@ const PizzaCardPage = (props) => {
                 setComments(newComments);
             }
         )
-        // const newComments=comments;
-        // newComments.push(comment)
-        // setComments(newComments)
         //setComments([...comments.filter(e!=='elemento que se quiera cambiar), comment])
         setComments([...comments, comment])
     }
