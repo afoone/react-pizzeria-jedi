@@ -52,21 +52,6 @@ const FiltroProvider = (props) => {
 
 
 
-const ListadoIngredientes = (pizzas) => {
-
-    
-        const arrayIngredientes = [];
-        pizzas.forEach((pizza) => {
-          pizza.ingredientes.forEach((ingrediente) => {
-          
-              arrayIngredientes.push(ingrediente);
-            })
-          })
-        return arrayIngredientes
-
-
-
-}
 
 
 
@@ -74,48 +59,57 @@ const ListadoIngredientes = (pizzas) => {
 
 
 
-    const [pizzasFiltradas, setPizzasFiltradas] = React.useState([{}]);
+
+const [pizzasFiltradas, setPizzasFiltradas] = React.useState([{}]);
 
 
-    const [buscarPizzas, setBuscarPizzas] = React.useState('')
-    //console.log('buscar pizzas', buscarPizzas)
-    const [consultar, setConsultar] = React.useState(false)
-    //console.log('consultar', consultar)
-    
+const [buscarPizzas, setBuscarPizzas] = React.useState('')
+//console.log('buscar pizzas', buscarPizzas)
+const [consultar, setConsultar] = React.useState(false)
+//console.log('consultar', consultar)
+
+const [ingredientes_Pizzas, setIngredientes_Pizzas] = React.useState([{}])
+
 React.useEffect(() => {
-  //  console.log("listado de Pizzas", pizzas)
-   // console.log('buscar pizzas', buscarPizzas.toUpperCase())
-   // console.log('consultar', consultar)
-
-    const ingredientesPizza =  ListadoIngredientes(pizzas)
-    console.log('ingredientes', ingredientesPizza)
 
 
-  if (consultar){
 
- 
-  const Filtradas = pizzas.filter(
-        e => (e.name.toUpperCase().includes(buscarPizzas.toUpperCase() ) ) )
-            
-   
-   console.log('pizzasfiltradas', Filtradas)
-{/**
 
-const Filtradas_por_Ingredientes = pizzas.filter(e => (
-    (e.ingredientes.forEach(ingrediente => 
-        console.log(ingrediente.label.toUpperCase().includes(buscarPizzas.toUpperCase())) 
-      //  (ingrediente.label.toUpperCase().includes(buscarPizzas.toUpperCase()))
-        ))
-   )) 
-       
+if (consultar){
 
-*/}
-   
-       
+
+const Filtradas = pizzas.filter(
+
+    e => (e.name.toUpperCase().includes(buscarPizzas.toUpperCase() ) ) )
+        
+
+console.log('pizzasfiltradas', Filtradas)
+
+
+ const array = []
+ pizzas.filter(e => (
+
+ (e.ingredientes.forEach(ingrediente =>{ 
   
-   setPizzasFiltradas(Filtradas)
+  if(ingrediente.label.toUpperCase().includes(buscarPizzas.toUpperCase()) === true) {
+     console.log( ingrediente.label, e)
+     array.push(e)
+   //  setBuscaPizzas([...buscaPizzas, e])
+     console.log('array',array)
+  }
 
- // console.log('pizzasfiltradas', pizzasFiltradas)
+  }))
+
+) 
+)
+
+
+setIngredientes_Pizzas(array)
+//console.log('nuevas pizzars',  buscaPizzas)
+
+setPizzasFiltradas(Filtradas)
+//console.log('nuevas pizzars',  pizzasFiltradas)
+
 
 
 }
@@ -123,23 +117,21 @@ const Filtradas_por_Ingredientes = pizzas.filter(e => (
 }, [buscarPizzas])
 
 
-
-
-    return (
-        <FiltroContext.Provider
-        value={{
-           pizzas,
-           setBuscarPizzas,
-           consultar,
-           setConsultar,
-           pizzasFiltradas,
-           buscarPizzas           
-          }}>
-            {props.children}
-        </FiltroContext.Provider>
-    )
+return (
+    <FiltroContext.Provider
+    value={{
+       pizzas,
+       setBuscarPizzas,
+       buscarPizzas,
+       consultar,
+       setConsultar,
+       pizzasFiltradas ,
+       setIngredientes_Pizzas,
+       ingredientes_Pizzas  
+      }}>
+        {props.children}
+    </FiltroContext.Provider>
+)
 }
-
-
 
 export default  FiltroProvider
