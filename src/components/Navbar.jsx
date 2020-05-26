@@ -18,7 +18,7 @@ const Navbar = (props) => {
   const [busqueda, setBusqueda] = React.useState("");
 
   const obtenerDatosBusqueda = (e) => {
-    console.log(e.target.value)
+    //console.log(e.target.value)
     setBusqueda(e.target.value);
     setConsultar(false)
   };

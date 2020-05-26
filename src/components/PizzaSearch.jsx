@@ -2,30 +2,22 @@ import React from "react";
 import ModalImage from './ModalImage';
 import { FiltroContext } from "../context/FiltroProvider";
 import { Card, Image } from "semantic-ui-react";
+import { Redirect } from "react-router-dom";
 import '../css/PizzaSearch.css'
 
 const PizzaSearch = () => {
-  const { pizzasFiltradas,  pizzas} = React.useContext(FiltroContext);
+  const { pizzasFiltradas,  pizzas, buscarPizzas} = React.useContext(FiltroContext);
 
-  console.log("searcg", pizzasFiltradas);
+  console.log("searcg", pizzasFiltradas, buscarPizzas);
 
 
- React.useEffect(() => {
-
-    const arrayIngredientes = [];
-    pizzas.forEach((pizza) => {
-      pizza.ingredientes.forEach((ingrediente) => {
-      
-          arrayIngredientes.push(ingrediente);
-        })
-      })
-  
-    console.log('ingredientes', arrayIngredientes)
-  }, [pizzas])
+ 
 
   return (
+   
     <div className='pizza-search' >
-     
+    { buscarPizzas ? null : <Redirect to='/'></Redirect> }
+    <>
       {pizzasFiltradas.map((item, index) => (
         <>
         <div>
@@ -50,6 +42,7 @@ const PizzaSearch = () => {
           </div>
         </>
       ))}
+      </>
     </div>
   );
 };
