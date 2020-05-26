@@ -1,0 +1,11 @@
+ .modals.dimmer .ui.scrolling.modal {
+    margin: 20%;
+    width: 50%;
+    height: 41%;
+} 
+
+.modals.dimmer[class*="top aligned"] .modal {
+    margin: 20%;
+    width: 50%;
+    height: 41%;
+}

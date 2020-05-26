@@ -2,20 +2,13 @@ import React from "react";
 import { Button, Header, Image, Modal, Icon } from "semantic-ui-react";
 import { ToastContainer } from "react-toastify";
 import { UsuarioContext } from "../context/UsuarioProvider";
+import '../css/ModalImage.css'
 
 const ModalImage = ({id, image, name, price }) => {
-
-
 
     const { agregarProducto} = React.useContext(
         UsuarioContext
       );
-
-
-
-
-
-
 
   return (
     <Modal trigger={<Button>Show Modal</Button>} centered={false}>
