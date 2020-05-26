@@ -42,9 +42,7 @@ const App = () => {
     <Router>
       <Navbar firebaseUser={firebaseUser} ></Navbar>
       <Switch>
-        <Route path="/ingrediente" exact>
-          <IngredienteAdd />
-        </Route>
+        <Route path="/ingrediente/:id" component={IngredienteAdd}></Route>
         <Route path="/" exact>
           <LandingPage />
         </Route>

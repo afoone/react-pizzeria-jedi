@@ -71,7 +71,9 @@ export class IngredienteAdd extends Component {
                 </form>
                 <button onClick={this.onSubmitClick}
                     type="submit" className="ui button">Guardar</button>
-                <Link to="/pizzaAdd">
+                <Link to={
+                    this.props.match.params.id==="id"?
+                    "/pizzaAdd":`/pizzaedit/${this.props.match.params.id}`}>
                     <Button>
                         <p>Volver</p>
                     </Button>
