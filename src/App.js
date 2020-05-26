@@ -14,7 +14,7 @@ import Carrito from "./pages/Carrito";
 import PizzaEdit from './components/PizzaEdit'
 import { UsuarioContext } from "./context/UsuarioProvider";
 import Admin from './Admin'
-import SiteMap from "./components/SiteMap";
+
 
 
 
@@ -77,9 +77,7 @@ const App = () => {
         <Route path="/" exact>
           Home
         </Route>
-        <Route path="/sitemap" exact>
-        <SiteMap></SiteMap>
-      </Route>
+     
       </Switch>
     </Router>
   ) : (

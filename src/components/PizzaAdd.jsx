@@ -4,7 +4,7 @@ import { Image, Checkbox } from 'semantic-ui-react'
 import { db } from '../config/firebase'
 import MultiSelect from "react-multi-select-component";
 import { Link } from "react-router-dom";
-import { storage } from 'firebase';
+
 
 export class PizzaAdd extends Component {
     constructor(props) {

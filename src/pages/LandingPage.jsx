@@ -271,8 +271,6 @@ const HomepageLayout = () => (
            
               <Header inverted as='h4' content='About' style={{ fontFamily: 'Star Jedi'}}/>
               <List link inverted>
-                <List.Item as='a'>Sitemap
-                </List.Item>
                 <List.Item as='a'>Contact Us</List.Item>
                 <List.Item as={Link} to='/about'>Sobre nosotros</List.Item>
               </List>
