@@ -20,7 +20,7 @@ export class PizzaAdd extends Component {
     }
 
 
-    componentDidMount(){
+    componentDidMount() {
         console.log("Component did mount")
 
         if (!localStorage.getItem('pizza')) {
@@ -34,14 +34,14 @@ export class PizzaAdd extends Component {
                 redirect: false
             })
         } else {
-            console.log("pizza", JSON.parse(localStorage.getItem("pizza")).novelty)
-            this.setState({                
-                name: JSON.parse(localStorage.getItem("pizza")).name,
-                image: JSON.parse(localStorage.getItem("pizza")).image,
-                price: JSON.parse(localStorage.getItem("pizza")).price,
-                novelty: JSON.parse(localStorage.getItem("pizza")).novelty,
-                ingredientes: JSON.parse(localStorage.getItem("pizza")).ingredientes,
-                redirect: JSON.parse(localStorage.getItem("pizza")).redirect
+            const pizza = JSON.parse(localStorage.getItem("pizza"))
+            this.setState({
+                name: pizza.name,
+                image: pizza.image,
+                price: pizza.price,
+                novelty: pizza.novelty,
+                ingredientes: pizza.ingredientes,
+                redirect: pizza.redirect
             })
         }
     }
@@ -51,13 +51,12 @@ export class PizzaAdd extends Component {
             src={this.state.image}
             as='a'
             size='medium'
-            href='http://google.com'
             target='_blank'
         />
     )
 
-    CheckboxExampleToggle = () => 
-    <Checkbox toggle onChange={this.onNoveltyChange} />
+    CheckboxExampleToggle = () =>
+        <Checkbox toggle checked={this.state.novelty} onChange={this.onNoveltyChange} />
 
     onNameChange = e => {
         this.setState(
@@ -100,7 +99,7 @@ export class PizzaAdd extends Component {
 
     onSubmitClick = e => {
         e.preventDefault();
-        if(localStorage.length!==0) localStorage.removeItem("pizza")
+        if (localStorage.length !== 0) localStorage.removeItem("pizza")
 
         const pizzas = {
             name: this.state.name,
@@ -150,8 +149,10 @@ export class PizzaAdd extends Component {
 
                         <h4>Novedad</h4>
                         <this.CheckboxExampleToggle />
-                        <Link onClick={() => this.saveStateToLocalStorage()} className='link-ingredientes'
-                            to="/ingrediente">Añade nuevo ingrediente</Link>
+                        <Link onClick={() => this.saveStateToLocalStorage()} 
+                        className='link-ingredientes'
+                        to={`/ingrediente/id`}
+                            >Añade nuevo ingrediente</Link>
 
                         <br></br>
                         <h4 className='ingrediente-select'>ingredientes</h4>

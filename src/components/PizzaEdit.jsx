@@ -21,16 +21,48 @@ export class PizzaEdit extends Component {
 
 
     componentDidMount() {
-        db.collection("pizzas").doc(this.props.match.params.id).get().then(
-            res =>
-                this.setState({
-                    name: res.data().name,
-                    price: res.data().price,
-                    image: res.data().image,
-                    novelty: res.data().novelty,
-                    ingredientes: res.data().ingredientes
-                })
-        ).then(
+
+        if (!localStorage.getItem('pizza')) {
+            db.collection("pizzas").doc(this.props.match.params.id).get().then(
+                res =>
+                    this.setState({
+                        name: res.data().name,
+                        price: res.data().price,
+                        image: res.data().image,
+                        novelty: res.data().novelty,
+                        ingredientes: res.data().ingredientes
+                    })
+            ).then(
+                db.collection("ingredientes").get().then(
+                    res => {
+                        console.log("component did mount", res)
+                        const elementos = res.docs.map(
+                            item => {
+                                const data = item.data();
+                                return {
+                                    id: item.id,
+                                    label: data.label,
+                                    value: data.value,
+                                    price: data.price
+                                }
+                            }
+                        )
+                        this.setState({
+                            ingredientesL: elementos
+                        })
+                        console.log("ingredientes", this.state.ingredientesL)
+                    }
+                ))
+        } else {
+            const pizza = JSON.parse(localStorage.getItem("pizza"))
+            this.setState({
+                name: pizza.name,
+                image: pizza.image,
+                price: pizza.price,
+                novelty: pizza.novelty,
+                ingredientes: pizza.ingredientes,
+                redirect: pizza.redirect
+            })
             db.collection("ingredientes").get().then(
                 res => {
                     console.log("component did mount", res)
@@ -50,7 +82,9 @@ export class PizzaEdit extends Component {
                     })
                     console.log("ingredientes", this.state.ingredientesL)
                 }
-            ))
+            )
+
+        }
     }
 
     ImageExampleLink = () => (
@@ -104,7 +138,7 @@ export class PizzaEdit extends Component {
 
     onSubmitClick = e => {
         e.preventDefault();
-
+        if (localStorage.length !== 0) localStorage.removeItem("pizza")
         const pizzas = {
             name: this.state.name,
             image: this.state.image,
@@ -123,6 +157,13 @@ export class PizzaEdit extends Component {
             }
 
         )
+    }
+
+
+    saveStateToLocalStorage = () => {
+        console.log("LINK")
+        const local = this.state
+        localStorage.setItem('pizza', JSON.stringify(local))
     }
 
 
@@ -151,7 +192,10 @@ export class PizzaEdit extends Component {
 
                         <h4>Novedad</h4>
                         <this.CheckboxExampleToggle />
-                        <Link className='link-ingredientes' to="/ingrediente">Añade nuevo ingrediente</Link>
+                        <Link onClick={() => this.saveStateToLocalStorage()} 
+                        className='link-ingredientes' 
+                        to={`/ingrediente/${this.props.match.params.id}`}
+                        >Añade nuevo ingrediente</Link>
                         <br></br>
                         <h4 className='ingrediente-select'>ingredientes</h4>
                         <br></br>

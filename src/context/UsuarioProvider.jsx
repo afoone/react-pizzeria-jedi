@@ -1,5 +1,8 @@
 import React from "react";
 import { db, auth, provider, storage } from "../config/firebase";
+import {STORAGE} from './constants'
+import { toast } from "react-toastify";
+
 
 export const UsuarioContext = React.createContext();
 
@@ -9,42 +12,46 @@ const UsuarioProvider = (props) => {
   const dataUsuario = { uid: null, email: null, estado: null };
   const [usuario, setUsuario] = React.useState(dataUsuario);
 
-  // const dataProductos =[{ pizza: 'margarita', precio: 12}]
-  const [productos, setProductos] = React.useState([]);
-
   React.useEffect(() => {
     detectarUsuario();
+    
     // para evitar el warning por no poner las dependencias en [] se puede añadir el comentario de abajo cuando la dependencia nos de un loop
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const detectarUsuario = () => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        db.collection("usuarios")
-          .doc(user.email)
-          .get()
-          .then((res) => {
-            // console.log('usuarios', res.data())
-            setUsuario({
-              uid: user.uid,
-              email: user.email,
-              displayName: (res.data().exists ? res.data().displayName : user.displayName),
-              photoURL: (res.data().exists ? res.data().photoURL : user.photoURL),
-              role: (res.data().role ),
-              estado: true
+  const detectarUsuario = async () => {
+    try {
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          db.collection("usuarios")
+            .doc(user.email)
+            .get()
+            .then((res) => {
+             // console.log('usuarios', res.data().photoURL, res.data())
+              
+              setUsuario({
+                uid: res.data().uid,
+                email: res.data().email,
+                displayName: res.data().displayName,
+                photoURL: res.data().photoURL,
+                role: res.data().role,
+                estado: true
+              });
             });
+        } else {
+          setUsuario({
+            uid: null,
+            email: null,
+            displayName: null,
+            photoURL: null,
+            estado: false
           });
-      } else {
-        setUsuario({
-          uid: null,
-          email: null,
-          displayName: null,
-          photoURL: null,
-          estado: false
-        });
-      }
-    });
+        }
+      });
+    } catch (error) {
+      console.log(error)
+    }
+   
   };
 
   const ingresoGoogle = async () => {
@@ -105,54 +112,124 @@ const UsuarioProvider = (props) => {
 
 
 
+// array de pizzas
+ const [products, setProducts] = React.useState([]);
+// const [error, setError] = React.useState(null);
+
+// array con los productos del carrito
+const [productsCart, setProductsCart] = React.useState([]);
+
+React.useEffect(() => {
+
+    db.collection("pizzas").get()
+    .then(
+        res => {
+           // console.log("listado de Pizzas", res.docs)
+           const pizzas = res.docs.map(
+            item => {
+                const data = item.data();
+                return {
+                    id: item.id,
+                    image: data.image,
+                    name: data.name,
+                    novelty: data.novelty,
+                    price: data.price,
+                    ingredientes: data.ingredientes
+                }
+            }
+          )
+        console.log('Listado de Pizzas', pizzas)
+        setProducts(pizzas)
+       // setError('succes')
+        }        
+    )
+    .catch(
+      console.log('hay un error')
+     // setError("error")
+      );
+  // console.log("listado de Pizzas", products)
+
+
+  cargarProductos();
+}, []);
 
 
 
-  const cargarProductos = async (uid) => {
-    console.log("usuario con uid", uid);
+  const cargarProductos = () => {
+    const idsProducts = localStorage.getItem(STORAGE);
 
-    try {
-      const data = await db.collection(uid).orderBy("fecha", "desc").get();
-      const arrayData = data.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-
-      console.log("array de productos en context", arrayData);
-      
-      setProductos(arrayData);
-      console.log("productos en context", productos);
-    } catch (error) {
-      console.log(error);
+    if (idsProducts) {
+      //convertirlo en array
+      const idsProductsSplit = idsProducts.split(",");
+      setProductsCart(idsProductsSplit);
+    } else {
+      setProductsCart([]);
     }
-  
   };
 
-  const agregarProductos = async (usuarioId, pizzaInput) => {
-    console.log("id usuario", usuarioId);
-    console.log("pizza usuario", pizzaInput);
+  const agregarProducto = (id, name) => {
+   // console.log("agregar producto", id, name);
 
-    const nuevoProducto = {
-      fecha: Date.now(),
-      pizza: {
-        pizza: pizzaInput.pizza,
-        precio: pizzaInput.precio,
-      },
-    };
-    console.log("nuevo producto", nuevoProducto);
+    const idsProducts = productsCart;
 
-    try {
-      await db.collection(usuarioId).add(nuevoProducto);
-      {
-        
-     setProductos([
-                ...productos,
-                {...nuevoProducto, id: usuarioId}
-              ])
+    idsProducts.push(id);
+
+    // console.log('array agreagar', idsProducts)
+
+    setProductsCart(idsProducts);
+
+   // console.log("array agreagar", productsCart);
+
+    // guardar en base de datos o localstorage(clave : valor)
+    localStorage.setItem(STORAGE, productsCart);
+
+    cargarProductos();
+    // console.log('Producto añadido')
+    toast.success(`${name} añadido al carrito correctamente`);
+  };
+
+
+
+
+
+  const emptyCart = () => {
+    localStorage.removeItem(STORAGE);
+    cargarProductos();
+  };
+
+const carritodataBase = async(productMiCart, usuario, totalPrice, productsCart) => {
+ // console.log("id usuario", usuario, productMiCart, totalPrice, productsCart);
+ // console.log("pizza usuario", usuario.uid);
+
  
-      }
-     
-    } catch (error) {
-      console.log(error);
+   const nuevoCarrito = {
+    fecha: new Date().toLocaleDateString(),
+    totalPrice: totalPrice,
+    productscart: productsCart,
+    pizza: productMiCart.map( item => {
+      return {
+        id: item.id,
+        name: item.name,
+        price: item.price
     }
+    })
   };
+ console.log("nuevo producto", nuevoCarrito);
+
+ 
+  try {
+  await db.collection('usuarios').doc(usuario.email).collection('carrito').add(nuevoCarrito);
+  
+} catch (error) {
+  console.log(error);
+}
+ 
+
+emptyCart()
+ 
+};
+
+
 
 
 
@@ -160,14 +237,20 @@ const UsuarioProvider = (props) => {
   return (
     <UsuarioContext.Provider
       value={{
+        // usuario
         usuario,
         ingresoGoogle,
         cerrarSesion,
         editarFoto,
         actualizarUsuario,
-        productos,
-        agregarProductos,
+        detectarUsuario,
+        // carrito
+        products,
+        productsCart,
+        agregarProducto,
         cargarProductos,
+        carritodataBase,
+       
       }}
     >
       {props.children}
