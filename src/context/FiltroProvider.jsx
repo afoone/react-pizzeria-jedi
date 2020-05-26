@@ -1,6 +1,6 @@
 import React from 'react'
 import { db } from "../config/firebase";
-import {Link} from 'react-router-dom'
+
 
 export const FiltroContext = React.createContext();
 
@@ -10,42 +10,44 @@ export const FiltroContext = React.createContext();
 
 const FiltroProvider = (props) => {
 
+
+
     const [pizzas, setPizzas] = React.useState([])
 
 
     React.useEffect(() => {
 
-        db.collection("pizzas").get()
-        .then(
-            res => {
-               // console.log("listado de Pizzas", res.docs)
-               const resultado = res.docs.map(
-                item => {
-                    const data = item.data();
-                    return {
-                        id: item.id,
-                        image: data.image,
-                        name: data.name,
-                        novelty: data.novelty,
-                        price: data.price,
-                        ingredientes: data.ingredientes
-                    }
-                }
-              )
-       //  console.log('Listado de Pizzas', resultado)
-            setPizzas(resultado)
-           // setError('succes')
-            }        
-        )
-        .catch(
-          console.log('hay un error')
-         // setError("error")
-          );
-     // console.log("listado de Pizzas", pizzas)
-    
+      db.collection("pizzas").get()
+      .then(
+          res => {
+             // console.log("listado de Pizzas", res.docs)
+             const resultado = res.docs.map(
+              item => {
+                  const data = item.data();
+                  return {
+                      id: item.id,
+                      image: data.image,
+                      name: data.name,
+                      novelty: data.novelty,
+                      price: data.price,
+                      ingredientes: data.ingredientes
+                  }
+              }
+            )
+     //  console.log('Listado de Pizzas', resultado)
+          setPizzas(resultado)
+         // setError('succes')
+          }        
+      )
+      .catch(
+        console.log('hay un error')
+       // setError("error")
+        );
+   // console.log("listado de Pizzas", pizzas)
+  
    
     
-    }, []);
+    }, [setPizzas]);
     
 
 
@@ -121,6 +123,8 @@ const Filtradas_por_Ingredientes = pizzas.filter(e => (
 }, [buscarPizzas])
 
 
+
+
     return (
         <FiltroContext.Provider
         value={{
@@ -136,4 +140,6 @@ const Filtradas_por_Ingredientes = pizzas.filter(e => (
     )
 }
 
-export default FiltroProvider
+
+
+export default  FiltroProvider
