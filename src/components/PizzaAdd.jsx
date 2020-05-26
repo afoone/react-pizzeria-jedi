@@ -51,7 +51,6 @@ export class PizzaAdd extends Component {
             src={this.state.image}
             as='a'
             size='medium'
-            href='http://google.com'
             target='_blank'
         />
     )
