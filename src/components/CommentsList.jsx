@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Header, Grid, GridColumn, Label } from 'semantic-ui-react'
+import { Segment, Header, Grid, GridColumn, Label, Container } from 'semantic-ui-react'
 import '../css/CommentList.css'
 
 const CommentsList = (props) => {
@@ -7,6 +7,7 @@ const CommentsList = (props) => {
     return (
         <React.Fragment>
             <Header as='h2'>Comentarios</Header>
+            <Container style={{overflowY:'scroll', height:'25rem'}}>
             <Segment raised className='comentarios' >
 
                 {props.comments.map(
@@ -39,6 +40,7 @@ const CommentsList = (props) => {
                 )}
 
             </Segment>
+            </Container>
         </React.Fragment>
     )
 }
