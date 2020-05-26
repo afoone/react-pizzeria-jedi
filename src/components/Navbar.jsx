@@ -20,7 +20,7 @@ const Navbar = (props) => {
   const obtenerDatosBusqueda = (e) => {
     console.log(e.target.value)
     setBusqueda(e.target.value);
-    
+    setConsultar(false)
   };
 
   const cerrarSesion = () => {
