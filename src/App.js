@@ -13,9 +13,9 @@ import IngredienteAdd from './components/IngredienteAdd'
 import Carrito from "./pages/Carrito";
 import PizzaEdit from './components/PizzaEdit'
 import { UsuarioContext } from "./context/UsuarioProvider";
+import PizzaSearch from "./components/PizzaSearch";
 import Admin from './Admin'
-import SiteMap from "./components/SiteMap";
-
+import PromoPage from "./pages/PromoPage"
 
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
   React.useEffect(() => {
     const fetchUser = () => {
       auth.onAuthStateChanged((user) => {
-       // console.log("aqui esta el usuario", user);
+        // console.log("aqui esta el usuario", user);
         if (user) {
           setFirebaseUser(user);
         } else {
@@ -36,7 +36,7 @@ const App = () => {
     fetchUser();
   }, []);
 
- 
+
 
   return firebaseUser !== false ? (
     <Router>
@@ -47,14 +47,16 @@ const App = () => {
           <LandingPage />
         </Route>
         <Route path="/pizzaA" exact>
-       
+        </Route>
+        <Route path="/pizzaSearch" exact>
+          <PizzaSearch></PizzaSearch>
         </Route>
         <Route path="/about" exact>
-        <About/>
-      </Route>
+          <About />
+        </Route>
         <Route path="/pizzas" exact component={PizzaList}>
         </Route>
-        <Route path="/promos" exact></Route>
+        <Route path="/promos" exact component={PromoPage}></Route>
         <Route path="/pizzaId/:id" component={PizzaCardPage}></Route>
         <Route path="/pizzaedit/:id" component={PizzaEdit}></Route>
         <Route path="/login" exact>
@@ -64,20 +66,18 @@ const App = () => {
           <Reset />
         </Route>
         <Route path="/carrito" exact component={Carrito} />
-        {usuario.role === 'admin' ? 
-    
-        (<Route component={Admin} path="/pizzaAdd" exact> 
-         <AddPizzaPage/>
-         </Route> ): null
+        {usuario.role === 'admin' ?
+
+          (<Route component={Admin} path="/pizzaAdd" exact>
+            <AddPizzaPage />
+          </Route>) : null
 
         }
-        
+
         <Route path="/" exact>
           Home
         </Route>
-        <Route path="/sitemap" exact>
-        <SiteMap></SiteMap>
-      </Route>
+
       </Switch>
     </Router>
   ) : (
