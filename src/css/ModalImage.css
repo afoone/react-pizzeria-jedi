@@ -8,4 +8,9 @@
     margin: 20%;
     width: 50%;
     height: 41%;
+    margin-top: 6%;
+}
+
+.modals.dimmer[class*="top aligned"] .modal img {
+  
 }
