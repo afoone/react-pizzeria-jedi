@@ -15,7 +15,7 @@ import PizzaEdit from './components/PizzaEdit'
 import { UsuarioContext } from "./context/UsuarioProvider";
 import Admin from './Admin'
 import SiteMap from "./components/SiteMap";
-
+import PromoPage from "./pages/PromoPage"
 
 
 const App = () => {
@@ -54,7 +54,7 @@ const App = () => {
       </Route>
         <Route path="/pizzas" exact component={PizzaList}>
         </Route>
-        <Route path="/promos" exact></Route>
+        <Route path="/promos" exact component={PromoPage}></Route>
         <Route path="/pizzaId/:id" component={PizzaCardPage}></Route>
         <Route path="/pizzaedit/:id" component={PizzaEdit}></Route>
         <Route path="/login" exact>
