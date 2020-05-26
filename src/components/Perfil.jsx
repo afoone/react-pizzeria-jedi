@@ -9,6 +9,7 @@ const Perfil = () => {
 
 React.useEffect(() => {
  detectarUsuario()
+  // eslint-disable-next-line
 }, [])
 
  

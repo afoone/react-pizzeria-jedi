@@ -128,7 +128,8 @@ const Filtradas_por_Ingredientes = pizzas.filter(e => (
            setBuscarPizzas,
            consultar,
            setConsultar,
-           pizzasFiltradas           
+           pizzasFiltradas,
+           buscarPizzas           
           }}>
             {props.children}
         </FiltroContext.Provider>

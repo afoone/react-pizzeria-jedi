@@ -13,6 +13,7 @@ const Login = (props) => {
         if(props.firebaseUser !== null){
             props.history.push('/')
         }
+       // eslint-disable-next-line
     }, [props.firebase, props.history])
 
 
