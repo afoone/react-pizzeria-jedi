@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 
 
 const PizzaList = props => {
-
+    if (localStorage.length !== 0) localStorage.removeItem("pizza")
 
     const { usuario, agregarProducto} = React.useContext(
         UsuarioContext
