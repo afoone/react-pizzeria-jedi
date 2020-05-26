@@ -1,9 +1,10 @@
 import React from "react";
-import { Link} from "react-router-dom";
+import { Link, Redirect} from "react-router-dom";
 import { auth } from '../config/firebase'
 import { withRouter } from "react-router-dom";
-import { Menu, Icon, Input, Segment, Dropdown } from "semantic-ui-react";
+import { Menu, Icon, Input, Segment } from "semantic-ui-react";
 import { UsuarioContext } from "../context/UsuarioProvider";
+import { FiltroContext } from "../context/FiltroProvider";
 import logoNave from '../css/images/logoNave.webp';
 
 
@@ -12,7 +13,15 @@ const Navbar = (props) => {
   const handleItemClick = (e, { name }) => setactiveItem(name);
 
   const { usuario, productsCart } = React.useContext(UsuarioContext);
+  const { setBuscarPizzas, setConsultar, consultar } = React.useContext(FiltroContext);
+ 
+  const [busqueda, setBusqueda] = React.useState("");
 
+  const obtenerDatosBusqueda = (e) => {
+    console.log(e.target.value)
+    setBusqueda(e.target.value);
+    
+  };
 
   const cerrarSesion = () => {
     auth.signOut()
@@ -99,17 +108,16 @@ const Navbar = (props) => {
           }
           {" "}
           <Menu.Menu position="right">
-            <Dropdown item icon="search plus" text="Buscar ">
-              <Dropdown.Menu>
-                <Dropdown.Item>
-                  <Input
-                    className="icon"
-                    icon="search"
-                    placeholder="Search..."
-                  />
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+          <Menu.Item >
+          <form onSubmit={ e => {
+            e.preventDefault();
+            setBuscarPizzas(busqueda);
+            setConsultar(true);
+             }}>
+            <Input className="icon" class="ui focus input"  placeholder="Search..." name="busqueda" value={busqueda} onChange={obtenerDatosBusqueda} />
+            <button className="ui button" type='submit'><i className="search icon"></i></button>
+            </form>
+          </Menu.Item>
             {
               props.firebaseUser !== null ? (
                 <React.Fragment>
@@ -149,6 +157,7 @@ const Navbar = (props) => {
           </Menu.Menu>
         </Menu>
       </Segment>
+      {consultar === true ? <Redirect to='/pizzaSearch' ></Redirect> : null}
     </div>
   );
 };

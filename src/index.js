@@ -7,6 +7,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import reducer from "./reducers/index";
 import UsuarioProvider from "./context/UsuarioProvider";
+import FiltroProvider from "./context/FiltroProvider";
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -21,7 +22,9 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <UsuarioProvider>
+    <FiltroProvider>
       <App />
+      </FiltroProvider>
     </UsuarioProvider>
   </Provider>,
   document.getElementById("root")
