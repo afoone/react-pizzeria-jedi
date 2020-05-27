@@ -1,6 +1,6 @@
 import {db} from '../config/firebase'
 export const PIZZAS_FETCH_SUCCEED = "FETCH_PIZZAS_SUCCEED"
-
+export const DELETE_PIZZA = "DELETE_PIZZA";
 
 
 export const fetchPizzasSucceed = pizzas => {
@@ -58,6 +58,27 @@ export const fetchPizzasPromo = () => {
                     )
                     const elementosNovedades = elementos.filter(i => i !== undefined)
                     dispatch(fetchPizzasSucceed(elementosNovedades))
+            }
+        )
+    }
+}
+
+
+
+export const deletePizzaSucceed = (pizza) => {
+    return {
+        type: DELETE_PIZZA,
+        payload: pizza
+    }
+}
+
+
+export const deletePizza = (pizza) => {
+    return dispatch => {
+        db.collection("pizzas").doc(pizza.id).delete().then(
+            res => {
+
+                dispatch(deletePizzaSucceed(pizza))
             }
         )
     }
