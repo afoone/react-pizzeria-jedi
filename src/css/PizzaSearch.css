@@ -1,11 +1,8 @@
 .pizza-search{
     display: flex ;
     padding: 11px;
-<<<<<<< HEAD
-=======
    flex-wrap: wrap;
   
->>>>>>> 4c68ffd8a91e87f3f12bcae712d32d3e673b82c1
 }
 
 .ui.card>.image>img, .ui.cards>.card>.image>img {
