@@ -1,6 +1,6 @@
 .tarjeta{
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     margin: 10px
 }
