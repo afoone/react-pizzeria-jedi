@@ -11,6 +11,7 @@ import {
 
 
 
+import PromoPage from "../pages/PromoPage"
 const PizzaSearch = () => {
   const {
     pizzasFiltradas,
@@ -22,7 +23,7 @@ const PizzaSearch = () => {
   console.log("ingredientes buscados", ingredientes_Pizzas);
   console.log("search", pizzasFiltradas);
   console.log("buscarPizzas", buscarPizzas);
- 
+
 
   const [singleIngredientFilter, setSingleIngredientFilter] = React.useState([]);
   const [singlePizzasFilter, setSinglePizzasFilter] = React.useState([]);
@@ -46,16 +47,21 @@ const PizzaSearch = () => {
 console.log('array busqueda sin duplicados', singleProductCart)
 
   return (
-   
+
     <div className='pizza-search' >
     { buscarPizzas ? null : <Redirect to='/'></Redirect> }
     { ingredientes_Pizzas.length > 0 || pizzasFiltradas.length > 0 ? null :
-      (<Message negative>
-       <Message.Header>
-         Lo sentimos mucho no hay resultados de su busqueda<Icon name="frown outline" size="large" />
-       </Message.Header>
-       <p><strong>Pruebe con otra busqueda o mire nuestras Pizzas y Promociones</strong></p>
-     </Message>) 
+      (
+        <>
+          <Message negative>
+            <Message.Header>
+              Lo sentimos mucho no hay resultados de su busqueda<Icon name="frown outline" size="large" />
+            </Message.Header>
+            <p><strong>Pruebe con otra busqueda o mire nuestras Pizzas y Promociones</strong></p>
+          </Message>
+          <PromoPage />
+        </>
+      )
    }
     
       {singleProductCart.map((item, index) => (
@@ -63,20 +69,27 @@ console.log('array busqueda sin duplicados', singleProductCart)
         <div>
           <Card className='tarjeta-pizza' key={index}>
             <Image src={item.image} wrapped ui={false} />
-            <Card.Content >
-              <Card.Header >{item.name}</Card.Header>
+            <Card.Content>
+              <Card.Header>{item.name}</Card.Header>
               <Card.Meta>{item.price} €</Card.Meta>
-              {
-                item.novelty === true ?  <Card.Description>Novedad!! </Card.Description> :
-                <Card.Description>Prueba nuestras pizzas clasicas</Card.Description>
-              }
-              
+              {item.novelty === true ? (
+                <Card.Description>Novedad!! </Card.Description>
+              ) : (
+                  <Card.Description>
+                    Prueba nuestras pizzas clasicas
+                  </Card.Description>
+                )}
             </Card.Content>
             <Card.Content extra>
-              <>
-                <ModalImage image={item.image} name={item.name} price={item.price} id={item.id}></ModalImage>
-                
-              </>
+              <a>
+                <ModalImage
+                  image={item.image}
+                  name={item.name}
+                  price={item.price}
+                  id={item.id}
+                ></ModalImage>
+                <Icon name="zoom-in" size="large" />
+              </a>
             </Card.Content>
           </Card>
           </div>
