@@ -29,7 +29,7 @@ const CommentForm = (props) => {
 
     const handleRate = (e, { rating }) => {
         setScore(rating);
-        console.log('score', score, 'rating', rating)
+       // console.log('score', score, 'rating', rating)
     }
 
     const onClickHandle = e => {
@@ -58,15 +58,13 @@ const CommentForm = (props) => {
         }
     }
 
-
     return (
         <Fragment>
             <Header as='h2'>Deja tu comentario</Header>
             <Segment raised>
                 <Form>
                 <Label content='Puntuanos' style={{fontFamily:'Lato'}}/>
-                    <Rating
-                        
+                   <Rating                        
                         icon='star'
                         maxRating={5}
                         rating={score}
