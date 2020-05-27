@@ -60,7 +60,7 @@ const Navbar = (props) => {
 
   return (
     <div>
-      <Segment inverted className='navbar'style={{padding:'3em', overflowX:'auto',overflowY:'hide'}}>
+      <Segment inverted className='navbar' style={{ overflowX:'auto',overflowY:'hide'}}>
         <Menu  fluid inverted pointing secondary size="huge" stackable  >
           <Menu.Item>  
           <img src={logoNave}  alt='logo' />
@@ -117,7 +117,6 @@ const Navbar = (props) => {
             setConsultar(true);
              }}>
             <Input className="icon ui focus input"  placeholder="Search..." name="busqueda" value={busqueda} onChange={obtenerDatosBusqueda} />
-            <button className="ui button" type='submit'><i className="search icon"></i></button>
             </form>
           </Menu.Item>
             {

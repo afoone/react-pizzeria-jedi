@@ -51,6 +51,7 @@ const PizzaSearch = () => {
   return (
 
     <div className='pizza-search' >
+<<<<<<< HEAD
     { buscarPizzas ? null : <Redirect to='/'></Redirect> }
     { ingredientes_Pizzas.length > 0 || pizzasFiltradas.length > 0 ? null :
       (
@@ -69,6 +70,30 @@ const PizzaSearch = () => {
       {singleProductCart.map((item, index) => (
         <Fragment>
         <div>
+=======
+      {buscarPizzas ? null : <Redirect to='/'></Redirect>}
+      {ingredientes_Pizzas.length > 0 || pizzasFiltradas.length > 0 ? null :
+        (
+          <Fragment>
+
+            <div className='mensaje'>
+              <Message negative>
+                <Message.Header >
+                  Lo sentimos mucho no hay resultados de su busqueda<Icon name="frown outline" size="large" />
+                </Message.Header>
+                <p><strong>Pruebe con otra busqueda o mire nuestras Pizzas y Promociones</strong></p>
+              </Message>
+            </div>
+
+            <PromoPage />
+          </Fragment>
+        )
+      }
+
+      {singleProductCart.map((item, index) => (
+
+        <div className='search-card'>
+>>>>>>> 4c68ffd8a91e87f3f12bcae712d32d3e673b82c1
           <Card className='tarjeta-pizza' key={index}>
             <Image src={item.image} wrapped ui={false} />
             <Card.Content>
@@ -91,12 +116,17 @@ const PizzaSearch = () => {
                   id={item.id}
                   ingredientes={item.ingredientes}
                 ></ModalImage>
-                <Icon name="zoom-in" size="large" />
+               
               </a>
             </Card.Content>
           </Card>
+<<<<<<< HEAD
           </div>
         </Fragment>
+=======
+        </div>
+
+>>>>>>> 4c68ffd8a91e87f3f12bcae712d32d3e673b82c1
       ))}
 
 
