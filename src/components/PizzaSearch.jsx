@@ -9,8 +9,6 @@ import {
 } from "../context/constants";
 
 
-
-
 import PromoPage from "../pages/PromoPage"
 
 const PizzaSearch = () => {
@@ -31,6 +29,9 @@ const PizzaSearch = () => {
   const [singleProductCart, setSingleProductCart] = React.useState([]);
 
   React.useEffect(() => {
+      
+     
+
     const allIngredientsId = removeArrayDuplicates(ingredientes_Pizzas);
     const allPizzasId = removeArrayDuplicates(pizzasFiltradas);
 
@@ -50,6 +51,7 @@ const PizzaSearch = () => {
   return (
 
     <div className='pizza-search' >
+<<<<<<< HEAD
       {buscarPizzas ? null : <Redirect to='/'></Redirect>}
       {ingredientes_Pizzas.length > 0 || pizzasFiltradas.length > 0 ? null :
         (
@@ -72,13 +74,33 @@ const PizzaSearch = () => {
       {singleProductCart.map((item, index) => (
 
         <div className='search-card'>
+=======
+    { buscarPizzas ? null : <Redirect to='/'></Redirect> }
+    { ingredientes_Pizzas.length > 0 || pizzasFiltradas.length > 0 ? null :
+      (
+        <Fragment>
+          <Message negative>
+            <Message.Header>
+              Lo sentimos mucho no hay resultados de su busqueda<Icon name="frown outline" size="large" />
+            </Message.Header>
+            <p><strong>Pruebe con otra busqueda o mire nuestras Pizzas y Promociones</strong></p>
+          </Message>
+          <PromoPage />
+        </Fragment>
+      )
+   }
+    
+      {singleProductCart.map((item, index) => (
+        <Fragment>
+        <div>
+>>>>>>> 5c48e945bf343678144b6c1301cb25ae91112db2
           <Card className='tarjeta-pizza' key={index}>
             <Image src={item.image} wrapped ui={false} />
             <Card.Content>
               <Card.Header>{item.name}</Card.Header>
               <Card.Meta>{item.price} €</Card.Meta>
               {item.novelty === true ? (
-                <Card.Description>Novedad!! </Card.Description>
+                <Card.Description><p>Novedad!!</p></Card.Description>
               ) : (
                   <Card.Description>
                     Prueba nuestras pizzas clasicas
@@ -92,13 +114,19 @@ const PizzaSearch = () => {
                   name={item.name}
                   price={item.price}
                   id={item.id}
+                  ingredientes={item.ingredientes}
                 ></ModalImage>
                 <Icon name="zoom-in" size="large" />
               </a>
             </Card.Content>
           </Card>
+<<<<<<< HEAD
         </div>
 
+=======
+          </div>
+        </Fragment>
+>>>>>>> 5c48e945bf343678144b6c1301cb25ae91112db2
       ))}
 
 

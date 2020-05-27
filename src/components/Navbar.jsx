@@ -60,8 +60,8 @@ const Navbar = (props) => {
 
   return (
     <div>
-      <Segment inverted>
-        <Menu fluid inverted pointing secondary size="huge" stackable>
+      <Segment inverted className='navbar'>
+        <Menu  fluid inverted pointing secondary size="huge" stackable  style={{padding:'3rem', overflowX:'auto',overflowY:'hide'}}>
           <Menu.Item>  
           <img src={logoNave}  alt='logo' />
           </Menu.Item>
@@ -80,6 +80,7 @@ const Navbar = (props) => {
             name="Promociones"
             active={activeItem === "Promociones"}
             onClick={handleItemClick}
+            onChange={() => setBusqueda('')}
           />
           {
             props.firebaseUser !== null ? (
@@ -112,10 +113,14 @@ const Navbar = (props) => {
           <form onSubmit={ e => {
             e.preventDefault();
             setBuscarPizzas(busqueda);
+<<<<<<< HEAD
             setBusqueda('');
+=======
+            setBusqueda('')
+>>>>>>> 5c48e945bf343678144b6c1301cb25ae91112db2
             setConsultar(true);
              }}>
-            <Input className="icon" class="ui focus input"  placeholder="Search..." name="busqueda" value={busqueda} onChange={obtenerDatosBusqueda} />
+            <Input className="icon ui focus input"  placeholder="Search..." name="busqueda" value={busqueda} onChange={obtenerDatosBusqueda} />
             <button className="ui button" type='submit'><i className="search icon"></i></button>
             </form>
           </Menu.Item>
