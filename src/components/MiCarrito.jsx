@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { UsuarioContext } from "../context/UsuarioProvider";
 import {
   STORAGE,
@@ -173,7 +173,7 @@ const MiCarrito = ({ user }) => {
     const fecha = new Date().toLocaleDateString();
   //  console.log("element", element.ingredientes);
     return (
-      <>
+      <Fragment>
         <Card>
           <Card.Content>
             <Card.Meta floated="right">{fecha}</Card.Meta>
@@ -214,7 +214,7 @@ const MiCarrito = ({ user }) => {
             </div>
           </Card.Content>
         </Card>
-      </>
+      </Fragment>
     );
   };
 
@@ -239,7 +239,7 @@ const MiCarrito = ({ user }) => {
           </Card.Group>
         </div>
       ) : (
-        <>
+        <Fragment>
           
           <h1>
           <Icon name="arrow alternate circle right" />
@@ -250,7 +250,7 @@ const MiCarrito = ({ user }) => {
           </h1>
           
           
-        </>
+        </Fragment>
       )}
       <CartFooter
         cartTotalPrice={cartTotalPrice}

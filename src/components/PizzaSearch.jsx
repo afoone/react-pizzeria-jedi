@@ -53,7 +53,7 @@ console.log('array busqueda sin duplicados', singleProductCart)
     { buscarPizzas ? null : <Redirect to='/'></Redirect> }
     { ingredientes_Pizzas.length > 0 || pizzasFiltradas.length > 0 ? null :
       (
-        <>
+        <Fragment>
           <Message negative>
             <Message.Header>
               Lo sentimos mucho no hay resultados de su busqueda<Icon name="frown outline" size="large" />
@@ -61,7 +61,7 @@ console.log('array busqueda sin duplicados', singleProductCart)
             <p><strong>Pruebe con otra busqueda o mire nuestras Pizzas y Promociones</strong></p>
           </Message>
           <PromoPage />
-        </>
+        </Fragment>
       )
    }
     
