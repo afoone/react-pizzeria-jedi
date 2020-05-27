@@ -1,8 +1,6 @@
 .pizza-search{
-    display:flex ;
+    display: grid ;
     padding: 11px;
-    flex-wrap: wrap;
-
 }
 
 .ui.card>.image>img, .ui.cards>.card>.image>img {
