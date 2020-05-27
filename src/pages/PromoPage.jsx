@@ -46,29 +46,29 @@ const PromoPage = props => {
             {
                 props.pizzas.map(
                     e =>
-                    <div>
-                        <div className="ui card">
-                            <div className="image">
-                                <img src={e.image} />
-                            </div>
-                            <div className="content">
-                                <a className="header">{e.name}</a>
-                                <div className="meta">
-                                    <span className="date">{e.price}{" "}€</span>
+                        <div key={e.id}>
+                            <div className="ui card">
+                                <div className="image">
+                                    <img src={e.image} />
                                 </div>
-                                <div className="description">
-                                    En promoción limitada
+                                <div className="content">
+                                    <a className="header">{e.name}</a>
+                                    <div className="meta">
+                                        <span className="date">{e.price}{" "}€</span>
+                                    </div>
+                                    <div className="description">
+                                        En promoción limitada
                                         <br />
-                                    <Link to={`/pizzaId/${e.id}`}>vER{" "}</Link>
-                                    <Button animated='vertical' onClick={() => agregarProducto(e.id, e.name)}>
-                                        <Button.Content hidden>Shop</Button.Content>
-                                        <Button.Content visible>
-                                            <Icon name='shop' />
-                                        </Button.Content>
-                                    </Button>
+                                        <Link to={`/pizzaId/${e.id}`}>vER{" "}</Link>
+                                        <Button animated='vertical' onClick={() => agregarProducto(e.id, e.name)}>
+                                            <Button.Content hidden>Shop</Button.Content>
+                                            <Button.Content visible>
+                                                <Icon name='shop' />
+                                            </Button.Content>
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
 
                 )
