@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import {auth, db, firebase} from '../config/firebase'
 import {withRouter} from 'react-router-dom'
@@ -141,7 +141,7 @@ const ingresoGoogle = React.useCallback(async() => {
 
 
     return (
-        <>
+        <Fragment>
         <Container  align='center' vertical-align='center'>
         
         <Card>
@@ -225,7 +225,7 @@ const ingresoGoogle = React.useCallback(async() => {
                 </div>
             </div>
         </div>
-        </>
+        </Fragment>
     )
 }
 

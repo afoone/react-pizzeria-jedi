@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { UsuarioContext } from "../context/UsuarioProvider";
 
 
@@ -62,7 +62,7 @@ React.useEffect(() => {
   };
 
   return (
-    <>
+    <Fragment>
       
 
       <div className="mt-5 text-center">
@@ -153,7 +153,7 @@ React.useEffect(() => {
           )}
         </div>
       </div>
-    </>
+    </Fragment>
   );
 };
 
