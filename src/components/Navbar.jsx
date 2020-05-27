@@ -60,8 +60,8 @@ const Navbar = (props) => {
 
   return (
     <div>
-      <Segment inverted className='navbar'>
-        <Menu  fluid inverted pointing secondary size="huge" stackable  style={{padding:'3rem', overflowX:'auto',overflowY:'hide'}}>
+      <Segment inverted className='navbar'style={{padding:'3em', overflowX:'auto',overflowY:'hide'}}>
+        <Menu  fluid inverted pointing secondary size="huge" stackable  >
           <Menu.Item>  
           <img src={logoNave}  alt='logo' />
           </Menu.Item>
@@ -113,11 +113,7 @@ const Navbar = (props) => {
           <form onSubmit={ e => {
             e.preventDefault();
             setBuscarPizzas(busqueda);
-<<<<<<< HEAD
             setBusqueda('');
-=======
-            setBusqueda('')
->>>>>>> 5c48e945bf343678144b6c1301cb25ae91112db2
             setConsultar(true);
              }}>
             <Input className="icon ui focus input"  placeholder="Search..." name="busqueda" value={busqueda} onChange={obtenerDatosBusqueda} />

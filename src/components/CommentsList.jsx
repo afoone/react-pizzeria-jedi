@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Header, Grid, GridColumn, Label, Container } from 'semantic-ui-react'
+import { Segment, Header, Grid, GridColumn, Label, Container, Rating } from 'semantic-ui-react'
 import '../css/CommentList.css'
 
 const CommentsList = (props) => {
@@ -21,7 +21,7 @@ const CommentsList = (props) => {
                                     <Grid.Column>
                                     </Grid.Column>
                                     <Grid.Column textAlign='right'>
-                                        <Label>Puntuación:</Label> {item.score}
+                                        <Rating icon='star' rating={item.score} maxRating={5}/>
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row>
