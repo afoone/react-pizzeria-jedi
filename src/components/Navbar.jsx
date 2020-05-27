@@ -80,6 +80,7 @@ const Navbar = (props) => {
             name="Promociones"
             active={activeItem === "Promociones"}
             onClick={handleItemClick}
+            onChange={() => setBusqueda('')}
           />
           {
             props.firebaseUser !== null ? (
@@ -112,6 +113,7 @@ const Navbar = (props) => {
           <form onSubmit={ e => {
             e.preventDefault();
             setBuscarPizzas(busqueda);
+            setBusqueda('')
             setConsultar(true);
              }}>
             <Input className="icon" class="ui focus input"  placeholder="Search..." name="busqueda" value={busqueda} onChange={obtenerDatosBusqueda} />

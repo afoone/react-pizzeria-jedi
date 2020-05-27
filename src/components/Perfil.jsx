@@ -86,7 +86,7 @@ React.useEffect(() => {
               className="btn btn-dark"
               onClick={() => setActivarFormulario(true)}
             >
-              Editar Nombre
+             <p>Editar Nombre</p> 
             </button>
 
             {error && (

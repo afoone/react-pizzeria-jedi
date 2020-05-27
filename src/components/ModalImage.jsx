@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import { UsuarioContext } from "../context/UsuarioProvider";
 import '../css/ModalImage.css'
 
-const ModalImage = ({id, image, name, price }) => {
+const ModalImage = ({id, image, name, price, ingredientes }) => {
 
     const { agregarProducto} = React.useContext(
         UsuarioContext
@@ -28,9 +28,14 @@ const ModalImage = ({id, image, name, price }) => {
         <Image wrapped size="large" src={image} />
         <Modal.Description>
           <Header>{name}</Header>
+          {
+            ingredientes.map((ingrediente, index) => {
+              return <p key={index}>{ingrediente.label}</p> 
+            })
+
+          }
           <p>
-            We've found the following gravatar image associated with your e-mail
-            address.
+           
           </p>
           <p>{price} €</p>
         </Modal.Description>

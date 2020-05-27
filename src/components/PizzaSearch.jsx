@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ModalImage from './ModalImage';
 import { FiltroContext } from "../context/FiltroProvider";
 import { Card, Image, Message, Icon } from "semantic-ui-react";
@@ -7,8 +7,6 @@ import '../css/PizzaSearch.css'
 import {
   removeArrayDuplicates
 } from "../context/constants";
-
-
 
 
 import PromoPage from "../pages/PromoPage"
@@ -30,6 +28,9 @@ const PizzaSearch = () => {
   const [singleProductCart, setSingleProductCart] = React.useState([]);
 
   React.useEffect(() => {
+      
+     
+
     const allIngredientsId = removeArrayDuplicates(ingredientes_Pizzas);
     const allPizzasId = removeArrayDuplicates(pizzasFiltradas);
    
@@ -65,7 +66,7 @@ console.log('array busqueda sin duplicados', singleProductCart)
    }
     
       {singleProductCart.map((item, index) => (
-        <>
+        <Fragment>
         <div>
           <Card className='tarjeta-pizza' key={index}>
             <Image src={item.image} wrapped ui={false} />
@@ -73,7 +74,7 @@ console.log('array busqueda sin duplicados', singleProductCart)
               <Card.Header>{item.name}</Card.Header>
               <Card.Meta>{item.price} €</Card.Meta>
               {item.novelty === true ? (
-                <Card.Description>Novedad!! </Card.Description>
+                <Card.Description><p>Novedad!!</p></Card.Description>
               ) : (
                   <Card.Description>
                     Prueba nuestras pizzas clasicas
@@ -87,13 +88,14 @@ console.log('array busqueda sin duplicados', singleProductCart)
                   name={item.name}
                   price={item.price}
                   id={item.id}
+                  ingredientes={item.ingredientes}
                 ></ModalImage>
                 <Icon name="zoom-in" size="large" />
               </a>
             </Card.Content>
           </Card>
           </div>
-        </>
+        </Fragment>
       ))}
     
       
