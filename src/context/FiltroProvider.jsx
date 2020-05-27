@@ -72,7 +72,7 @@ const [ingredientes_Pizzas, setIngredientes_Pizzas] = React.useState([{}])
 
 React.useEffect(() => {
 
-
+if(!buscarPizzas) return
 
 
 if (consultar){
