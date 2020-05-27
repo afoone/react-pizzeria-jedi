@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchPizzas } from '../actions'
+import { fetchPizzas, deletePizza } from '../actions'
 import { Link } from 'react-router-dom'
 import { db } from '../config/firebase'
 import { UsuarioContext } from "../context/UsuarioProvider";
@@ -29,14 +29,8 @@ const PizzaList = props => {
         [dispatch]
     )
 
-    const onBorrarClicked = id => {
-        console.log("elemento a borrar", id)
-        db.collection("pizzas").doc(id).delete().then(
-            res => {
-                console.log(res)
-
-            }
-        ).then(dispatch(fetchPizzas()))
+    const onBorrarClicked = pizza => {
+        dispatch(deletePizza(pizza))
     }
 
     return (
@@ -66,7 +60,7 @@ const PizzaList = props => {
                                     <Link to={`/pizzaId/${e.id}`}>vER</Link>{" "}
                                     {usuario.role==="admin"?
                                     <><Link to={`/pizzaedit/${e.id}`}>Editar</Link>{" "}
-                                    <a href="#lista" onClick={() => onBorrarClicked(e.id)}>Borrar</a></>:""}
+                                    <a href="#lista" onClick={() => onBorrarClicked(e)}>Borrar</a></>:""}
                                     
                                     <Button animated='vertical' onClick={() => agregarProducto(e.id, e.name)}>
                                          <Button.Content hidden>Shop</Button.Content>

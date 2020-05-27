@@ -4,6 +4,13 @@ import { FiltroContext } from "../context/FiltroProvider";
 import { Card, Image, Message, Icon } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import '../css/PizzaSearch.css'
+import {
+  removeArrayDuplicates
+} from "../context/constants";
+
+
+
+
 import PromoPage from "../pages/PromoPage"
 const PizzaSearch = () => {
   const {
@@ -18,50 +25,49 @@ const PizzaSearch = () => {
   console.log("buscarPizzas", buscarPizzas);
 
 
+  const [singleIngredientFilter, setSingleIngredientFilter] = React.useState([]);
+  const [singlePizzasFilter, setSinglePizzasFilter] = React.useState([]);
+  const [singleProductCart, setSingleProductCart] = React.useState([]);
+
+  React.useEffect(() => {
+    const allIngredientsId = removeArrayDuplicates(ingredientes_Pizzas);
+    const allPizzasId = removeArrayDuplicates(pizzasFiltradas);
+   
+    const allProductsId= allPizzasId.concat(allIngredientsId)
+    const arrayFinalSearch = removeArrayDuplicates(allProductsId);
+   
+
+    setSingleProductCart(arrayFinalSearch)
+    setSingleIngredientFilter(allIngredientsId);
+    setSinglePizzasFilter(allPizzasId)
+  }, [ingredientes_Pizzas, pizzasFiltradas]);
+
+// console.log('array ingredients sin duplicados', singleIngredientFilter)
+//console.log('array pizzas sin duplicados', singlePizzasFilter)
+console.log('array busqueda sin duplicados', singleProductCart)
+
   return (
 
     <div className='pizza-search' >
-      {buscarPizzas ? null : <Redirect to='/'></Redirect>}
-      {ingredientes_Pizzas.length > 0 || pizzasFiltradas.length > 0 ? null :
-        (
-          <>
-            <Message negative>
-              <Message.Header>
-                Lo sentimos mucho no hay resultados de su busqueda<Icon name="frown outline" size="large" />
-              </Message.Header>
-              <p><strong>Pruebe con otra busqueda o mire nuestras Pizzas y Promociones</strong></p>
-            </Message>
-            <PromoPage />
-          </>
-        )
-      }
-      <>
-        {pizzasFiltradas.map((item, index) => (
-          <>
-            <div>
-              <Card className='tarjeta-pizza'>
-                <Image src={item.image} wrapped ui={false} />
-                <Card.Content >
-                  <Card.Header >{item.name}</Card.Header>
-                  <Card.Meta>{item.price} €</Card.Meta>
-                  {
-                    item.novelty === true ? <Card.Description>Novedad!! </Card.Description> :
-                      <Card.Description>Prueba nuestras pizzas clasicas</Card.Description>
-                  }
-
-                </Card.Content>
-                <Card.Content extra>
-                  <>
-                    <ModalImage image={item.image} name={item.name} price={item.price} id={item.id}></ModalImage>
-
-                  </>
-                </Card.Content>
-              </Card>
-            </div>
-          </>
-        ))}
-        {ingredientes_Pizzas.map((item, index) => (
-          <Card key={index}>
+    { buscarPizzas ? null : <Redirect to='/'></Redirect> }
+    { ingredientes_Pizzas.length > 0 || pizzasFiltradas.length > 0 ? null :
+      (
+        <>
+          <Message negative>
+            <Message.Header>
+              Lo sentimos mucho no hay resultados de su busqueda<Icon name="frown outline" size="large" />
+            </Message.Header>
+            <p><strong>Pruebe con otra busqueda o mire nuestras Pizzas y Promociones</strong></p>
+          </Message>
+          <PromoPage />
+        </>
+      )
+   }
+    
+      {singleProductCart.map((item, index) => (
+        <>
+        <div>
+          <Card className='tarjeta-pizza' key={index}>
             <Image src={item.image} wrapped ui={false} />
             <Card.Content>
               <Card.Header>{item.name}</Card.Header>
@@ -86,8 +92,11 @@ const PizzaSearch = () => {
               </a>
             </Card.Content>
           </Card>
-        ))}
-      </>
+          </div>
+        </>
+      ))}
+    
+      
     </div>
   );
 };
