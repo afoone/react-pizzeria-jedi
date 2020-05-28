@@ -1,5 +1,5 @@
 import React, { useState, Fragment, useContext } from 'react'
-import { Form, Header, Input, Button, Segment, Rating, Label } from 'semantic-ui-react'
+import { Form, Header, Button, Segment, Rating, Label } from 'semantic-ui-react'
 import { UsuarioContext } from '../context/UsuarioProvider'
 
 /******************************************************
