@@ -8,6 +8,7 @@ import { FiltroContext } from "../context/FiltroProvider";
 import logoNave from '../css/images/logoNave.webp';
 
 
+
 const Navbar = (props) => {
   const [activeItem, setactiveItem] = React.useState("home");
   const handleItemClick = (e, { name }) => setactiveItem(name);
