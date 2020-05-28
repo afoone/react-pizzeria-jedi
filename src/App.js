@@ -16,6 +16,7 @@ import { UsuarioContext } from "./context/UsuarioProvider";
 import PizzaSearch from "./components/PizzaSearch";
 import Admin from './Admin'
 import PromoPage from "./pages/PromoPage"
+import Perfil from './components/Perfil'
 
 
 const App = () => {
@@ -46,7 +47,8 @@ const App = () => {
         <Route path="/" exact>
           <LandingPage />
         </Route>
-        <Route path="/pizzaA" exact>
+        <Route path="/perfil" exact>
+        <Perfil ></Perfil> 
         </Route>
         <Route path="/pizzaSearch" exact>
           <PizzaSearch></PizzaSearch>

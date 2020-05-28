@@ -1,5 +1,4 @@
 import React from "react";
-import Perfil from "../components/Perfil";
 import { withRouter } from "react-router-dom";
 import { auth } from "../config/firebase";
 import MiCarrito from "../components/MiCarrito";
@@ -23,7 +22,6 @@ const Carrito = (props) => {
     <div>
       {user && (
         <div className='carrito'>
-          <Perfil ></Perfil>
           <MiCarrito user={user}></MiCarrito>
         </div>
       )}

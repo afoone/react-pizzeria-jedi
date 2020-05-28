@@ -241,13 +241,13 @@ const MiCarrito = ({ user }) => {
       ) : (
         <Fragment>
           
-          <h1>
+          <h4>
           <Icon name="arrow alternate circle right" />
           No hay productos en tu carrito
           <Icon name="frown outline" size="large" />
           <Icon name="clipboard list" />
           <Icon name="exclamation triangle" />
-          </h1>
+          </h4>
           
           
         </Fragment>
