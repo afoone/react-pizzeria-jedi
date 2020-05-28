@@ -1,8 +1,8 @@
 import React from "react";
-import { Link, Redirect} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { auth } from '../config/firebase'
 import { withRouter } from "react-router-dom";
-import { Menu, Icon, Input, Segment } from "semantic-ui-react";
+import { Menu, Icon, Input, Segment, Responsive } from "semantic-ui-react";
 import { UsuarioContext } from "../context/UsuarioProvider";
 import { FiltroContext } from "../context/FiltroProvider";
 import logoNave from '../css/images/logoNave.webp';
@@ -14,7 +14,7 @@ const Navbar = (props) => {
 
   const { usuario, productsCart } = React.useContext(UsuarioContext);
   const { setBuscarPizzas, setConsultar, consultar } = React.useContext(FiltroContext);
- 
+
   const [busqueda, setBusqueda] = React.useState("");
 
   const obtenerDatosBusqueda = (e) => {
@@ -30,46 +30,46 @@ const Navbar = (props) => {
       })
   }
 
-  const RenderProduct = () =>{
+  const RenderProduct = () => {
     return (
-  productsCart.length > 0 ? (
-    <Menu.Item
-    as={Link}
-    to="/carrito"
-      name="tu carrito"
-      active={activeItem === "tu carrito"}
-      onClick={handleItemClick}
-      icon="cart arrow down"
-      color= {'red'}
-      
-    />
-  ) : (
-    <Menu.Item
-    as={Link}
-    to="/carrito"
-      name="carrito"
-      active={activeItem === "carrito"}
-      onClick={handleItemClick}
-      icon="shopping cart"
-     
-    />
-    )
+      productsCart.length > 0 ? (
+        <Menu.Item
+          as={Link}
+          to="/carrito"
+          name="tu carrito"
+          active={activeItem === "tu carrito"}
+          onClick={handleItemClick}
+          icon="cart arrow down"
+          color={'red'}
+
+        />
+      ) : (
+          <Menu.Item
+            as={Link}
+            to="/carrito"
+            name="carrito"
+            active={activeItem === "carrito"}
+            onClick={handleItemClick}
+            icon="shopping cart"
+
+          />
+        )
     )
   }
 
 
   return (
-    <div>
-      <Segment inverted className='navbar' style={{ overflowX:'auto',overflowY:'hide'}}>
-        <Menu  fluid inverted pointing secondary size="huge" stackable  >
-          <Menu.Item>  
-          <img src={logoNave}  alt='logo' />
+    <Responsive minWidth={1200}>
+      <Segment inverted style={{ overflowY: 'hidden' }}>
+        <Menu fluid inverted pointing secondary size="huge" stackable  >
+          <Menu.Item>
+            <img src={logoNave} alt='logo' />
           </Menu.Item>
-       
-          <Menu.Item header style={{width: 126}}></Menu.Item>
+
+          <Menu.Item header style={{ width: 126 }}></Menu.Item>
           <Menu.Item
-          as={Link}
-          to='/'
+            as={Link}
+            to='/'
             name="home"
             active={activeItem === "home"}
             onClick={handleItemClick}
@@ -86,7 +86,7 @@ const Navbar = (props) => {
             props.firebaseUser !== null ? (
               <React.Fragment>
                 <Menu.Item
-                as={Link}
+                  as={Link}
                   to="/pizzas"
                   name="Nuestras Pizzas"
                   active={activeItem === "Nuestras Pizzas"}
@@ -94,31 +94,31 @@ const Navbar = (props) => {
                 />
                 {usuario.role === "admin" ? (
                   <Menu.Item
-                  as={Link}
-                  to="/pizzaAdd"
-                  name="Crea tu Pizza"
+                    as={Link}
+                    to="/pizzaAdd"
+                    name="Crea tu Pizza"
                     active={activeItem === "Crea tu Pizza"}
                     onClick={handleItemClick}
                   >
-                   
+
                   </Menu.Item>
                 ) : null}
-               
+
               </React.Fragment>
             ) : (null)
           }
           {" "}
           <Menu.Menu position="right">
-          <Menu.Item >
-          <form onSubmit={ e => {
-            e.preventDefault();
-            setBuscarPizzas(busqueda);
-            setBusqueda('');
-            setConsultar(true);
-             }}>
-            <Input className="icon ui focus input"  placeholder="Search..." name="busqueda" value={busqueda} onChange={obtenerDatosBusqueda} />
-            </form>
-          </Menu.Item>
+            <Menu.Item >
+              <form onSubmit={e => {
+                e.preventDefault();
+                setBuscarPizzas(busqueda);
+                setBusqueda('');
+                setConsultar(true);
+              }}>
+                <Input className="icon ui focus input" placeholder="Search..." name="busqueda" value={busqueda} onChange={obtenerDatosBusqueda} />
+              </form>
+            </Menu.Item>
             {
               props.firebaseUser !== null ? (
                 <React.Fragment>
@@ -129,37 +129,37 @@ const Navbar = (props) => {
                   >
                     <Icon name="sign-out alternate" />
                   </Menu.Item>
-                  
-                 <RenderProduct></RenderProduct>
+
+                  <RenderProduct></RenderProduct>
                 </React.Fragment>
               ) : (
                   <Menu.Item
-                  as={Link}
-                  to="/login"
+                    as={Link}
+                    to="/login"
                     name="login"
                     icon="user circle"
                     active={activeItem === "login"}
                     onClick={handleItemClick}
-                 />
+                  />
                 )}
-                {usuario.role === "admin" ? (
-                  <Menu.Item
-                  as={Link}
-                  to="/admin"
-                    name="admin"
-                    active={activeItem === "admin"}
-                    onClick={handleItemClick}
-                  >
-                   
-                      <i className="cogs icon"></i>
-                    
-                  </Menu.Item>
-                ) : null}
+            {usuario.role === "admin" ? (
+              <Menu.Item
+                as={Link}
+                to="/admin"
+                name="admin"
+                active={activeItem === "admin"}
+                onClick={handleItemClick}
+              >
+
+                <i className="cogs icon"></i>
+
+              </Menu.Item>
+            ) : null}
           </Menu.Menu>
         </Menu>
       </Segment>
       {consultar === true ? <Redirect to='/pizzaSearch' ></Redirect> : null}
-    </div>
+    </Responsive>
   );
 };
 
