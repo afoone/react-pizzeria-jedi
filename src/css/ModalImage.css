@@ -5,9 +5,32 @@
 } 
 
 .modals.dimmer[class*="top aligned"] .modal {
-    margin: 20%;
-    width: 50%;
-    height: 41%;
+    margin: 25%;
+    width: 490px;
+    height: 381px;
     margin-top: 6%;
+
 }
 
+.ui.image img, .ui.image svg {
+    display: block;
+    max-width: 100%;
+    height: 31%;
+}
+
+.ui.large.image, .ui.large.images .image, .ui.large.images img, .ui.large.images svg {
+    width: 250px;
+    height: auto;
+    font-size: 1.14285714rem;
+}
+
+.ui.modal>.image.content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    height: 836px;
+}
