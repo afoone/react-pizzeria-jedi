@@ -8,6 +8,7 @@ import { FiltroContext } from "../context/FiltroProvider";
 import logoNave from '../css/images/logoNave.webp';
 
 
+
 const Navbar = (props) => {
   const [activeItem, setactiveItem] = React.useState("home");
   const handleItemClick = (e, { name }) => setactiveItem(name);
@@ -60,7 +61,7 @@ const Navbar = (props) => {
 
   return (
     <div>
-      <Segment inverted className='navbar' style={{ overflowX:'auto',overflowY:'hide'}}>
+      <Segment inverted style={{ overflowY:'hidden'}}>
         <Menu  fluid inverted pointing secondary size="huge" stackable  >
           <Menu.Item>  
           <img src={logoNave}  alt='logo' />
