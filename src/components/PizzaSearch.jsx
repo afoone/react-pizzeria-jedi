@@ -88,7 +88,7 @@ const PizzaSearch = () => {
             </Card.Content>
             <Card.Content extra>
               <a>
-                <ModalImage
+                <ModalImage 
                   image={item.image}
                   name={item.name}
                   price={item.price}

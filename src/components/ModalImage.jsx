@@ -11,7 +11,7 @@ const ModalImage = ({id, image, name, price, ingredientes }) => {
       );
 
   return (
-    <Modal trigger={<Button>Ver</Button>} centered={false}>
+    <Modal trigger={<Button>Show Modal</Button>} centered={false}>
       <Modal.Header>
         Comprar ahora
         <Button

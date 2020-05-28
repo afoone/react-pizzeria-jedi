@@ -113,7 +113,7 @@ const Navbar = (props) => {
           <form onSubmit={ e => {
             e.preventDefault();
             setBuscarPizzas(busqueda);
-            setBusqueda('')
+            setBusqueda('');
             setConsultar(true);
              }}>
             <Input className="icon ui focus input"  placeholder="Search..." name="busqueda" value={busqueda} onChange={obtenerDatosBusqueda} />
