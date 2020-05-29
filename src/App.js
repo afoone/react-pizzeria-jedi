@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import { auth } from "./config/firebase";
 import PizzaCardPage from "./pages/PizzaCardPage";
 import PizzaList from './components/PizzaList'
-import LandingPage from './pages/LandingPage'
+import {HomepageLayout} from './pages/LandingPage'
 import About from './components/About'
 import AddPizzaPage from "./pages/AddPizzaPage";
 import IngredienteAdd from './components/IngredienteAdd'
@@ -47,7 +47,7 @@ const App = () => {
       <Switch>
         <Route path="/ingrediente/:id" component={IngredienteAdd}></Route>
         <Route path="/" exact>
-          <LandingPage />
+          <HomepageLayout />
         </Route>
         <Route path="/perfil" exact>
         <Perfil ></Perfil> 
