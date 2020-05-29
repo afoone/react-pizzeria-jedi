@@ -35,7 +35,7 @@ const NavWithDropdown = (props) => {
                 <Menu.Item
                     as={Link}
                     to="/carrito"
-                   // name="tu carrito"
+                    name={productsCart.length}
                     active={activeItem === "tu carrito"}
                     onClick={handleItemClick}
                     icon="cart arrow down"
