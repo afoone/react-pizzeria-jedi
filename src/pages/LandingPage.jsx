@@ -292,7 +292,7 @@ const HomepageLayout = () => (
               <Header as='h4' inverted style={{ fontFamily: 'Star Jedi'}}>
                 Pizza Jedi
               </Header>
-              <p>
+              <p style={{ fontFamily: 'Star Jedi'}}>
                 Prueba nuestras pizzas y la fuerza estará siempre contigo.
               </p>
             </Grid.Column>
