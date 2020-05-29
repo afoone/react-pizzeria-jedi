@@ -60,7 +60,7 @@ const Navbar = (props) => {
 
   return (
     <Responsive minWidth={1200} className='barra-nav'>
-      <Menu inverted stackable style={{ backgroundColor: '#1b1c1d', fontSize: '1.5em' }} >
+      <Menu fixed='top' inverted stackable style={{ backgroundColor: '#1b1c1d', fontSize: '1.5em' }} >
         <Menu.Menu>
           <Menu.Item>
           <img src={logoNave} alt='logo' className='nav-logo'/>

@@ -59,7 +59,7 @@ const NavWithDropdown = (props) => {
 
     return (
         <Responsive as='segment' inverted maxWidth={1200}>
-            <Menu attached='top' inverted>
+            <Menu fixed= 'top' inverted>
                 <Dropdown item icon='sidebar'>
                     <Dropdown.Menu>
                         <Dropdown.Item as={Link} to='/'
