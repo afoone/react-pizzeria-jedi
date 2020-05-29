@@ -15,6 +15,9 @@ audio {
   vertical-align: baseline;
 }
 
+#root{
+  margin-top: 10em;
+}
 .fondo-estrellas .html {
   font-size: 24px;
 }
@@ -75,6 +78,10 @@ audio {
   position: absolute;
   top: 0;
   z-index: 100;
+}
+
+.ui.vertical.segment:last-child{
+  margin-top: -3em;
 }
 
 .fondo-estrellas .intro,
