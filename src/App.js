@@ -17,6 +17,7 @@ import PizzaSearch from "./components/PizzaSearch";
 import Admin from './Admin'
 import PromoPage from "./pages/PromoPage"
 import Perfil from './components/Perfil'
+import NavWithDropdown from "./components/NavWithDropdown";
 
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
   return firebaseUser !== false ? (
     <Router>
       <Navbar firebaseUser={firebaseUser} ></Navbar>
+      <NavWithDropdown firebaseUser={firebaseUser}></NavWithDropdown>
       <Switch>
         <Route path="/ingrediente/:id" component={IngredienteAdd}></Route>
         <Route path="/" exact>

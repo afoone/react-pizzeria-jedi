@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { auth } from '../config/firebase'
 import { withRouter } from "react-router-dom";
-import { Menu, Icon, Input, Segment } from "semantic-ui-react";
+import { Menu, Icon, Input, Segment, Responsive } from "semantic-ui-react";
 import { UsuarioContext } from "../context/UsuarioProvider";
 import { FiltroContext } from "../context/FiltroProvider";
 import logoNave from '../css/images/logoNave.webp';
@@ -61,8 +61,8 @@ const Navbar = (props) => {
 
 
   return (
-    <div className='cont-navbar'>
-      <Segment inverted style={{ overflowY: 'hidden' }}>
+    <Responsive minWidth={1200}>
+      <Segment inverted >
         <Menu fluid inverted pointing secondary size="huge" stackable  >
           <Menu.Item>
             <img src={logoNave} alt='logo' />
@@ -109,7 +109,7 @@ const Navbar = (props) => {
             ) : (null)
           }
           {" "}
-          <div>
+          <div className='nav-der' >
             <Menu.Item >
               <form onSubmit={e => {
                 e.preventDefault();
@@ -120,6 +120,9 @@ const Navbar = (props) => {
                 <Input className="icon ui focus input" placeholder="Search..." name="busqueda" value={busqueda} onChange={obtenerDatosBusqueda} />
               </form>
             </Menu.Item>
+            </div>
+
+            <div className='nav-der' >
             {
               props.firebaseUser !== null ? (
                 <React.Fragment>
@@ -155,11 +158,11 @@ const Navbar = (props) => {
                     onClick={handleItemClick}
                   />
                 )}
-          </div>
+                </div>
         </Menu>
       </Segment>
       {consultar === true ? <Redirect to='/pizzaSearch' ></Redirect> : null}
-    </div>
+    </Responsive>
   );
 };
 
