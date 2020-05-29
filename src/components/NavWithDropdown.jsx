@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Menu, Dropdown, Responsive, Input, Icon } from 'semantic-ui-react'
 import { Link, Redirect, withRouter } from 'react-router-dom'
-import logoNave from '../css/images/logoNave.webp';
 import { UsuarioContext } from '../context/UsuarioProvider';
 import { FiltroContext } from "../context/FiltroProvider";
 import { auth } from '../config/firebase'
@@ -63,7 +62,6 @@ const NavWithDropdown = (props) => {
             <Menu attached='top' inverted>
                 <Dropdown item icon='sidebar'>
                     <Dropdown.Menu>
-                        <Dropdown.Item ><img src={logoNave} alt='logo' /></Dropdown.Item>
                         <Dropdown.Item as={Link} to='/'
                             active={activeItem === "home"}
                             onClick={handleItemClick}

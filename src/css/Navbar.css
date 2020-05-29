@@ -1,21 +1,14 @@
-.edita-perfil{
-    width: 74px !important;
-    margin-left: -19px;
-    margin-top: -7px;
-    position: absolute;
-    border-radius: 82px;
+.barra-nav .menu{
+    height: 5em;
+}
+.barra-nav .ui.menu .item{
+    padding: 0px 14px;
+    font-size: 0.95em;
+}
+.ui.icon.input>input {
+    width: 9em;
 }
 
-.ui.attached.inverted.menu {
-    display: grid;
-    grid-template-columns: 5%  auto 8%;
-}
-
-.nav-der{
-display: flex;
-margin: auto;
-}
-
-.m-5 {
-    margin: auto;
+.ui.menu .item>img:not(.ui) {
+    width: 150px;
 }
