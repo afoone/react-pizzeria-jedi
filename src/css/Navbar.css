@@ -10,5 +10,8 @@
 }
 
 .ui.menu .item>img:not(.ui) {
-    width: 150px;
+    width: 68px;
+    border-radius: 24px;
 }
+
+
