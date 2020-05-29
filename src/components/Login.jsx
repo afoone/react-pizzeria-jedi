@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-
+import '../css/Login.css'
 import {auth, db, firebase} from '../config/firebase'
 import {withRouter} from 'react-router-dom'
 import { Card, Icon, Button, Container} from 'semantic-ui-react'

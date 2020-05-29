@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { fetchPizzas, deletePizza } from '../actions'
 import { Link } from 'react-router-dom'
 import { db } from '../config/firebase'
 import { UsuarioContext } from "../context/UsuarioProvider";
 import '../css/PizzaList.css'
-import { Button, Icon } from 'semantic-ui-react'
+import { Button, Icon, Container } from 'semantic-ui-react'
 import { ToastContainer } from "react-toastify";
 
 
@@ -34,8 +34,8 @@ const PizzaList = props => {
     }
 
     return (
-        <>
-        <div id="lista" className="pizza-list">
+        <Fragment>
+        <Container id="lista" className="pizza-list">
             <table className="ui striped table unstackable">
                 <thead>
                     <tr>
@@ -59,8 +59,8 @@ const PizzaList = props => {
                                 <td>
                                     <Link to={`/pizzaId/${e.id}`}>vER</Link>{" "}
                                     {usuario.role==="admin"?
-                                    <><Link to={`/pizzaedit/${e.id}`}>Editar</Link>{" "}
-                                    <a href="#lista" onClick={() => onBorrarClicked(e)}>Borrar</a></>:""}
+                                    <Fragment><Link to={`/pizzaedit/${e.id}`}>Editar</Link>{" "}
+                                    <a href="#lista" onClick={() => onBorrarClicked(e)}>Borrar</a></Fragment>:""}
                                     
                                     <Button animated='vertical' onClick={() => agregarProducto(e.id, e.name)}>
                                          <Button.Content hidden>Shop</Button.Content>
@@ -75,7 +75,7 @@ const PizzaList = props => {
 
                 </tbody>
             </table>
-        </div>
+        </Container>
         <ToastContainer
         position="bottom-left"
         autoClose={4000}
@@ -87,7 +87,7 @@ const PizzaList = props => {
         draggable
         pauseOnHover={false}
       ></ToastContainer>
-      </>
+      </Fragment>
     )
 }
 

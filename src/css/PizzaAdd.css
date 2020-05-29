@@ -2,12 +2,15 @@
     font-family: 'Star Jedi';
     src:url(./fonts/star-jedi_[allfont.es].ttf)
 }
+
+
 *{
     font-family: 'Star Jedi' ;
 }
 .pizza-add{
     width: 70%;
     margin: auto;
+    margin-top: 117px;
 }
 
 .select-ingrediente{

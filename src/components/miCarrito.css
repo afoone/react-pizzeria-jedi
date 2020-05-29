@@ -2,6 +2,10 @@
     padding-top: 9vh;
     display: flex;
     flex-direction: column;
+    margin-top: 47px;
+}
+.carrito{
+    margin-top: 47px;
 }
 
 .product-card{

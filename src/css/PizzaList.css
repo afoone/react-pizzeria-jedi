@@ -1,4 +1,10 @@
 .pizza-list{
     display: grid;
     grid-template-columns: auto;
+    margin-top: -6px;
+}
+
+.ui.table:last-child {
+    margin-bottom: 0;
+    margin-top: 117px;
 }

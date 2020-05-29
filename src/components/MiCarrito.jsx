@@ -6,7 +6,7 @@ import {
   removeItemArray,
   countDuplicatesItemArray,
 } from "../context/constants";
-import { Button, Icon, Card } from "semantic-ui-react";
+import { Button, Icon, Card, Container } from "semantic-ui-react";
 import "./miCarrito.css";
 
 const MiCarrito = ({ user }) => {
@@ -219,7 +219,7 @@ const MiCarrito = ({ user }) => {
   };
 
   return (
-    <div className="miCarrito">
+    <Container className="miCarrito">
       <CartHeader emptyCart={emptyCart}></CartHeader>
       {productsCart.length > 0 ? (
         <div className="cart-content-products">
@@ -259,7 +259,7 @@ const MiCarrito = ({ user }) => {
         user={user}
         productsCart={productsCart}
       ></CartFooter>
-    </div>
+    </Container>
   );
 };
 

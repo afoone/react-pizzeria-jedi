@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { UsuarioContext } from "../context/UsuarioProvider";
-
+import '../css/Perfil.css'
 
 const Perfil = () => {
   const { usuario, editarFoto, actualizarUsuario, detectarUsuario } = React.useContext(

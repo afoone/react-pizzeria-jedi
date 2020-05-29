@@ -1,0 +1,9 @@
+
+.ui.card:last-child {
+    margin-top: 131px;
+}
+
+.card .m-5{
+    margin: auto !important;
+    margin-top: 133px !important;
+}
