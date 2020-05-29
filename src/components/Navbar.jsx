@@ -128,6 +128,19 @@ const Navbar = (props) => {
                 </Menu.Item>
 
                 <RenderProduct></RenderProduct>
+                <Menu.Item
+                as={Link}
+                to="/perfil"
+                name="admin"
+                onClick={handleItemClick}
+              >
+                <img
+                  src={usuario.photoURL}
+                  alt="foto"
+                  width="67%"
+                  className="edita-perfil"
+                />
+              </Menu.Item>
               </React.Fragment>
             ) : (
                 <Menu.Item
@@ -139,19 +152,7 @@ const Navbar = (props) => {
                   onClick={handleItemClick}
                 />
               )}
-              <Menu.Item
-              as={Link}
-              to="/perfil"
-              name="admin"
-              onClick={handleItemClick}
-            >
-              <img
-                src={usuario.photoURL}
-                alt="foto"
-                width="67%"
-                className="edita-perfil"
-              />
-            </Menu.Item>
+            
         </Menu.Menu>
       </Menu>
       {consultar === true ? <Redirect to='/pizzaSearch' ></Redirect> : null}
