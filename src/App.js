@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import { auth } from "./config/firebase";
 import PizzaCardPage from "./pages/PizzaCardPage";
 import PizzaList from './components/PizzaList'
-import {HomepageLayout} from './pages/LandingPage'
+import { HomepageLayout } from './pages/LandingPage'
 import About from './components/About'
 import AddPizzaPage from "./pages/AddPizzaPage";
 import IngredienteAdd from './components/IngredienteAdd'

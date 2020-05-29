@@ -25,4 +25,5 @@
 .mensaje{
     display: block;
     width: -webkit-fill-available;
+    margin-top: 101px;
 }

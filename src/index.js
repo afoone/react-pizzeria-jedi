@@ -11,6 +11,7 @@ import FiltroProvider from "./context/FiltroProvider";
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 const store = createStore(
   reducer,
   compose(
@@ -20,6 +21,7 @@ const store = createStore(
 );
 
 ReactDOM.render(
+
   <Provider store={store}>
     <UsuarioProvider>
     <FiltroProvider>
@@ -28,4 +30,16 @@ ReactDOM.render(
     </UsuarioProvider>
   </Provider>,
   document.getElementById("root")
+  
 );
+
+navigator.serviceWorker.getRegistrations().then(
+
+  function(registrations) {
+
+      for(let registration of registrations) {
+          registration.unregister();
+
+      }
+
+});

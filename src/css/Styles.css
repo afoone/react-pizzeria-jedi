@@ -15,7 +15,6 @@ audio {
   vertical-align: baseline;
 }
 
-
 .fondo-estrellas .html {
   font-size: 24px;
 }
@@ -34,6 +33,7 @@ audio {
   background-image: url(http://localhost:3000/estrellas2.jpg);
   flex-direction: column;
   height: 0%;
+  margin-top: 103px;
 }
 
 .fondo-estrellas div[id="root"] {
@@ -46,6 +46,7 @@ audio {
   height: 56vh;
   position: relative;
   width: 100%;
+  margin-top: 13px;
 }
 
 .footer{
