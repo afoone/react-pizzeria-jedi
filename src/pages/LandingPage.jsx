@@ -97,7 +97,10 @@ class DesktopContainer extends Component {
             style={{ minHeight: 700, padding: '1em 0em' }}
             vertical
           >
+<<<<<<< HEAD
            
+=======
+>>>>>>> 1dbb4f82053a2941b41f220f99478445c7079d28
             <HomepageHeading />
           </Segment>
         </Visibility>
@@ -195,7 +198,7 @@ ResponsiveContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const HomepageLayout = () => (
+export const HomepageLayout = () => (
   <ResponsiveContainer>
 
  
